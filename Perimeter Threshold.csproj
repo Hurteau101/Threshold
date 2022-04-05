@@ -57,6 +57,7 @@
     <Compile Include="AutoComplete.cs" />
     <Compile Include="ConnectionLoader.cs" />
     <Compile Include="DateTimeFormater.cs" />
+    <Compile Include="DeleteFlight.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +72,7 @@
     <Compile Include="RampBoard.Designer.cs">
       <DependentUpon>RampBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="RampDeleteFlight.cs" />
     <Compile Include="Users.cs" />
     <EmbeddedResource Include="AddFlight_Ramp.resx">
       <DependentUpon>AddFlight_Ramp.cs</DependentUpon>

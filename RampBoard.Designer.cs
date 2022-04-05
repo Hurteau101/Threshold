@@ -29,6 +29,7 @@ namespace Perimeter_Threshold
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -37,7 +38,6 @@ namespace Perimeter_Threshold
             this.subMenuAddFlight = new System.Windows.Forms.ToolStripMenuItem();
             this.smallPanelEarly = new System.Windows.Forms.Panel();
             this.panelHeader = new System.Windows.Forms.Panel();
-            this.pictureHeader = new System.Windows.Forms.PictureBox();
             this.panelColors = new System.Windows.Forms.Panel();
             this.lblArrived = new System.Windows.Forms.Label();
             this.lblOnTime = new System.Windows.Forms.Label();
@@ -48,14 +48,19 @@ namespace Perimeter_Threshold
             this.smallPanelOnTime = new System.Windows.Forms.Panel();
             this.smallPanelUnserviceable = new System.Windows.Forms.Panel();
             this.smallPanelLate = new System.Windows.Forms.Panel();
-            this.dgvRampBoard = new System.Windows.Forms.DataGridView();
-            this.lblUser = new System.Windows.Forms.Label();
             this.dateTimeRamp = new System.Windows.Forms.DateTimePicker();
+            this.lblUser = new System.Windows.Forms.Label();
+            this.pictureHeader = new System.Windows.Forms.PictureBox();
+            this.dgvRampBoard = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dgvMenuStripFlights = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.subMenuDeleteFlight = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.panelHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureHeader)).BeginInit();
             this.panelColors.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRampBoard)).BeginInit();
+            this.dgvMenuStripFlights.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -79,7 +84,7 @@ namespace Perimeter_Threshold
             // subMenuAddFlight
             // 
             this.subMenuAddFlight.Name = "subMenuAddFlight";
-            this.subMenuAddFlight.Size = new System.Drawing.Size(129, 22);
+            this.subMenuAddFlight.Size = new System.Drawing.Size(180, 22);
             this.subMenuAddFlight.Text = "Add Flight";
             this.subMenuAddFlight.Click += new System.EventHandler(this.subMenuAddFlight_Click);
             // 
@@ -95,6 +100,7 @@ namespace Perimeter_Threshold
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelHeader.Controls.Add(this.label1);
             this.panelHeader.Controls.Add(this.panelColors);
             this.panelHeader.Controls.Add(this.dateTimeRamp);
             this.panelHeader.Controls.Add(this.lblUser);
@@ -104,17 +110,6 @@ namespace Perimeter_Threshold
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1014, 119);
             this.panelHeader.TabIndex = 3;
-            // 
-            // pictureHeader
-            // 
-            this.pictureHeader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureHeader.Image = global::Perimeter_Threshold.Properties.Resources.RampBoardHeader;
-            this.pictureHeader.Location = new System.Drawing.Point(0, 0);
-            this.pictureHeader.Name = "pictureHeader";
-            this.pictureHeader.Size = new System.Drawing.Size(1014, 119);
-            this.pictureHeader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureHeader.TabIndex = 4;
-            this.pictureHeader.TabStop = false;
             // 
             // panelColors
             // 
@@ -220,6 +215,35 @@ namespace Perimeter_Threshold
             this.smallPanelLate.Size = new System.Drawing.Size(17, 20);
             this.smallPanelLate.TabIndex = 3;
             // 
+            // dateTimeRamp
+            // 
+            this.dateTimeRamp.CalendarFont = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
+            this.dateTimeRamp.Location = new System.Drawing.Point(11, 28);
+            this.dateTimeRamp.Name = "dateTimeRamp";
+            this.dateTimeRamp.Size = new System.Drawing.Size(151, 20);
+            this.dateTimeRamp.TabIndex = 6;
+            // 
+            // lblUser
+            // 
+            this.lblUser.AutoSize = true;
+            this.lblUser.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10.2F);
+            this.lblUser.Location = new System.Drawing.Point(9, 8);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(14, 18);
+            this.lblUser.TabIndex = 5;
+            this.lblUser.Text = "-";
+            // 
+            // pictureHeader
+            // 
+            this.pictureHeader.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureHeader.Image = global::Perimeter_Threshold.Properties.Resources.RampBoardHeader;
+            this.pictureHeader.Location = new System.Drawing.Point(0, 0);
+            this.pictureHeader.Name = "pictureHeader";
+            this.pictureHeader.Size = new System.Drawing.Size(1014, 119);
+            this.pictureHeader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureHeader.TabIndex = 4;
+            this.pictureHeader.TabStop = false;
+            // 
             // dgvRampBoard
             // 
             this.dgvRampBoard.AllowUserToAddRows = false;
@@ -260,24 +284,30 @@ namespace Perimeter_Threshold
             this.dgvRampBoard.RowTemplate.Height = 24;
             this.dgvRampBoard.Size = new System.Drawing.Size(1014, 353);
             this.dgvRampBoard.TabIndex = 4;
+            this.dgvRampBoard.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRampBoard_CellMouseUp);
             // 
-            // lblUser
+            // label1
             // 
-            this.lblUser.AutoSize = true;
-            this.lblUser.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10.2F);
-            this.lblUser.Location = new System.Drawing.Point(9, 8);
-            this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(14, 18);
-            this.lblUser.TabIndex = 5;
-            this.lblUser.Text = "-";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(587, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "label1";
             // 
-            // dateTimeRamp
+            // dgvMenuStripFlights
             // 
-            this.dateTimeRamp.CalendarFont = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
-            this.dateTimeRamp.Location = new System.Drawing.Point(11, 28);
-            this.dateTimeRamp.Name = "dateTimeRamp";
-            this.dateTimeRamp.Size = new System.Drawing.Size(151, 20);
-            this.dateTimeRamp.TabIndex = 6;
+            this.dgvMenuStripFlights.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.subMenuDeleteFlight});
+            this.dgvMenuStripFlights.Name = "contextMenuStrip1";
+            this.dgvMenuStripFlights.Size = new System.Drawing.Size(181, 48);
+            // 
+            // subMenuDeleteFlight
+            // 
+            this.subMenuDeleteFlight.Name = "subMenuDeleteFlight";
+            this.subMenuDeleteFlight.Size = new System.Drawing.Size(180, 22);
+            this.subMenuDeleteFlight.Text = "Delete Flight";
+            this.subMenuDeleteFlight.Click += new System.EventHandler(this.subMenuDeleteFlight_Click);
             // 
             // RampBoard
             // 
@@ -295,10 +325,11 @@ namespace Perimeter_Threshold
             this.menuStrip.PerformLayout();
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureHeader)).EndInit();
             this.panelColors.ResumeLayout(false);
             this.panelColors.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureHeader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRampBoard)).EndInit();
+            this.dgvMenuStripFlights.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,5 +356,8 @@ namespace Perimeter_Threshold
         private System.Windows.Forms.ToolStripMenuItem subMenuAddFlight;
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.DateTimePicker dateTimeRamp;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ContextMenuStrip dgvMenuStripFlights;
+        private System.Windows.Forms.ToolStripMenuItem subMenuDeleteFlight;
     }
 }

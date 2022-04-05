@@ -19,7 +19,9 @@ namespace Perimeter_Threshold
             InitializeComponent();
         }
 
+        private int rowIndex = 0;
         public string FullName { get; set; }
+        public string FlightNumber { get; set; }
 
         /// <summary>
         /// Load Ramp Board
@@ -55,6 +57,30 @@ namespace Perimeter_Threshold
             DateTimeFormater.DateDisplay = dateTimeRamp.Value.Date;
             addFlight.Show();
             
+        }
+
+        private void dgvRampBoard_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            // Open right click menu on Datagridview. 
+            if(e.Button == MouseButtons.Right)
+            {
+                this.dgvRampBoard.Rows[e.RowIndex].Selected = true;
+                this.rowIndex = e.RowIndex;
+                this.dgvRampBoard.CurrentCell = this.dgvRampBoard.Rows[e.RowIndex].Cells[1];
+                this.dgvMenuStripFlights.Show(this.dgvRampBoard, e.Location);
+                dgvMenuStripFlights.Show(Cursor.Position);
+
+                // Store flight number, depending on what flight number you click on Datagridview. 
+                FlightNumber = dgvRampBoard.Rows[e.RowIndex].Cells["FlightNumber"].Value.ToString(); 
+            }
+        }
+
+        private void subMenuDeleteFlight_Click(object sender, EventArgs e)
+        {
+            RampDeleteFlight deleteFlight = new RampDeleteFlight();
+            deleteFlight.FlightNumber = FlightNumber; 
+            deleteFlight.Date = dateTimeRamp.Value.Date;
+            deleteFlight.DeletingFight(deleteFlight.FlightNumber, deleteFlight.Date);
         }
     }
 }

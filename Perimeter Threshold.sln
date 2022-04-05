@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32126.315
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perimeter Threshold", "Perimeter Threshold.csproj", "{68BFAFB3-A745-4721-836A-8A080FCFF0D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestAddFlight", "UnitTesting\UnitTestAddFlight\UnitTestAddFlight.csproj", "{CEB1FF3A-A69C-4A2A-8B24-72C2D3EBE094}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{68BFAFB3-A745-4721-836A-8A080FCFF0D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68BFAFB3-A745-4721-836A-8A080FCFF0D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68BFAFB3-A745-4721-836A-8A080FCFF0D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEB1FF3A-A69C-4A2A-8B24-72C2D3EBE094}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEB1FF3A-A69C-4A2A-8B24-72C2D3EBE094}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEB1FF3A-A69C-4A2A-8B24-72C2D3EBE094}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEB1FF3A-A69C-4A2A-8B24-72C2D3EBE094}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
