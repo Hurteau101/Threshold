@@ -20,8 +20,14 @@ namespace Perimeter_Threshold
             // Custom Date Picker Format 
             date.Format = DateTimePickerFormat.Custom;
             date.CustomFormat = "ddd, dd MMM yyy";
+        }
 
-            // Auto set date, from which date the ramp board showed. 
+        /// <summary>
+        /// Audo set date, from which date the ramp board showed.
+        /// </summary>
+        /// <param name="date"></param>
+        public static void AutoSetDate(DateTimePicker date)
+        {
             date.Value = DateDisplay;
         }
 
@@ -35,6 +41,34 @@ namespace Perimeter_Threshold
             date.Value = DateDisplay;
         }
 
+        /// <summary>
+        /// Show the DateTime Picker. 
+        /// </summary>
+        /// <param name="date"></param>
+        public static void ShowDate(DateTimePicker date, ToolStripMenuItem showMenu, ToolStripMenuItem hideMenu)
+        {
+            // Show date and format toolbar. 
+            date.Show();
+            showMenu.Checked = true;
+            hideMenu.Checked = false;
+            hideMenu.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            showMenu.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
+        }
+
+        /// <summary>
+        /// Hide the DateTime Picker. 
+        /// </summary>
+        /// <param name="date"></param>
+        public static void HideDate(DateTimePicker date, ToolStripMenuItem showMenu, ToolStripMenuItem hideMenu)
+        {
+            // Hide date and format toolbar. 
+            date.Hide();
+            hideMenu.Checked = true;
+            showMenu.Checked = false;
+            hideMenu.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
+            showMenu.DisplayStyle = ToolStripItemDisplayStyle.Text;
+
+        }
 
     }
 }

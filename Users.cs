@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Data;
 
+
 namespace Perimeter_Threshold
 {
     public class Users
@@ -16,6 +17,7 @@ namespace Perimeter_Threshold
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FullName { get { return $"Welcome, {FirstName} {LastName}"; } }
+        public string Password { get; set; }
 
 
         /// <summary>
@@ -65,6 +67,7 @@ namespace Perimeter_Threshold
                     return (false, String.Empty);
                 }
             }
-        }       
+        }
+
     }
 }

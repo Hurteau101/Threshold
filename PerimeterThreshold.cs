@@ -16,7 +16,7 @@ namespace Perimeter_Threshold
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            Application.Run(new AdminUserControl());
         }
     }
 }

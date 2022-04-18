@@ -48,6 +48,9 @@ namespace Perimeter_Threshold
             // Load Name of User.
             lblUser.Text = Name;
 
+            // Format Date Display.
+            DateTimeFormater.DateTimeDisplay(dateTimeRamp);
+
             LoadRampBoard();
         }
 
@@ -64,14 +67,22 @@ namespace Perimeter_Threshold
             // Open right click menu on Datagridview. 
             if(e.Button == MouseButtons.Right)
             {
-                this.dgvRampBoard.Rows[e.RowIndex].Selected = true;
-                this.rowIndex = e.RowIndex;
-                this.dgvRampBoard.CurrentCell = this.dgvRampBoard.Rows[e.RowIndex].Cells[1];
-                this.dgvMenuStripFlights.Show(this.dgvRampBoard, e.Location);
-                dgvMenuStripFlights.Show(Cursor.Position);
+                try
+                {
+                    this.dgvRampBoard.Rows[e.RowIndex].Selected = true;
+                    this.rowIndex = e.RowIndex;
+                    this.dgvRampBoard.CurrentCell = this.dgvRampBoard.Rows[e.RowIndex].Cells[1];
+                    this.dgvMenuStripFlights.Show(this.dgvRampBoard, e.Location);
+                    dgvMenuStripFlights.Show(Cursor.Position);
 
-                // Store flight number, depending on what flight number you click on Datagridview. 
-                FlightNumber = dgvRampBoard.Rows[e.RowIndex].Cells["FlightNumber"].Value.ToString(); 
+                    // Store flight number, depending on what flight number you click on Datagridview. 
+                    FlightNumber = dgvRampBoard.Rows[e.RowIndex].Cells["FlightNumber"].Value.ToString();
+                }
+                // If user clicks outside of datagridview, it will throw exception. 
+                catch (ArgumentOutOfRangeException)
+                {
+                    MessageBox.Show("Invalid right click. Please right click on flights only", "Invalid Right Click", MessageBoxButtons.OK);
+                }
             }
         }
 
@@ -81,6 +92,25 @@ namespace Perimeter_Threshold
             deleteFlight.FlightNumber = FlightNumber; 
             deleteFlight.Date = dateTimeRamp.Value.Date;
             deleteFlight.DeletingFight(deleteFlight.FlightNumber, deleteFlight.Date);
+        }
+
+        private void showDateCalanderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DateTimeFormater.ShowDate(dateTimeRamp, subMenuStripShowDate, subMenuStripHideDate);
+        }
+
+        private void hideDateCalenderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DateTimeFormater.HideDate(dateTimeRamp, subMenuStripShowDate, subMenuStripHideDate);
+        }
+
+        private void subMenuNightChecklist_Click(object sender, EventArgs e)
+        {
+            NightChecklist nightList = new NightChecklist();
+            DateTimeFormater.DateDisplay = dateTimeRamp.Value.Date;
+            nightList.Show();
+           
+
         }
     }
 }

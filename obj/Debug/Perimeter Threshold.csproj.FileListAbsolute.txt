@@ -11,3 +11,4 @@ C:\Users\DHurteau\Desktop\Perimeter-Threshold\obj\Debug\Perimeter Threshold.cspr
 C:\Users\DHurteau\Desktop\Perimeter-Threshold\obj\Debug\Perimeter Threshold.csproj.CoreCompileInputs.cache
 C:\Users\DHurteau\Desktop\Perimeter-Threshold\obj\Debug\Perimeter Threshold.exe
 C:\Users\DHurteau\Desktop\Perimeter-Threshold\obj\Debug\Perimeter Threshold.pdb
+C:\Users\DHurteau\Desktop\Perimeter-Threshold\obj\Debug\Perimeter_Threshold.NightChecklist.resources

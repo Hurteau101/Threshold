@@ -25,6 +25,7 @@ namespace Perimeter_Threshold
         {          
             DateTimeFormater.DateTimeDisplay(datePicker);
             DateTimeFormater.GetPreviousDate(datePicker);
+            DateTimeFormater.AutoSetDate(datePicker);
 
        
             // Create autocomplete object, and process auto complete for boxes. 

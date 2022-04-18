@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Cryptography.Internal, Version=6.0.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNetCore.Cryptography.Internal.6.0.4\lib\net461\Microsoft.AspNetCore.Cryptography.Internal.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation, Version=6.0.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNetCore.Cryptography.KeyDerivation.6.0.4\lib\net461\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -54,6 +60,12 @@
     <Compile Include="AddFlight_Ramp.Designer.cs">
       <DependentUpon>AddFlight_Ramp.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminUserControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminUserControl.Designer.cs">
+      <DependentUpon>AdminUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="AutoComplete.cs" />
     <Compile Include="ConnectionLoader.cs" />
     <Compile Include="DateTimeFormater.cs" />
@@ -64,6 +76,13 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="NightChecklist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NightChecklist.Designer.cs">
+      <DependentUpon>NightChecklist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NightTasks.cs" />
     <Compile Include="PerimeterThreshold.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RampBoard.cs">
@@ -73,12 +92,19 @@
       <DependentUpon>RampBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="RampDeleteFlight.cs" />
+    <Compile Include="SecurityHash.cs" />
     <Compile Include="Users.cs" />
     <EmbeddedResource Include="AddFlight_Ramp.resx">
       <DependentUpon>AddFlight_Ramp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdminUserControl.resx">
+      <DependentUpon>AdminUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NightChecklist.resx">
+      <DependentUpon>NightChecklist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,6 +119,7 @@
     <EmbeddedResource Include="RampBoard.resx">
       <DependentUpon>RampBoard.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -106,7 +133,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\LOGO.ico" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Images\RampBoardHeader.png" />
   </ItemGroup>
