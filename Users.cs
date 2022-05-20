@@ -18,10 +18,15 @@ namespace Perimeter_Threshold
         public string LastName { get; set; }
         public string FullName { get { return $"Welcome, {FirstName} {LastName}"; } }
         public string Password { get; set; }
+        public int UserID { get; set; }
 
+
+
+        /// *** WHEN CREATING A PAGE FOR CREATE A USER. MAKE SURE YOU SET USER PREFERENCE DEFAULTS OR ELSE PREFERENCES WILL THROW ERRORS SINCE IT WILL 
+        /// BE NULL IN THE DATABASE. 
 
         /// <summary>
-        /// Check if user is valid or not.
+        /// Check if user is valid or not. If user is valid, return true and their username. Also check if its password or username that doesn't exist. 
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
@@ -34,25 +39,26 @@ namespace Perimeter_Threshold
             /// * Return tuple to evaluate if its a valid user or not. 
             /// </summary>
             
-            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("LoadPlanner")))
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
                 connection.Open();
-                SqlCommand findUser = new SqlCommand("SELECT * FROM Users WHERE Username =@Username", connection);
-                findUser.Parameters.AddWithValue("@Username", username);
+                SqlCommand findUser = new SqlCommand("SELECT * FROM Users WHERE User_Username =@User_Username", connection);
+                findUser.Parameters.AddWithValue("@User_Username", username);
                 SqlDataReader searchUser = findUser.ExecuteReader();
                 if (searchUser.Read())
                 {
-                    SqlCommand validCredentials = new SqlCommand("LoginRole", connection);
+                    SqlCommand validCredentials = new SqlCommand("LoginVerfication", connection);
                     validCredentials.CommandType = CommandType.StoredProcedure;
                     validCredentials.Parameters.AddWithValue("@Username", username);
-                    validCredentials.Parameters.AddWithValue("@PW", password);
+                    validCredentials.Parameters.AddWithValue("@Password", password);
                     SqlDataReader readCredentials = validCredentials.ExecuteReader();
                     if (readCredentials.Read())
                     {
-                        Username = (readCredentials["Username"].ToString());
-                        RoleID = Convert.ToInt32(readCredentials["RoleID"].ToString());
-                        FirstName = (readCredentials["FirstName"].ToString());
-                        LastName = (readCredentials["LastName"].ToString());
+                        Username = (readCredentials["User_Username"].ToString());
+                        RoleID = Convert.ToInt32(readCredentials["Role_ID"].ToString());
+                        UserID = Convert.ToInt32(readCredentials["User_IDs"].ToString());
+                        FirstName = (readCredentials["First_Name"].ToString());
+                        LastName = (readCredentials["Last_Name"].ToString());
                         return (true, username);
                     }
                     else

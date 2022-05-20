@@ -5,28 +5,47 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace Perimeter_Threshold
 {
     public class NightTasks
     {
+        public DateTime Date { get; set; }
+        public string Seatpacks { get; set; }
+        public string NightTask { get; set; }
+        public Button Save { get; set; }
+        public string Time { get; set; }
+
+
+        public NightTasks(DateTime date, string seatpacks, string nightTask)
+        {
+            Date = date;
+            Seatpacks = seatpacks;
+            NightTask = nightTask;
+        }
+
         /// <summary>
         /// Load Night Seatpacks depending on Date. 
         /// </summary>
         /// <param name="date"></param>
         /// <param name="seatpack"></param>
-        public void LoadNightSeatpacks(DateTime date, RichTextBox seatpack)
+        public bool LoadNightSeatpacks()
         {
-            using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("LoadPlanner")))
+            using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
                 conn.Open();
-                SqlCommand loadData = new SqlCommand("SELECT SeatpackNumber FROM NightChecklist WHERE DateID = @DateID", conn);
-                loadData.Parameters.AddWithValue("@DateID", date);
+                SqlCommand loadData = new SqlCommand("Load_Night_Seatpacks", conn);
+                loadData.CommandType = CommandType.StoredProcedure;
+                loadData.Parameters.AddWithValue("@DateID", Date);
                 SqlDataReader readData = loadData.ExecuteReader();
-                if(readData.Read())
+                if (readData.Read())
                 {
-                    seatpack.Text = (readData["SeatpackNumber"].ToString());
+                    Seatpacks = (readData["Seatpack_List"].ToString());
+                    // Boolean, to check if there is any data. If it can't find data, it will return false, which will allow textbox to be set to empty. 
+                    return true;
                 }
+                return false;
             }
         }
 
@@ -35,18 +54,46 @@ namespace Perimeter_Threshold
         /// </summary>
         /// <param name="date"></param>
         /// <param name="nightTask"></param>
-        public void LoadNightTask(DateTime date, RichTextBox nightTask)
+        public bool LoadNightTask()
         {
-            using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("LoadPlanner")))
+            using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
                 conn.Open();
-                SqlCommand loadData = new SqlCommand("SELECT NightTask FROM NightChecklist WHERE DateID = @DateID", conn);
-                loadData.Parameters.AddWithValue("@DateID", date);
+                SqlCommand loadData = new SqlCommand("Load_Night_Task", conn);
+                loadData.CommandType = CommandType.StoredProcedure;
+                loadData.Parameters.AddWithValue("@DateID", Date);
                 SqlDataReader readData = loadData.ExecuteReader();
                 if (readData.Read())
                 {
-                    nightTask.Text = (readData["NightTask"].ToString());
+                    NightTask = (readData["Night_Task"].ToString());
+                    // Boolean, to check if there is any data. If it can't find data, it will return false, which will allow textbox to be set to empty. 
+                    return true;
                 }
+
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Load last updated time. 
+        /// </summary>
+        /// <param name="date"></param>
+        /// <param name="Time"></param>
+        public bool LoadUpdateTime()
+        {
+            using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
+            {
+                conn.Open();
+                SqlCommand loadUpdateTime = new SqlCommand("Load_Update_Time", conn);
+                loadUpdateTime.CommandType = CommandType.StoredProcedure;
+                loadUpdateTime.Parameters.AddWithValue("@DateID", Date);
+                SqlDataReader readTime = loadUpdateTime.ExecuteReader();
+                if (readTime.Read())
+                {
+                    Time = (readTime["Time_Updated"].ToString());
+                    return true;
+                }
+                return false;
             }
         }
 
@@ -57,9 +104,9 @@ namespace Perimeter_Threshold
         /// <param name="nightSeatpacks"></param>
         /// <param name="nightTask"></param>
         /// <returns></returns>
-        public static bool DateCheckValid (DateTime date, RichTextBox nightSeatpacks, RichTextBox nightTask, Button save)
+        public static bool DateCheckValid(DateTime date, RichTextBox nightSeatpacks, RichTextBox nightTask, Button save)
         {
-            if(date < DateTime.Now.Date)
+            if (date < DateTime.Now.Date)
             {
                 nightSeatpacks.ReadOnly = true;
                 nightTask.ReadOnly = true;
@@ -67,7 +114,7 @@ namespace Perimeter_Threshold
                 nightTask.BackColor = System.Drawing.Color.LightGray;
                 save.Enabled = false;
                 save.BackColor = System.Drawing.Color.LightGray;
-                return true; 
+                return true;
             }
             else
             {
@@ -87,35 +134,26 @@ namespace Perimeter_Threshold
         /// <param name="date"></param>
         /// <param name="nightSeatpacks"></param>
         /// <param name="nightTask"></param>
-        public static void SaveChanges (DateTime date, RichTextBox nightSeatpacks, RichTextBox nightTask)
-        {          
-            using(SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("LoadPlanner")))
+        public void SaveChanges()
+        {
+            var currentTime = DateTime.Now.ToString("f");
+
+            using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
                 conn.Open();
-                SqlCommand saveInformation = new SqlCommand("SELECT 1 FROM NightCheckList WHERE DateID = @DateID", conn);
-                saveInformation.Parameters.AddWithValue("@DateID", date);
-                var rowsCounted = (int)saveInformation.ExecuteScalar() > 0; // Check if it finds any rows in Database. If it does - update  | If not - insert. 
-                if(rowsCounted)
-                {
-                    conn.Open();
-                    SqlCommand updateInformation = new SqlCommand("UPDATE NightChecklist SET SeatpackNumber = @SeatpackNumber, NightTask =@NightTask, DateID =@DateID", conn);
-                    updateInformation.Parameters.AddWithValue("@SeatpackNumber", nightSeatpacks);
-                    updateInformation.Parameters.AddWithValue("@NightTask", nightTask);
-                    updateInformation.Parameters.AddWithValue("@DateID", date);
-                  
-                }
-                else
-                {
-                    conn.Open();
-                    SqlCommand insertInformation = new SqlCommand("INSERT INTO NightCheckList (SeatpackNumber, NightTask, DateID) VALUES (@SeatpackNumber, @NightTask, " +
-                        "@DateID)", conn);
-                    insertInformation.Parameters.AddWithValue("@SeatpackNumber", nightSeatpacks);
-                    insertInformation.Parameters.AddWithValue("@NightTask", nightTask);
-                    insertInformation.Parameters.AddWithValue("@DateID", date);
-                }
+                SqlCommand saveChanged = new SqlCommand("Save_Changes_NightChecklist", conn);
+                saveChanged.CommandType = CommandType.StoredProcedure;
+                saveChanged.Parameters.AddWithValue("@NightSeatpack", Seatpacks);
+                saveChanged.Parameters.AddWithValue("@NightTask", NightTask);
+                saveChanged.Parameters.AddWithValue("@TimeUpdated", currentTime);
+                saveChanged.Parameters.AddWithValue("@DateID", Date);
+                saveChanged.ExecuteNonQuery();
 
                 MessageBox.Show("Night Checklist Saved", "Save Sucessful", MessageBoxButtons.OK);
             }
         }
     }
 }
+
+
+

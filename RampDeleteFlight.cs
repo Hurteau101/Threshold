@@ -8,28 +8,28 @@ using System.Windows.Forms;
 
 namespace Perimeter_Threshold
 {
-    public class RampDeleteFlight : DeleteFlight
+    public class RampDeleteFlight : IDeleteFlight
     {
         public DateTime Date { get; set; }
         public string FlightNumber { get; set; }
 
         /// <summary>
-        /// Delete Ramp Board Flight. 
+        /// Delete Ramp Board Flight with confirmation message. If selection is null, throw message to user. 
         /// </summary>
         /// <param name="flightNumber"></param>
         /// <param name="date"></param>
-        public override void DeletingFight(string flightNumber, DateTime date)
+        public void DeletingFight(string flightNumber, DateTime date)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("LoadPlanner")))
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
                 if (FlightNumber != null)
                 {
                     if (MessageBox.Show($"Are you sure you want to delete {flightNumber}?", "Delete Flight?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         connection.Open();
-                        SqlCommand deleteFlight = new SqlCommand("DELETE FROM RampBoard WHERE DateID = @DateID AND FlightNumber =@FlightNumber");
-                        deleteFlight.Parameters.AddWithValue("@FlightNumber", flightNumber);
-                        deleteFlight.Parameters.AddWithValue("@DateID", date);
+                        SqlCommand deleteFlight = new SqlCommand("DELETE FROM Ramp_Board WHERE Date_ID = @Date_ID AND Flight_Number =@Flight_Number", connection);
+                        deleteFlight.Parameters.AddWithValue("@Flight_Number", flightNumber);
+                        deleteFlight.Parameters.AddWithValue("@Date_ID", date);
                         deleteFlight.ExecuteNonQuery();
                         MessageBox.Show("Flight suecessfully deleted", "Flight Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

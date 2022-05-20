@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -17,16 +18,28 @@ namespace Perimeter_Threshold
         public TextBox FlightLead { get; set; }
         public TextBox ALCRemark { get; set; }
         public TextBox RampRemark { get; set; }
+        public TextBox Notes { get; set; }
+        public TextBox ProjectWeight { get; set; }
 
-        public AutoComplete(TextBox flightNumber, TextBox aircaft, TextBox routing, TextBox departure, TextBox flightLead, TextBox alcRemark, TextBox rampRemark)
+        public AutoComplete(TextBox flightNumber, TextBox aircraft, TextBox routing, TextBox departure, TextBox flightLead, TextBox alcRemark, TextBox rampRemark)
         {
             FlightNumber = flightNumber;
-            Aircraft = aircaft;
+            Aircraft = aircraft;
             Routing = routing;
             Departure = departure; 
             FlightLead = flightLead;
             ALCRemark = alcRemark;
             RampRemark = rampRemark;
+        }
+
+        public AutoComplete(TextBox flightNumber, TextBox aircraft, TextBox routing, TextBox departure, TextBox projectWeight, TextBox notes)
+        {
+            FlightNumber = flightNumber;
+            Aircraft = aircraft;
+            Routing = routing;
+            Departure = departure;
+            Notes = notes;
+            ProjectWeight = projectWeight;
         }
 
         /// <summary>
@@ -36,16 +49,16 @@ namespace Perimeter_Threshold
         /// <returns></returns>
         public AutoCompleteStringCollection AutoCompleteFlight(TextBox flight)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Loadplanner")))
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
                 AutoCompleteStringCollection flightCollection = new AutoCompleteStringCollection();
 
                 connection.Open();
-                SqlCommand flights = new SqlCommand("SELECT DISTINCT FlightNumber FROM RampBoard", connection);
+                SqlCommand flights = new SqlCommand("SELECT DISTINCT Flight_Number FROM Ramp_Board", connection);
                 SqlDataReader readFlights = flights.ExecuteReader();
                 while (readFlights.Read())
                 {
-                    flightCollection.Add(readFlights["FlightNumber"].ToString());
+                    flightCollection.Add(readFlights["Flight_Number"].ToString());
                 }
 
                 return flight.AutoCompleteCustomSource = flightCollection;
@@ -59,16 +72,16 @@ namespace Perimeter_Threshold
         /// <returns></returns>
         public AutoCompleteStringCollection AutoCompleteAircraft(TextBox aircraft)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Loadplanner")))
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
                 AutoCompleteStringCollection aircraftCollection = new AutoCompleteStringCollection();
 
                 connection.Open();
-                SqlCommand aircrafts = new SqlCommand("SELECT DISTINCT AC FROM AircraftInformation", connection);
+                SqlCommand aircrafts = new SqlCommand("SELECT DISTINCT Aircraft FROM Aircrafts", connection);
                 SqlDataReader readAircraft = aircrafts.ExecuteReader();
                 while (readAircraft.Read())
                 {
-                    aircraftCollection.Add(readAircraft["AC"].ToString());
+                    aircraftCollection.Add(readAircraft["Aircraft"].ToString());
                 }
 
                 return aircraft.AutoCompleteCustomSource = aircraftCollection;
@@ -82,12 +95,12 @@ namespace Perimeter_Threshold
         /// <returns></returns>
         public AutoCompleteStringCollection AutoCompleteRouting(TextBox routing)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Loadplanner")))
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
                 AutoCompleteStringCollection routingCollection = new AutoCompleteStringCollection();
 
                 connection.Open();
-                SqlCommand routings = new SqlCommand("SELECT DISTINCT Routing FROM RampBoard", connection);
+                SqlCommand routings = new SqlCommand("SELECT DISTINCT Routing FROM Ramp_Board", connection);
                 SqlDataReader readRouting = routings.ExecuteReader();
                 while (readRouting.Read())
                 {
@@ -105,12 +118,12 @@ namespace Perimeter_Threshold
         /// <returns></returns>
         public AutoCompleteStringCollection AutoCompleteDeparture(TextBox depature)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Loadplanner")))
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
                 AutoCompleteStringCollection departureCollection = new AutoCompleteStringCollection();
 
                 connection.Open();
-                SqlCommand departures = new SqlCommand("SELECT DISTINCT Departure FROM RampBoard", connection);
+                SqlCommand departures = new SqlCommand("SELECT DISTINCT Departure FROM Ramp_Board", connection);
                 SqlDataReader readDepartures = departures.ExecuteReader();
                 while (readDepartures.Read())
                 {
@@ -128,16 +141,16 @@ namespace Perimeter_Threshold
         /// <returns></returns>
         public AutoCompleteStringCollection AutoCompleteFlightLead(TextBox flightLead)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Loadplanner")))
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
                 AutoCompleteStringCollection flightLeadCollection = new AutoCompleteStringCollection();
 
                 connection.Open();
-                SqlCommand flightLeads = new SqlCommand("SELECT DISTINCT FlightLead FROM RampBoard", connection);
+                SqlCommand flightLeads = new SqlCommand("SELECT DISTINCT Flight_Lead FROM Ramp_Board", connection);
                 SqlDataReader readFlightLeads = flightLeads.ExecuteReader();
                 while (readFlightLeads.Read())
                 {
-                    flightLeadCollection.Add(readFlightLeads["FlightLead"].ToString());
+                    flightLeadCollection.Add(readFlightLeads["Flight_Lead"].ToString());
                 }
 
                 return flightLead.AutoCompleteCustomSource = flightLeadCollection;
@@ -151,16 +164,16 @@ namespace Perimeter_Threshold
         /// <returns></returns>
         public AutoCompleteStringCollection AutoCompleteALCRemark(TextBox alcRemark)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Loadplanner")))
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
                 AutoCompleteStringCollection alcRemarkCollection = new AutoCompleteStringCollection();
 
                 connection.Open();
-                SqlCommand alcRemarks = new SqlCommand("SELECT DISTINCT ALCRemarks FROM RampBoard", connection);
+                SqlCommand alcRemarks = new SqlCommand("SELECT DISTINCT Load_Coordinator_Remarks FROM Ramp_Board", connection);
                 SqlDataReader readALCRemarks = alcRemarks.ExecuteReader();
                 while (readALCRemarks.Read())
                 {
-                    alcRemarkCollection.Add(readALCRemarks["ALCRemarks"].ToString());
+                    alcRemarkCollection.Add(readALCRemarks["Load_Coordinator_Remarks"].ToString());
                 }
 
                 return alcRemark.AutoCompleteCustomSource = alcRemarkCollection;
@@ -174,19 +187,65 @@ namespace Perimeter_Threshold
         /// <returns></returns>
         public AutoCompleteStringCollection AutoCompleteRampRemarks(TextBox rampRemarks)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Loadplanner")))
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
                 AutoCompleteStringCollection rampCollection = new AutoCompleteStringCollection();
 
                 connection.Open();
-                SqlCommand ramp = new SqlCommand("SELECT DISTINCT RampRemarks FROM RampBoard", connection);
+                SqlCommand ramp = new SqlCommand("SELECT DISTINCT Ramp_Remarks FROM Ramp_Board", connection);
                 SqlDataReader readRamp = ramp.ExecuteReader();
                 while (readRamp.Read())
                 {
-                    rampCollection.Add(readRamp["RampRemarks"].ToString());
+                    rampCollection.Add(readRamp["Ramp_Remarks"].ToString());
                 }
 
                 return rampRemarks.AutoCompleteCustomSource = rampCollection;
+            }
+        }
+
+        /// <summary>
+        /// Pull Cargo note information from database, and autofill Cargo Note textbox.
+        /// </summary>
+        /// <param name="rampRemarks"></param>
+        /// <returns></returns>
+        public AutoCompleteStringCollection AutoCompleteCargoNotes(TextBox rampRemarks)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
+            {
+                AutoCompleteStringCollection noteCollection = new AutoCompleteStringCollection();
+
+                connection.Open();
+                SqlCommand cargoNotes = new SqlCommand("SELECT DISTINCT Notes FROM Cargo_Board", connection);
+                SqlDataReader readNotes = cargoNotes.ExecuteReader();
+                while (readNotes.Read())
+                {
+                    noteCollection.Add(readNotes["Notes"].ToString());
+                }
+
+                return rampRemarks.AutoCompleteCustomSource = noteCollection;
+            }
+        }
+
+        /// <summary>
+        /// Pull Cargo Project Weight information from database, and autofill Cargo Project Weight textbox.
+        /// </summary>
+        /// <param name="projectWeight"></param>
+        /// <returns></returns>
+        public AutoCompleteStringCollection AutoCompleteProjectWeight(TextBox projectWeight)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
+            {
+                AutoCompleteStringCollection weightCollection = new AutoCompleteStringCollection();
+
+                connection.Open();
+                SqlCommand cargoWeight = new SqlCommand("SELECT DISTINCT Weight_Given FROM Cargo_Board", connection);
+                SqlDataReader readWeight = cargoWeight.ExecuteReader();
+                while (readWeight.Read())
+                {
+                    weightCollection.Add(readWeight["Weight_Given"].ToString());
+                }
+
+                return projectWeight.AutoCompleteCustomSource = weightCollection;
             }
         }
     }

@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNetCore.Cryptography.Internal, Version=6.0.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNetCore.Cryptography.Internal.6.0.4\lib\net461\Microsoft.AspNetCore.Cryptography.Internal.dll</HintPath>
     </Reference>
@@ -54,27 +57,63 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddFlight.cs" />
+    <Compile Include="AddFlightScheduler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddFlightScheduler.Designer.cs">
+      <DependentUpon>AddFlightScheduler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddFlight_Cargo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddFlight_Cargo.Designer.cs">
+      <DependentUpon>AddFlight_Cargo.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddFlight_Ramp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddFlight_Ramp.Designer.cs">
       <DependentUpon>AddFlight_Ramp.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminUserControl.cs">
+    <Compile Include="AircraftFuelCalculation.cs" />
+    <Compile Include="ALCBoardStyling.cs" />
+    <Compile Include="AutoComplete.cs" />
+    <Compile Include="CargoBoard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminUserControl.Designer.cs">
-      <DependentUpon>AdminUserControl.cs</DependentUpon>
+    <Compile Include="CargoBoard.Designer.cs">
+      <DependentUpon>CargoBoard.cs</DependentUpon>
     </Compile>
-    <Compile Include="AutoComplete.cs" />
+    <Compile Include="CargoBoardStyling.cs" />
+    <Compile Include="CargoDeleteFlight.cs" />
     <Compile Include="ConnectionLoader.cs" />
     <Compile Include="DateTimeFormater.cs" />
-    <Compile Include="DeleteFlight.cs" />
+    <Compile Include="DisableFunctionLoadPlanner.cs" />
+    <Compile Include="FlightDetail.cs" />
+    <Compile Include="HelperMethods.cs" />
+    <Compile Include="IDeleteFlight.cs" />
+    <Compile Include="LoadDataALC.cs" />
+    <Compile Include="LoadPlanCalculations.cs" />
+    <Compile Include="LoadPlanner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadPlanner.Designer.cs">
+      <DependentUpon>LoadPlanner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadPlannerBoardUpdates.cs" />
+    <Compile Include="LoadPlannerDesign.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterBoardStyling.cs" />
+    <Compile Include="MasterScheduler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterScheduler.Designer.cs">
+      <DependentUpon>MasterScheduler.cs</DependentUpon>
     </Compile>
     <Compile Include="NightChecklist.cs">
       <SubType>Form</SubType>
@@ -91,17 +130,46 @@
     <Compile Include="RampBoard.Designer.cs">
       <DependentUpon>RampBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="BoardStyling.cs" />
+    <Compile Include="RampBoardStyling.cs" />
     <Compile Include="RampDeleteFlight.cs" />
-    <Compile Include="SecurityHash.cs" />
+    <Compile Include="SaveDataALC.cs" />
+    <Compile Include="ScheduleLoader.cs" />
+    <Compile Include="SchedulerALC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SchedulerALC.Designer.cs">
+      <DependentUpon>SchedulerALC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Seatblock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Seatblock.Designer.cs">
+      <DependentUpon>Seatblock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserPreferences.cs" />
+    <Compile Include="UpdateBoardsAutomation.cs" />
     <Compile Include="Users.cs" />
+    <EmbeddedResource Include="AddFlightScheduler.resx">
+      <DependentUpon>AddFlightScheduler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddFlight_Cargo.resx">
+      <DependentUpon>AddFlight_Cargo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddFlight_Ramp.resx">
       <DependentUpon>AddFlight_Ramp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminUserControl.resx">
-      <DependentUpon>AdminUserControl.cs</DependentUpon>
+    <EmbeddedResource Include="CargoBoard.resx">
+      <DependentUpon>CargoBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadPlanner.resx">
+      <DependentUpon>LoadPlanner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterScheduler.resx">
+      <DependentUpon>MasterScheduler.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NightChecklist.resx">
       <DependentUpon>NightChecklist.cs</DependentUpon>
@@ -118,6 +186,12 @@
     </Compile>
     <EmbeddedResource Include="RampBoard.resx">
       <DependentUpon>RampBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SchedulerALC.resx">
+      <DependentUpon>SchedulerALC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Seatblock.resx">
+      <DependentUpon>Seatblock.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

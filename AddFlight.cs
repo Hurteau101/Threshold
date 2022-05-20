@@ -10,20 +10,25 @@ using System.Data;
 
 namespace Perimeter_Threshold
 {
-    public class AddFlight
+    public class AddFlight : FlightDetail
     {
-        public string FlightNumber { get; set; }
-        public DateTime Date { get; set; }
-        public string Aircraft { get; set; }
-        public string Routing { get; set; }
+       // public string Flight_Number { get; set; }
+        //public DateTime Date_ID { get; set; }
+       // public string Aircraft { get; set; }
+        public string Main_Routing { get; set; }
         public string Departure { get; set; }
-        public string Seatpacks { get; set; }
+      //  public int Seatpacks { get; set; }
         public string FlightLead { get; set; }
         public string ALCRemark { get; set; }
-        public string RampRemark { get; set; }
+        public string Ramp_Remarks { get; set; }
+        public int Weight_Given { get; set; }
+        public string Cargo_Notes { get; set; }
+        public List<string> DayOfWeek { get; set; }
+     //   public string Notes { get; set; }
+
 
         /// <summary>
-        /// Constructor with optional parameters,
+        /// Constructor with optional parameters.
         /// </summary>
         /// <param name="date"></param>
         /// <param name="flightNumber"></param>
@@ -34,58 +39,115 @@ namespace Perimeter_Threshold
         /// <param name="flightLead"></param>
         /// <param name="ALC_Remarks"></param>
         /// <param name="ramp_remarks"></param>
-        public AddFlight(DateTime date, string flightNumber = "", string aircraft = "", string routing = "",
-            string departure = "", string seatpacks = "", string flightLead = "", string ALC_Remarks = "", string ramp_remarks ="")
+        public AddFlight(DateTime date, string flightNumber, string aircraft = "", string routing = "",
+            string departure = "", int seatpacks = 0, string flightLead = "", string ALC_Remarks = "", string ramp_remarks ="", int projectWeight = 0, string notes = "")
         {
-            FlightNumber = flightNumber;
-            Date = date;
+            Flight_Number = flightNumber;
+            Date_ID = date;
             Aircraft = aircraft;
-            Routing = routing;
+            Main_Routing = routing;
             Departure = departure;
             Seatpacks = seatpacks;
             FlightLead = flightLead;
             ALCRemark = ALC_Remarks;
-            RampRemark = ramp_remarks;
-
-            // Seatpacks is set to string, need to figure out optional parameter for textbox for int. 
-            // Use Regex to make sure time is inputted correct format (20:00)
+            Ramp_Remarks = ramp_remarks;
+            Weight_Given = projectWeight;
+            Cargo_Notes = notes;
         }
 
-        // Add flight to Ramp Board. If flight exist, provide error. 
-        public void FlightAdd()
+        public AddFlight()
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("LoadPlanner")))
+
+        }
+
+
+        /// <summary>
+        /// Add flight into Ramp Board. If flight already exists, then let user know. 
+        /// </summary>
+        /// <param name="FlightNumber"></param>
+        /// <param name="Date"></param>
+        /// <returns></returns>
+        public void RampFlightAdd()
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
                 connection.Open();
-                SqlCommand loadFlightData = new SqlCommand("Select * from RampBoard WHERE DateID = @DateID " +
-                    "AND FlightNumber =@FlightNumber", connection);
-                loadFlightData.Parameters.AddWithValue("@DateID", Date);
-                loadFlightData.Parameters.AddWithValue("@FlightNumber", FlightNumber);
-                SqlDataReader checkFlight = loadFlightData.ExecuteReader();
-                if (checkFlight.Read())
+                SqlCommand addFlight = new SqlCommand("Ramp_Board_Insertion", connection);
+                addFlight.CommandType = CommandType.StoredProcedure;
+                addFlight.Parameters.AddWithValue("@FlightNumber", Flight_Number);
+                addFlight.Parameters.AddWithValue("@Aircraft", Aircraft);
+                addFlight.Parameters.AddWithValue("@Routing", Main_Routing);
+                addFlight.Parameters.AddWithValue("@Departure", Departure);
+                addFlight.Parameters.AddWithValue("@Seatpacks", Seatpacks);
+                addFlight.Parameters.AddWithValue("@FlightLead", FlightLead);
+                addFlight.Parameters.AddWithValue("@ALCRemarks", ALCRemark);
+                addFlight.Parameters.AddWithValue("@RampRemarks", Ramp_Remarks);
+                addFlight.Parameters.AddWithValue("@DateID", Date_ID);
+                var rowCount = (int?)addFlight.ExecuteNonQuery();
+                if (rowCount > 0)
                 {
-                    MessageBox.Show("Flight already exist", "Flight Error", MessageBoxButtons.OK);
+                    MessageBox.Show("Flight Sucessfully Added.", "Flight Added", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
-                    SqlCommand addFlight = new SqlCommand("RampBoardInsertion", connection);
-                    addFlight.CommandType = CommandType.StoredProcedure;
-                    addFlight.Parameters.AddWithValue("@FlightNumber", FlightNumber);
-                    addFlight.Parameters.AddWithValue("@Aircraft", Aircraft);
-                    addFlight.Parameters.AddWithValue("@Routing", Routing);
-                    addFlight.Parameters.AddWithValue("@Departure", Departure);
-                    addFlight.Parameters.AddWithValue("@Seatpacks", Seatpacks);
-                    addFlight.Parameters.AddWithValue("@FlightLead", FlightLead);
-                    addFlight.Parameters.AddWithValue("@ALCRemarks", ALCRemark);
-                    addFlight.Parameters.AddWithValue("@RampRemarks", RampRemark);
-                    addFlight.Parameters.AddWithValue("@DateID", Date);
-                    addFlight.Parameters.AddWithValue("@DayOfWeek", DateTime.Today.DayOfWeek.ToString());
-                    addFlight.ExecuteNonQuery();
-                   
-                    MessageBox.Show("Flight Sucessfully Added.", "Flight Added", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Flight already exist", "Flight Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
+
+        /// <summary>
+        /// Add Flight to Cargo DB. 
+        /// </summary>
+        public void CargoFlightAdd()
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
+            {
+                connection.Open();
+                SqlCommand addFlight = new SqlCommand("Cargo_Board_Insertion", connection);
+                addFlight.CommandType = CommandType.StoredProcedure;
+                addFlight.Parameters.AddWithValue("@FlightNumber", Flight_Number);
+                addFlight.Parameters.AddWithValue("@Aircraft", Aircraft);
+                addFlight.Parameters.AddWithValue("@Routing", Main_Routing);
+                addFlight.Parameters.AddWithValue("@Departure", Departure);
+                addFlight.Parameters.AddWithValue("@Seatpacks", Seatpacks);
+                addFlight.Parameters.AddWithValue("@Weight_Given", Weight_Given);
+                addFlight.Parameters.AddWithValue("@Notes", Cargo_Notes);
+                addFlight.Parameters.AddWithValue("@DateID", Date_ID);
+                var rowCount = (int?)addFlight.ExecuteNonQuery();
+                if (rowCount > 0)
+                {
+                    MessageBox.Show("Flight Sucessfully Added.", "Flight Added", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    MessageBox.Show("Flight already exist", "Flight Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Add Flights to Master
+        /// </summary>
+        public void MasterScheduleAdd()
+        {
+
+            foreach (var day in DayOfWeek)
+            {
+                using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
+                {
+                    conn.Open();
+                    SqlCommand executeFlightAdder = new SqlCommand("Add_Flight_To_Master_Schedule", conn);
+                    executeFlightAdder.CommandType = CommandType.StoredProcedure;
+                    executeFlightAdder.Parameters.AddWithValue("@Day_Of_Week", day);
+                    executeFlightAdder.Parameters.AddWithValue("@FlightNumber", Flight_Number);
+                    executeFlightAdder.Parameters.AddWithValue("@Departure", Departure);
+                    executeFlightAdder.Parameters.AddWithValue("@Routing", Main_Routing);
+                    executeFlightAdder.ExecuteNonQuery();
+                }               
+            }
+            MessageBox.Show("Flight Sucessfully Added | Edited", "Save Sucessful", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
 
         /// <summary>
         /// Checks if user inputs valid flight indicator. All flights must start with "JV".
@@ -108,7 +170,7 @@ namespace Perimeter_Threshold
         }
 
         /// <summary>
-        /// Check if user inputs valid time. 
+        /// Check if user inputs valid time. 24-Hour format
         /// </summary>
         /// <param name="timeInput"></param>
         /// <returns></returns>

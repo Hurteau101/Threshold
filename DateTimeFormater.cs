@@ -23,21 +23,11 @@ namespace Perimeter_Threshold
         }
 
         /// <summary>
-        /// Audo set date, from which date the ramp board showed.
+        /// Auto set date, from which date the previous board showed.
         /// </summary>
         /// <param name="date"></param>
         public static void AutoSetDate(DateTimePicker date)
         {
-            date.Value = DateDisplay;
-        }
-
-        /// <summary>
-        /// Get previous forms date and set this date to it. 
-        /// </summary>
-        /// <param name="date"></param>
-        public static void GetPreviousDate(DateTimePicker date)
-        {
-            // Auto set date, from which date the ramp board showed. 
             date.Value = DateDisplay;
         }
 

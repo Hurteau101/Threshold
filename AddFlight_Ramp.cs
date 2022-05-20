@@ -15,7 +15,6 @@ namespace Perimeter_Threshold
 {
     public partial class AddFlight_Ramp : Form
     {
-
         public AddFlight_Ramp()
         {
             InitializeComponent();
@@ -23,8 +22,8 @@ namespace Perimeter_Threshold
 
         private void AddFlight_Ramp_Load(object sender, EventArgs e)
         {          
+            // Format the DateTime. Also automatically set date to whatever date was on Ramp Board. 
             DateTimeFormater.DateTimeDisplay(datePicker);
-            DateTimeFormater.GetPreviousDate(datePicker);
             DateTimeFormater.AutoSetDate(datePicker);
 
        
@@ -57,11 +56,18 @@ namespace Perimeter_Threshold
                 && AddFlight.isValidSeatpack(tbSeatpacks.Text))
             {
                 AddFlight insertFlight = new AddFlight(datePicker.Value.Date, tbFlightNumber.Text,
-                tbAircraft.Text, tbRouting.Text, tbDeparture.Text, tbSeatpacks.Text, tbLead.Text,
+                tbAircraft.Text, tbRouting.Text, tbDeparture.Text, Convert.ToInt32(tbSeatpacks.Text), tbLead.Text,
                 tbALC_Remarks.Text, tbRamp_Remarks.Text);
-                insertFlight.FlightAdd();
+                insertFlight.RampFlightAdd();
+                UpdateBoardsAutomation.UpdateRampBoardStatus();
+
+                // Clear textboxes, after flight has been added. 
+                foreach(Control control in Controls)
+                    if(control is TextBox)
+                    {
+                        control.ResetText();
+                    }
             }
         }
-
     }
 }
