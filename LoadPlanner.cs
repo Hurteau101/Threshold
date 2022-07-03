@@ -1,15 +1,8 @@
-﻿using Dapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 
 namespace Perimeter_Threshold
 {
@@ -23,6 +16,9 @@ namespace Perimeter_Threshold
         public static int NumberOfLegs { get; set; }
         public static string Departure { get; set; }
         public static string Main_Routing { get; set; }
+        public string FullName { get; set; }
+        public int UserID { get; set; }
+        public int RoleID { get; set; }
 
         /// <summary>
         /// Create a generic list, to provide any type of return type. 
@@ -63,7 +59,7 @@ namespace Perimeter_Threshold
                 Aircraft = cbAircraft.Text,
                 Aircraft_Type = cbAircraftType.Text,
                 Aircraft_Weight = HelperMethods.GetTextAsInteger(tbAircraftWeight),
-                Crew = cbCrew.Text,
+                Crew = cbCrew.Text,             
             };
         }
 
@@ -86,12 +82,16 @@ namespace Perimeter_Threshold
                 flightLegDetails.Contigency = HelperMethods.GetTextAsInteger(tbCont_L1);
                 flightLegDetails.Taxi_Burn = HelperMethods.GetTextAsInteger(tbTaxiBurn_L1);
                 flightLegDetails.TakeOff_Weight = HelperMethods.GetTextAsInteger(tbMTOW_L1);
-                flightLegDetails.Landing_Weight = HelperMethods.GetTextAsInteger(tbLandingWT_L1);
+                flightLegDetails.Landing_Weight = HelperMethods.GetTextAsInteger(tbMLW_L1);
                 flightLegDetails.Passenger_Number = HelperMethods.GetTextAsInteger(tbPaxNo_L1);
                 flightLegDetails.Seatpacks = HelperMethods.GetTextAsInteger(tbSeatpacks_L1);
                 flightLegDetails.Fuel_Burn = HelperMethods.GetTextAsInteger(tbFuelBurn_L1);
-                flightLegDetails.Notes = tbNotes.Text;
+                if(radioALC.Checked)
+                {
+                    flightLegDetails.Notes = tbNotes.Text;
+                }
                 flightLegDetails.Aircraft_Configuration = tbSeats_L1.Text;
+                flightLegDetails.Aircraft_Location = cbAC_Location.Text;
             };
 
             return flightLegDetails;
@@ -116,7 +116,7 @@ namespace Perimeter_Threshold
                 flightLegDetails.Contigency = HelperMethods.GetTextAsInteger(tbCont_L2);
                 flightLegDetails.Taxi_Burn = HelperMethods.GetTextAsInteger(tbTaxiBurn_L2);
                 flightLegDetails.TakeOff_Weight = HelperMethods.GetTextAsInteger(tbMTOW_L2);
-                flightLegDetails.Landing_Weight = HelperMethods.GetTextAsInteger(tbLandingWT_L2);
+                flightLegDetails.Landing_Weight = HelperMethods.GetTextAsInteger(tbMLW_L2);
                 flightLegDetails.Passenger_Number = HelperMethods.GetTextAsInteger(tbPaxNo_L2);
                 flightLegDetails.Seatpacks = HelperMethods.GetTextAsInteger(tbSeatpacks_L2);
                 flightLegDetails.Fuel_Burn = HelperMethods.GetTextAsInteger(tbFuelBurn_L2);
@@ -146,7 +146,7 @@ namespace Perimeter_Threshold
                 flightLegDetails.Contigency = HelperMethods.GetTextAsInteger(tbCont_L3);
                 flightLegDetails.Taxi_Burn = HelperMethods.GetTextAsInteger(tbTaxiBurn_L3);
                 flightLegDetails.TakeOff_Weight = HelperMethods.GetTextAsInteger(tbMTOW_L3);
-                flightLegDetails.Landing_Weight = HelperMethods.GetTextAsInteger(tbLandingWT_L3);
+                flightLegDetails.Landing_Weight = HelperMethods.GetTextAsInteger(tbMLW_L3);
                 flightLegDetails.Passenger_Number = HelperMethods.GetTextAsInteger(tbPaxNo_L3);
                 flightLegDetails.Seatpacks = HelperMethods.GetTextAsInteger(tbSeatpacks_L3);
                 flightLegDetails.Fuel_Burn = HelperMethods.GetTextAsInteger(tbFuelBurn_L3);
@@ -176,7 +176,7 @@ namespace Perimeter_Threshold
                 flightLegDetails.Contigency = HelperMethods.GetTextAsInteger(tbCont_L4);
                 flightLegDetails.Taxi_Burn = HelperMethods.GetTextAsInteger(tbTaxiBurn_L4);
                 flightLegDetails.TakeOff_Weight = HelperMethods.GetTextAsInteger(tbMTOW_L4);
-                flightLegDetails.Landing_Weight = HelperMethods.GetTextAsInteger(tbLandingWT_L4);
+                flightLegDetails.Landing_Weight = HelperMethods.GetTextAsInteger(tbMLW_L4);
                 flightLegDetails.Passenger_Number = HelperMethods.GetTextAsInteger(tbPaxNo_L4);
                 flightLegDetails.Seatpacks = HelperMethods.GetTextAsInteger(tbSeatpacks_L4);
                 flightLegDetails.Fuel_Burn = HelperMethods.GetTextAsInteger(tbFuelBurn_L4);
@@ -206,7 +206,7 @@ namespace Perimeter_Threshold
                 flightLegDetails.Contigency = HelperMethods.GetTextAsInteger(tbCont_L5);
                 flightLegDetails.Taxi_Burn = HelperMethods.GetTextAsInteger(tbTaxiBurn_L5);
                 flightLegDetails.TakeOff_Weight = HelperMethods.GetTextAsInteger(tbMTOW_L5);
-                flightLegDetails.Landing_Weight = HelperMethods.GetTextAsInteger(tbLandingWT_L5);
+                flightLegDetails.Landing_Weight = HelperMethods.GetTextAsInteger(tbMLW_L5);
                 flightLegDetails.Passenger_Number = HelperMethods.GetTextAsInteger(tbPaxNo_L5);
                 flightLegDetails.Seatpacks = HelperMethods.GetTextAsInteger(tbSeatpacks_L5);
                 flightLegDetails.Fuel_Burn = HelperMethods.GetTextAsInteger(tbFuelBurn_L5);
@@ -236,7 +236,7 @@ namespace Perimeter_Threshold
                 flightLegDetails.Contigency = HelperMethods.GetTextAsInteger(tbCont_L6);
                 flightLegDetails.Taxi_Burn = HelperMethods.GetTextAsInteger(tbTaxiBurn_L6);
                 flightLegDetails.TakeOff_Weight = HelperMethods.GetTextAsInteger(tbMTOW_L6);
-                flightLegDetails.Landing_Weight = HelperMethods.GetTextAsInteger(tbLandingWT_L6);
+                flightLegDetails.Landing_Weight = HelperMethods.GetTextAsInteger(tbMLW_L6);
                 flightLegDetails.Passenger_Number = HelperMethods.GetTextAsInteger(tbPaxNo_L6);
                 flightLegDetails.Seatpacks = HelperMethods.GetTextAsInteger(tbSeatpacks_L6);
                 flightLegDetails.Fuel_Burn = HelperMethods.GetTextAsInteger(tbFuelBurn_L6);
@@ -308,10 +308,10 @@ namespace Perimeter_Threshold
                 tbTaxiBurn_L1.Text = flightInfo.Taxi_Burn.ToString();
                 tbCont_L1.Text = flightInfo.Contigency.ToString();
                 tbMTOW_L1.Text = flightInfo.TakeOff_Weight.ToString();
-                tbLandingWT_L1.Text = flightInfo.Landing_Weight.ToString();
                 tbPaxNo_L1.Text = flightInfo.Passenger_Number.ToString();
                 tbSeatpacks_L1.Text = flightInfo.Seatpacks.ToString();
                 tbSeats_L1.Text = flightInfo.Aircraft_Configuration.ToString();
+                tbMLW_L1.Text = flightInfo.Landing_Weight.ToString();                
             }
         }
 
@@ -333,10 +333,10 @@ namespace Perimeter_Threshold
                 tbTaxiBurn_L2.Text = flightInfo.Taxi_Burn.ToString();
                 tbCont_L2.Text = flightInfo.Contigency.ToString();
                 tbMTOW_L2.Text = flightInfo.TakeOff_Weight.ToString();
-                tbLandingWT_L2.Text = flightInfo.Landing_Weight.ToString();
                 tbPaxNo_L2.Text = flightInfo.Passenger_Number.ToString();
                 tbSeatpacks_L2.Text = flightInfo.Seatpacks.ToString();
                 tbSeats_L2.Text = flightInfo.Aircraft_Configuration.ToString();
+                tbMLW_L2.Text = flightInfo.Landing_Weight.ToString();
             }
         }
 
@@ -358,10 +358,10 @@ namespace Perimeter_Threshold
                 tbTaxiBurn_L3.Text = flightInfo.Taxi_Burn.ToString();
                 tbCont_L3.Text = flightInfo.Contigency.ToString();
                 tbMTOW_L3.Text = flightInfo.TakeOff_Weight.ToString();
-                tbLandingWT_L3.Text = flightInfo.Landing_Weight.ToString();
                 tbPaxNo_L3.Text = flightInfo.Passenger_Number.ToString();
                 tbSeatpacks_L3.Text = flightInfo.Seatpacks.ToString();
                 tbSeats_L3.Text = flightInfo.Aircraft_Configuration.ToString();
+                tbMLW_L3.Text = flightInfo.Landing_Weight.ToString();
             }
         }
 
@@ -383,10 +383,10 @@ namespace Perimeter_Threshold
                 tbTaxiBurn_L4.Text = flightInfo.Taxi_Burn.ToString();
                 tbCont_L4.Text = flightInfo.Contigency.ToString();
                 tbMTOW_L4.Text = flightInfo.TakeOff_Weight.ToString();
-                tbLandingWT_L4.Text = flightInfo.Landing_Weight.ToString();
                 tbPaxNo_L4.Text = flightInfo.Passenger_Number.ToString();
                 tbSeatpacks_L4.Text = flightInfo.Seatpacks.ToString();
                 tbSeats_L4.Text = flightInfo.Aircraft_Configuration.ToString();
+                tbMLW_L4.Text = flightInfo.Landing_Weight.ToString();
             }
         }
 
@@ -408,10 +408,10 @@ namespace Perimeter_Threshold
                 tbTaxiBurn_L5.Text = flightInfo.Taxi_Burn.ToString();
                 tbCont_L5.Text = flightInfo.Contigency.ToString();
                 tbMTOW_L5.Text = flightInfo.TakeOff_Weight.ToString();
-                tbLandingWT_L5.Text = flightInfo.Landing_Weight.ToString();
                 tbPaxNo_L5.Text = flightInfo.Passenger_Number.ToString();
                 tbSeatpacks_L5.Text = flightInfo.Seatpacks.ToString();
                 tbSeats_L5.Text = flightInfo.Aircraft_Configuration.ToString();
+                tbMLW_L5.Text = flightInfo.Landing_Weight.ToString();
             }
         }
 
@@ -433,10 +433,10 @@ namespace Perimeter_Threshold
                 tbTaxiBurn_L6.Text = flightInfo.Taxi_Burn.ToString();
                 tbCont_L6.Text = flightInfo.Contigency.ToString();
                 tbMTOW_L6.Text = flightInfo.TakeOff_Weight.ToString();
-                tbLandingWT_L6.Text = flightInfo.Landing_Weight.ToString();
                 tbPaxNo_L6.Text = flightInfo.Passenger_Number.ToString();
                 tbSeatpacks_L6.Text = flightInfo.Seatpacks.ToString();
                 tbSeats_L6.Text = flightInfo.Aircraft_Configuration.ToString();
+                tbMLW_L6.Text = flightInfo.Landing_Weight.ToString();
             }
         }
 
@@ -449,14 +449,10 @@ namespace Perimeter_Threshold
             {
                 case 1:
                     LoadLeg1Information();
-                    LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes, 1, radioALC);
-
                     break;
                 case 2:
                     LoadLeg1Information();
                     LoadLeg2Information();
-
-                    LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes, 1, radioALC);
                     LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes_L2, 2);
                     break;
                 case 3:
@@ -464,7 +460,6 @@ namespace Perimeter_Threshold
                     LoadLeg2Information();
                     LoadLeg3Information();
 
-                    LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes, 1, radioALC);
                     LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes_L2, 2);;
                     LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes_L3, 3);
                     break;
@@ -474,7 +469,6 @@ namespace Perimeter_Threshold
                     LoadLeg3Information();
                     LoadLeg4Information();
 
-                    LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes, 1, radioALC);
                     LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes_L2, 2);
                     LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes_L3, 3);
                     LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes_L4, 4);
@@ -486,7 +480,6 @@ namespace Perimeter_Threshold
                     LoadLeg4Information();
                     LoadLeg5Information();
 
-                    LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes, 1, radioALC);
                     LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes_L2, 2);
                     LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes_L3, 3);
                     LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes_L4, 4);
@@ -501,7 +494,6 @@ namespace Perimeter_Threshold
                     LoadLeg5Information();
                     LoadLeg6Information();
 
-                    LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes, 1, radioALC);
                     LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes_L2, 2);
                     LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes_L3, 3);
                     LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes_L4, 4);
@@ -537,8 +529,9 @@ namespace Perimeter_Threshold
         {
             var flightDetails = StoreCommonLoaderPlannerUpdaterDetails();
             {
-                StoreCommonLoaderPlannerUpdaterDetails();
-                flightDetails.Ramp_Remarks = tbNotes.Text;
+                 StoreCommonLoaderPlannerUpdaterDetails();
+                 flightDetails.ALCRemark = tbNotes.Text;
+                 flightDetails.Aircraft_Location = cbAC_Location.Text;                        
             };
 
             return flightDetails;
@@ -554,20 +547,50 @@ namespace Perimeter_Threshold
             {
                 StoreCommonLoaderPlannerUpdaterDetails();
                 flightDetails.Cargo_Notes = tbNotes.Text;
+                flightDetails.Weight_Given = HelperMethods.GetTextAsInteger(tbCargo_L1);
             };
 
             return flightDetails;
         }
 
-
-        private void menuAddFlight_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Calculate Return Fuel 
+        /// </summary>
+        private void ReturnFuel()
         {
-            SchedulerALC openScheduler = new SchedulerALC();
-            DateTimeFormater.DateDisplay = dateTimeLoadPlanner.Value.Date;
-            openScheduler.ShowDialog();
+            AircraftFuelCalculation calculateReturnFuel = new AircraftFuelCalculation
+            {
+                TaxiBurn_L1 = tbTaxiBurn_L1,
+                TaxiBurn_L2 = tbTaxiBurn_L2,
+                TaxiBurn_L3 = tbTaxiBurn_L3,
+                TaxiBurn_L4 = tbTaxiBurn_L4,
+                TaxiBurn_L5 = tbTaxiBurn_L5,
+                Contigency_L1 = tbCont_L1,
+                Contigency_L2 = tbCont_L2,
+                Contigency_L3 = tbCont_L3,
+                Contigency_L4 = tbCont_L4,
+                Contigency_L5 = tbCont_L5,
+                FuelBurn_L1 = tbFuelBurn_L1,
+                FuelBurn_L2 = tbFuelBurn_L2,
+                FuelBurn_L3 = tbFuelBurn_L3,
+                FuelBurn_L4 = tbFuelBurn_L4,
+                FuelBurn_L5 = tbFuelBurn_L5,
+                Fuel_L1 = tbFuel_L1,
+                Fuel_L2 = tbFuel_L2,
+                Fuel_L3 = tbFuel_L3,
+                Fuel_L4 = tbFuel_L4,
+                Fuel_L5 = tbFuel_L5,
+                Fuel_L6 = tbFuel_L6,
+            };
+            calculateReturnFuel.ReturnFuel(NumberOfLegs);
         }
 
-        private void LoadPlanner_Load(object sender, EventArgs e)
+        private bool OnlyIntValues(KeyPressEventArgs e)
+        {
+            return e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        public void LoadPlanner_Load(object sender, EventArgs e)
         {
             cbBagCal_L1.SelectedIndex = 0;
             cbBagCal_L2.SelectedIndex = 0;
@@ -578,9 +601,7 @@ namespace Perimeter_Threshold
 
             DateTimeFormater.DateTimeDisplay(dateTimeLoadPlanner);
 
-            // Load Master Schedule
-            ScheduleLoader loadSchedule = new ScheduleLoader(dateTimeLoadPlanner.Value.DayOfWeek, dateTimeLoadPlanner.Value.Date);
-            loadSchedule.LoadMasterScheduleALC();
+            SchedulerLoaderChecks.SchedulerLoaderCheckALC(dateTimeLoadPlanner);
 
             // Load -- Flight Light, Aircraft Type, Aircraft, Crew, Aircraft Weight, Routing for each leg,
             // Number of Legs, Show proper amount of legs, Zero Fuel Weight, Taxi Burn, Equipment
@@ -591,7 +612,7 @@ namespace Perimeter_Threshold
             loadInformation.LoadAircraftType(cbAircraftType);
             loadInformation.LoadAircraft(cbAircraft, cbAircraftType);
             loadInformation.LoadCrew(cbCrew, cbAircraftType);
-            loadInformation.LoadAircraftWeight(cbCrew, cbAircraftType, tbAircraftWeight);
+            loadInformation.LoadAircraftWeight(cbCrew, cbAircraftType, tbAircraftWeight, cbAircraft);
             loadInformation.LoadLegNumber(cbFlightNumber);
             loadInformation.LoadLegRoutings(cbFlightNumber, tbRouting, tabControlLoadPlanner, ReturnListOfTypes(tabLeg1, tabLeg2, tabLeg3, tabLeg4, tabLeg5, tabLeg6));
             loadInformation.ShowNumberOfTabs(tabControlLoadPlanner, ReturnListOfTypes(tabLeg1, tabLeg2, tabLeg3, tabLeg4, tabLeg5, tabLeg6));
@@ -599,11 +620,12 @@ namespace Perimeter_Threshold
             loadInformation.LoadTaxiBurn(cbAircraft, ReturnListOfTypes(tbTaxiBurn_L1, tbTaxiBurn_L2, tbTaxiBurn_L3, tbTaxiBurn_L4, tbTaxiBurn_L5, tbTaxiBurn_L6));
             loadInformation.LoadEquipment(cbAircraft, ReturnListOfTypes(tbEquip_L1, tbEquip_L2, tbEquip_L3, tbEquip_L4, tbEquip_L5, tbEquip_L6));
             loadInformation.LoadAircraftConfiguration(cbAircraft, ReturnListOfTypes(tbSeats_L1, tbSeats_L2, tbSeats_L3, tbSeats_L4, tbSeats_L5, tbSeats_L6));
-            loadInformation.LoadPreviousAircraft(cbFlightNumber, NumberOfLegs, cbAircraft);
             loadInformation.LoadPreviousAircraftType(cbFlightNumber, NumberOfLegs, cbAircraftType);
+            loadInformation.LoadPreviousAircraft(cbFlightNumber, NumberOfLegs, cbAircraft);
             loadInformation.LoadPreviousCrew(cbFlightNumber, NumberOfLegs, cbCrew);
             loadInformation.LoadPreviousOEW(cbFlightNumber, NumberOfLegs, tbAircraftWeight);
             loadInformation.LoadRoutingAndDeparture(cbFlightNumber, dateTimeLoadPlanner.Value.Date);
+            loadInformation.LoadPreviousAircraftLocation(cbFlightNumber, cbAC_Location);
 
             // Disable Functions
             DisableFunctionLoadPlanner.DisableSeatpacks(cbAircraftType, ReturnListOfTypes(tbSeatpacks_L1, tbSeatpacks_L2, tbSeatpacks_L3, tbSeatpacks_L4,
@@ -613,13 +635,15 @@ namespace Perimeter_Threshold
                 ReturnListOfTypes(panelAWI_L1, panelAWI_L2, panelAWI_L3, panelAWI_L4, panelAWI_L5, panelAWI_L6));
 
             LegLoader();
+            LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes, 1);
+
+            LoadPlanCalculations.BagWeightValidator(ReturnListOfTypes(tbPaxNo_L1, tbPaxNo_L2, tbPaxNo_L3, tbPaxNo_L4, tbPaxNo_L5, tbPaxNo_L6), 
+                ReturnListOfTypes(cbBagCal_L1, cbBagCal_L2, cbBagCal_L3, cbBagCal_L4, cbBagCal_L5, cbBagCal_L6));
         }
 
         private void dateTimeLP_ValueChanged(object sender, EventArgs e)
         {
-            // Load Master Schedule
-            ScheduleLoader loadSchedule = new ScheduleLoader(dateTimeLoadPlanner.Value.DayOfWeek, dateTimeLoadPlanner.Value.Date);
-            loadSchedule.LoadMasterScheduleALC();
+            SchedulerLoaderChecks.SchedulerLoaderCheckALC(dateTimeLoadPlanner);
 
             // Load -- Flight List, Number of Legs, Show proper amount of legs. 
             LoadDataALC loadInformation = new LoadDataALC(dateTimeLoadPlanner.Value.Date);
@@ -634,7 +658,7 @@ namespace Perimeter_Threshold
             LoadDataALC loadInformation = new LoadDataALC();
             loadInformation.LoadAircraft(cbAircraft, cbAircraftType);
             loadInformation.LoadCrew(cbCrew, cbAircraftType);
-            loadInformation.LoadAircraftWeight(cbCrew, cbAircraftType, tbAircraftWeight);
+            loadInformation.LoadAircraftWeight(cbCrew, cbAircraftType, tbAircraftWeight, cbAircraft);
             loadInformation.LoadTaxiBurn(cbAircraft, ReturnListOfTypes(tbTaxiBurn_L1, tbTaxiBurn_L2, tbTaxiBurn_L3, tbTaxiBurn_L4, tbTaxiBurn_L5, tbTaxiBurn_L6));
             loadInformation.LoadEquipment(cbAircraft, ReturnListOfTypes(tbEquip_L1, tbEquip_L2, tbEquip_L3, tbEquip_L4, tbEquip_L5, tbEquip_L6));
 
@@ -651,7 +675,7 @@ namespace Perimeter_Threshold
         {
             // Load Aircraft Weight
             LoadDataALC loadWeight = new LoadDataALC();
-            loadWeight.LoadAircraftWeight(cbCrew, cbAircraftType, tbAircraftWeight);
+            loadWeight.LoadAircraftWeight(cbCrew, cbAircraftType, tbAircraftWeight, cbAircraft);
         }
 
         private void tabControlLoadPlanner_SelectedIndexChanged(object sender, EventArgs e)
@@ -680,22 +704,37 @@ namespace Perimeter_Threshold
             loadInformation.LoadLegNumber(cbFlightNumber);
             loadInformation.LoadLegRoutings(cbFlightNumber, tbRouting, tabControlLoadPlanner, ReturnListOfTypes(tabLeg1, tabLeg2, tabLeg3, tabLeg4, tabLeg5, tabLeg6));
             loadInformation.ShowNumberOfTabs(tabControlLoadPlanner, ReturnListOfTypes(tabLeg1, tabLeg2, tabLeg3, tabLeg4, tabLeg5, tabLeg6));
-            loadInformation.LoadPreviousAircraft(cbFlightNumber, NumberOfLegs, cbAircraft);
             loadInformation.LoadPreviousAircraftType(cbFlightNumber, NumberOfLegs, cbAircraftType);
+            loadInformation.LoadPreviousAircraft(cbFlightNumber, NumberOfLegs, cbAircraft);
             loadInformation.LoadPreviousCrew(cbFlightNumber, NumberOfLegs, cbCrew);
             loadInformation.LoadPreviousOEW(cbFlightNumber, NumberOfLegs, tbAircraftWeight);
             loadInformation.LoadRoutingAndDeparture(cbFlightNumber, dateTimeLoadPlanner.Value.Date);
+            loadInformation.LoadPreviousAircraftLocation(cbFlightNumber, cbAC_Location);
 
             LegLoader();
 
-            LoadDataALC.LoadRampNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes, radioRamp);
-            LoadDataALC.LoadCargoNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes, radioCargo);
+            if(radioALC.Checked)
+            {
+                LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes, 1);
+            }
+            else if(radioCargo.Checked)
+            {
+                LoadDataALC.LoadCargoNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes, radioCargo);
+            }
+            else
+            {
+                LoadDataALC.LoadRampNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes, radioRamp);
+            }
+
+            LoadPlanCalculations.BagWeightValidator(ReturnListOfTypes(tbPaxNo_L1, tbPaxNo_L2, tbPaxNo_L3, tbPaxNo_L4, tbPaxNo_L5, tbPaxNo_L6),
+               ReturnListOfTypes(cbBagCal_L1, cbBagCal_L2, cbBagCal_L3, cbBagCal_L4, cbBagCal_L5, cbBagCal_L6));
         }
 
         private void cbAircraft_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Load -- Aircarft Zero Fuel Weight, Equipment, Aircraft Configuration
             LoadDataALC loadInformation = new LoadDataALC();
+            loadInformation.LoadAircraftWeight(cbCrew, cbAircraftType, tbAircraftWeight, cbAircraft);
             loadInformation.LoadZeroFuelWeight(cbAircraft, ReturnListOfTypes(tbZFW_L1, tbZFW_L2, tbZFW_L3, tbZFW_L4, tbZFW_L5, tbZFW_L6));
             loadInformation.LoadEquipment(cbAircraft, ReturnListOfTypes(tbEquip_L1, tbEquip_L2, tbEquip_L3, tbEquip_L4, tbEquip_L5, tbEquip_L6));
             loadInformation.LoadAircraftConfiguration(cbAircraft, ReturnListOfTypes(tbSeats_L1, tbSeats_L2, tbSeats_L3, tbSeats_L4, tbSeats_L5, tbSeats_L6));
@@ -729,10 +768,8 @@ namespace Perimeter_Threshold
             // Enable buttons, depending on Radio Button selection.
             btnUpdateCargoBoard.Enabled = false;
             btnUpdateRampBoard.Enabled = false;
-            LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes, 1, radioALC);
+            LoadDataALC.LoadALCNotes(cbFlightNumber, dateTimeLoadPlanner.Value.Date, tbNotes, 1);
         }
-
-       
 
         private void tbBags_L1_TextChanged(object sender, EventArgs e)
         {
@@ -827,14 +864,12 @@ namespace Perimeter_Threshold
         {
             LoadPlanCalculations.GrossTakeOffTotal(tbAircraftWeight, tbPax_L1, tbBags_L1, tbCargo_L1, tbEquip_L1, tbAWI_L1, tbFuel_L1, tbGrossWT_L1);
             LoadPlanCalculations.CalculateZeroFuelDifference(tbAircraftWeight, tbPax_L1, tbBags_L1, tbCargo_L1, tbEquip_L1, tbAWI_L1, tbZFW_L1, tbZFWDif_L1);
-
         }
 
         private void tbAWI_L1_TextChanged(object sender, EventArgs e)
         {
             LoadPlanCalculations.GrossTakeOffTotal(tbAircraftWeight, tbPax_L1, tbBags_L1, tbCargo_L1, tbEquip_L1, tbAWI_L1, tbFuel_L1, tbGrossWT_L1);
             LoadPlanCalculations.CalculateZeroFuelDifference(tbAircraftWeight, tbPax_L1, tbBags_L1, tbCargo_L1, tbEquip_L1, tbAWI_L1, tbZFW_L1, tbZFWDif_L1);
-
         }
 
         private void tbAircraftWeight_TextChanged(object sender, EventArgs e)
@@ -1063,6 +1098,7 @@ namespace Perimeter_Threshold
         private void tbLandingWT_L1_TextChanged(object sender, EventArgs e)
         {
             LoadPlanCalculations.LandingWeightDifference(tbMLW_L1, tbLandingWT_L1, tbLandingDif_L1);
+            LoadPlannerDesign.OverweightColor(tbLandingWT_L1, panelLandingWTLeg1);
         }
 
         private void tbMTOW_Dif_L1_TextChanged(object sender, EventArgs e)
@@ -1113,6 +1149,7 @@ namespace Perimeter_Threshold
         private void tbLandingWT_L2_TextChanged(object sender, EventArgs e)
         {
             LoadPlanCalculations.LandingWeightDifference(tbMLW_L2, tbLandingWT_L2, tbLandingDif_L2);
+            LoadPlannerDesign.OverweightColor(tbLandingWT_L2, panelLandingWTLeg2);
         }
 
         private void tbLandingDif_L2_TextChanged(object sender, EventArgs e)
@@ -1159,6 +1196,7 @@ namespace Perimeter_Threshold
         private void tbLandingWT_L3_TextChanged(object sender, EventArgs e)
         {
             LoadPlanCalculations.LandingWeightDifference(tbMLW_L3, tbLandingWT_L3, tbLandingDif_L3);
+            LoadPlannerDesign.OverweightColor(tbLandingWT_L3, panelLandingWTLeg3);
         }
 
         private void tbLandingDif_L3_TextChanged(object sender, EventArgs e)
@@ -1251,6 +1289,7 @@ namespace Perimeter_Threshold
         private void tbLandingWT_L5_TextChanged(object sender, EventArgs e)
         {
             LoadPlanCalculations.LandingWeightDifference(tbMLW_L5, tbLandingWT_L5, tbLandingDif_L5);
+            LoadPlannerDesign.OverweightColor(tbLandingWT_L5, panelLandingWTLeg5);
         }
 
         private void tbLandingDif_L5_TextChanged(object sender, EventArgs e)
@@ -1327,6 +1366,7 @@ namespace Perimeter_Threshold
         private void tbLandingWT_L6_TextChanged(object sender, EventArgs e)
         {
             LoadPlanCalculations.LandingWeightDifference(tbMLW_L6, tbLandingWT_L6, tbLandingDif_L6);
+            LoadPlannerDesign.OverweightColor(tbLandingWT_L6, panelLandingWTLeg6);
         }
 
         private void tbLandingDif_L6_TextChanged(object sender, EventArgs e)
@@ -1353,8 +1393,8 @@ namespace Perimeter_Threshold
         private void tbLandingWT_L4_TextChanged(object sender, EventArgs e)
         {
             LoadPlanCalculations.LandingWeightDifference(tbMLW_L4, tbLandingWT_L4, tbLandingDif_L4);
+            LoadPlannerDesign.OverweightColor(tbLandingWT_L4, panelLandingWTLeg4);
         }
-
 
         private void tbLandingDif_L4_TextChanged(object sender, EventArgs e)
         {
@@ -1368,33 +1408,7 @@ namespace Perimeter_Threshold
 
         private void menuReturnFuel_Click(object sender, EventArgs e)
         {
-
-            AircraftFuelCalculation calculateReturnFuel = new AircraftFuelCalculation
-            {
-                TaxiBurn_L1 = tbTaxiBurn_L1,
-                TaxiBurn_L2 = tbTaxiBurn_L2,
-                TaxiBurn_L3 = tbTaxiBurn_L3,
-                TaxiBurn_L4 = tbTaxiBurn_L4,
-                TaxiBurn_L5 = tbTaxiBurn_L5,
-                Contigency_L1 = tbCont_L1,
-                Contigency_L2 = tbCont_L2,
-                Contigency_L3 = tbCont_L3,
-                Contigency_L4 = tbCont_L4,
-                Contigency_L5 = tbCont_L5,
-                FuelBurn_L1 = tbFuelBurn_L1,
-                FuelBurn_L2 = tbFuelBurn_L2,
-                FuelBurn_L3 = tbFuelBurn_L3,
-                FuelBurn_L4 = tbFuelBurn_L4,
-                FuelBurn_L5 = tbFuelBurn_L5,
-                Fuel_L1 = tbFuel_L1,
-                Fuel_L2 = tbFuel_L2,
-                Fuel_L3 = tbFuel_L3,
-                Fuel_L4 = tbFuel_L4,
-                Fuel_L5 = tbFuel_L5,
-                Fuel_L6 = tbFuel_L6,
-            };
-            calculateReturnFuel.ReturnFuel(NumberOfLegs);
-
+            ReturnFuel();
         }
 
         private void btnUpdateRampBoard_Click(object sender, EventArgs e)
@@ -1407,17 +1421,702 @@ namespace Perimeter_Threshold
             LoadPlannerBoardUpdates.CargoBoardPusher(StoreLoadPlannerUpdaterCargoDetails(), cbFlightNumber.Text, dateTimeLoadPlanner.Value.Date);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void LoadPlanner_KeyDown(object sender, KeyEventArgs e)
         {
-            RampBoard rboard = new RampBoard();
-            rboard.UserID = 4;
-            rboard.Show();
+            if (e.Control && e.KeyCode == Keys.F)
+            {
+                ReturnFuel();
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void menuManageSchedule_Click(object sender, EventArgs e)
         {
-            CargoBoard cboard = new CargoBoard();
-            cboard.Show();
+            var form = Application.OpenForms.OfType<SchedulerALC>().FirstOrDefault();
+            if(!FormOpener.CheckFormOpen(form))
+            {
+                DateTimeFormater.DateDisplay = dateTimeLoadPlanner.Value.Date;
+                new SchedulerALC().Show();
+            }
+        }
+
+        private void subMenuflightPlan_Click(object sender, EventArgs e)
+        {
+            FlightPlanLoader loadFlightPlan = new FlightPlanLoader();
+            loadFlightPlan.NumberOfLegs = NumberOfLegs;
+            loadFlightPlan.LoadPlannerFlightNumber = cbFlightNumber.Text;
+            loadFlightPlan.ShowDialog();
+            if (loadFlightPlan.FuelBurn.Any())
+            {
+                if (NumberOfLegs == 2)
+                {
+                    tbFuelBurn_L1.Text = loadFlightPlan.FuelBurn[0];
+                    tbFuelBurn_L2.Text = loadFlightPlan.FuelBurn[1];
+
+                    tbCont_L1.Text = loadFlightPlan.Contingency[0];
+                    tbCont_L2.Text = loadFlightPlan.Contingency[1];
+
+                    tbFuel_L1.Text = loadFlightPlan.MinimumFuel[0];
+                    tbFuel_L2.Text = loadFlightPlan.MinimumFuel[1];
+
+                    tbTaxiBurn_L1.Text = loadFlightPlan.TaxiBurn[0];
+                    tbTaxiBurn_L2.Text = loadFlightPlan.TaxiBurn[1];
+
+                    tbMTOW_L1.Text = loadFlightPlan.MTOW[0];
+                    tbMTOW_L2.Text = loadFlightPlan.MTOW[1];
+
+                    tbMLW_L1.Text = loadFlightPlan.MLW[0];
+                    tbMLW_L2.Text = loadFlightPlan.MLW[1];
+                }
+                else if (NumberOfLegs == 3)
+                {
+                    tbFuelBurn_L1.Text = loadFlightPlan.FuelBurn[0];
+                    tbFuelBurn_L2.Text = loadFlightPlan.FuelBurn[1];
+                    tbFuelBurn_L3.Text = loadFlightPlan.FuelBurn[2];
+
+                    tbCont_L1.Text = loadFlightPlan.Contingency[0];
+                    tbCont_L2.Text = loadFlightPlan.Contingency[1];
+                    tbCont_L3.Text = loadFlightPlan.Contingency[2];
+
+                    tbFuel_L1.Text = loadFlightPlan.MinimumFuel[0];
+                    tbFuel_L2.Text = loadFlightPlan.MinimumFuel[1];
+                    tbFuel_L3.Text = loadFlightPlan.MinimumFuel[2];
+
+                    tbTaxiBurn_L1.Text = loadFlightPlan.TaxiBurn[0];
+                    tbTaxiBurn_L2.Text = loadFlightPlan.TaxiBurn[1];
+                    tbTaxiBurn_L3.Text = loadFlightPlan.TaxiBurn[2];
+
+                    tbMTOW_L1.Text = loadFlightPlan.MTOW[0];
+                    tbMTOW_L2.Text = loadFlightPlan.MTOW[1];
+                    tbMTOW_L3.Text = loadFlightPlan.MTOW[2];
+
+                    tbMLW_L1.Text = loadFlightPlan.MLW[0];
+                    tbMLW_L2.Text = loadFlightPlan.MLW[1];
+                    tbMLW_L3.Text = loadFlightPlan.MLW[2];
+                }
+                else if (NumberOfLegs == 4)
+                {
+                    tbFuelBurn_L1.Text = loadFlightPlan.FuelBurn[0];
+                    tbFuelBurn_L2.Text = loadFlightPlan.FuelBurn[1];
+                    tbFuelBurn_L3.Text = loadFlightPlan.FuelBurn[2];
+                    tbFuelBurn_L4.Text = loadFlightPlan.FuelBurn[3];
+
+                    tbCont_L1.Text = loadFlightPlan.Contingency[0];
+                    tbCont_L2.Text = loadFlightPlan.Contingency[1];
+                    tbCont_L3.Text = loadFlightPlan.Contingency[2];
+                    tbCont_L4.Text = loadFlightPlan.Contingency[3];
+
+
+                    tbFuel_L1.Text = loadFlightPlan.MinimumFuel[0];
+                    tbFuel_L2.Text = loadFlightPlan.MinimumFuel[1];
+                    tbFuel_L3.Text = loadFlightPlan.MinimumFuel[2];
+                    tbFuel_L4.Text = loadFlightPlan.MinimumFuel[3];
+
+                    tbTaxiBurn_L1.Text = loadFlightPlan.TaxiBurn[0];
+                    tbTaxiBurn_L2.Text = loadFlightPlan.TaxiBurn[1];
+                    tbTaxiBurn_L3.Text = loadFlightPlan.TaxiBurn[2];
+                    tbTaxiBurn_L4.Text = loadFlightPlan.TaxiBurn[3];
+
+                    tbMTOW_L1.Text = loadFlightPlan.MTOW[0];
+                    tbMTOW_L2.Text = loadFlightPlan.MTOW[1];
+                    tbMTOW_L3.Text = loadFlightPlan.MTOW[2];
+                    tbMTOW_L4.Text = loadFlightPlan.MTOW[3];
+
+                    tbMLW_L1.Text = loadFlightPlan.MLW[0];
+                    tbMLW_L2.Text = loadFlightPlan.MLW[1];
+                    tbMLW_L3.Text = loadFlightPlan.MLW[2];
+                    tbMLW_L4.Text = loadFlightPlan.MLW[3];
+                }
+                else if (NumberOfLegs == 5)
+                {
+                    tbFuelBurn_L1.Text = loadFlightPlan.FuelBurn[0];
+                    tbFuelBurn_L2.Text = loadFlightPlan.FuelBurn[1];
+                    tbFuelBurn_L3.Text = loadFlightPlan.FuelBurn[2];
+                    tbFuelBurn_L4.Text = loadFlightPlan.FuelBurn[3];
+                    tbFuelBurn_L5.Text = loadFlightPlan.FuelBurn[4];
+
+                    tbCont_L1.Text = loadFlightPlan.Contingency[0];
+                    tbCont_L2.Text = loadFlightPlan.Contingency[1];
+                    tbCont_L3.Text = loadFlightPlan.Contingency[2];
+                    tbCont_L4.Text = loadFlightPlan.Contingency[3];
+                    tbCont_L5.Text = loadFlightPlan.Contingency[4];
+
+
+                    tbFuel_L1.Text = loadFlightPlan.MinimumFuel[0];
+                    tbFuel_L2.Text = loadFlightPlan.MinimumFuel[1];
+                    tbFuel_L3.Text = loadFlightPlan.MinimumFuel[2];
+                    tbFuel_L4.Text = loadFlightPlan.MinimumFuel[3];
+                    tbFuel_L5.Text = loadFlightPlan.MinimumFuel[4];
+
+                    tbTaxiBurn_L1.Text = loadFlightPlan.TaxiBurn[0];
+                    tbTaxiBurn_L2.Text = loadFlightPlan.TaxiBurn[1];
+                    tbTaxiBurn_L3.Text = loadFlightPlan.TaxiBurn[2];
+                    tbTaxiBurn_L4.Text = loadFlightPlan.TaxiBurn[3];
+                    tbTaxiBurn_L5.Text = loadFlightPlan.TaxiBurn[4];
+
+                    tbMTOW_L1.Text = loadFlightPlan.MTOW[0];
+                    tbMTOW_L2.Text = loadFlightPlan.MTOW[1];
+                    tbMTOW_L3.Text = loadFlightPlan.MTOW[2];
+                    tbMTOW_L4.Text = loadFlightPlan.MTOW[3];
+                    tbMTOW_L5.Text = loadFlightPlan.MTOW[4];
+
+                    tbMLW_L1.Text = loadFlightPlan.MLW[0];
+                    tbMLW_L2.Text = loadFlightPlan.MLW[1];
+                    tbMLW_L3.Text = loadFlightPlan.MLW[2];
+                    tbMLW_L4.Text = loadFlightPlan.MLW[3];
+                    tbMLW_L5.Text = loadFlightPlan.MLW[4];
+                }
+                else if (NumberOfLegs == 6)
+                {
+                    tbFuelBurn_L1.Text = loadFlightPlan.FuelBurn[0];
+                    tbFuelBurn_L2.Text = loadFlightPlan.FuelBurn[1];
+                    tbFuelBurn_L3.Text = loadFlightPlan.FuelBurn[2];
+                    tbFuelBurn_L4.Text = loadFlightPlan.FuelBurn[3];
+                    tbFuelBurn_L5.Text = loadFlightPlan.FuelBurn[4];
+                    tbFuelBurn_L6.Text = loadFlightPlan.FuelBurn[5];
+
+                    tbCont_L1.Text = loadFlightPlan.Contingency[0];
+                    tbCont_L2.Text = loadFlightPlan.Contingency[1];
+                    tbCont_L3.Text = loadFlightPlan.Contingency[2];
+                    tbCont_L4.Text = loadFlightPlan.Contingency[3];
+                    tbCont_L5.Text = loadFlightPlan.Contingency[4];
+                    tbCont_L6.Text = loadFlightPlan.Contingency[5];
+
+
+                    tbFuel_L1.Text = loadFlightPlan.MinimumFuel[0];
+                    tbFuel_L2.Text = loadFlightPlan.MinimumFuel[1];
+                    tbFuel_L3.Text = loadFlightPlan.MinimumFuel[2];
+                    tbFuel_L4.Text = loadFlightPlan.MinimumFuel[3];
+                    tbFuel_L5.Text = loadFlightPlan.MinimumFuel[4];
+                    tbFuel_L6.Text = loadFlightPlan.MinimumFuel[5];
+
+                    tbTaxiBurn_L1.Text = loadFlightPlan.TaxiBurn[0];
+                    tbTaxiBurn_L2.Text = loadFlightPlan.TaxiBurn[1];
+                    tbTaxiBurn_L3.Text = loadFlightPlan.TaxiBurn[2];
+                    tbTaxiBurn_L4.Text = loadFlightPlan.TaxiBurn[3];
+                    tbTaxiBurn_L5.Text = loadFlightPlan.TaxiBurn[4];
+                    tbTaxiBurn_L6.Text = loadFlightPlan.TaxiBurn[5];
+
+                    tbMTOW_L1.Text = loadFlightPlan.MTOW[0];
+                    tbMTOW_L2.Text = loadFlightPlan.MTOW[1];
+                    tbMTOW_L3.Text = loadFlightPlan.MTOW[2];
+                    tbMTOW_L4.Text = loadFlightPlan.MTOW[3];
+                    tbMTOW_L5.Text = loadFlightPlan.MTOW[4];
+                    tbMTOW_L6.Text = loadFlightPlan.MTOW[5];
+
+                    tbMLW_L1.Text = loadFlightPlan.MLW[0];
+                    tbMLW_L2.Text = loadFlightPlan.MLW[1];
+                    tbMLW_L3.Text = loadFlightPlan.MLW[2];
+                    tbMLW_L4.Text = loadFlightPlan.MLW[3];
+                    tbMLW_L5.Text = loadFlightPlan.MLW[4];
+                    tbMLW_L6.Text = loadFlightPlan.MLW[5];
+                }
+                else
+                {
+                    MessageBox.Show("Please check number of legs. To use this tool the number of legs needs to be between 2-6", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                MessageBox.Show($"Flight {loadFlightPlan.FlightNumber} Flight Plan Loaded Sucessfully", "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void LoadPlanner_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void tbPax_L1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbBags_L1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbCargo_L1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbEquip_L1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbAWI_L1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbFuel_L1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbFuelBurn_L1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbTaxiBurn_L1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbCont_L1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbMLW_L1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbMTOW_L1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbAircraftWeight_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbTotalWT_L1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbSeatpacks_L1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbPaxNo_L1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbPax_L2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbBags_L2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbCargo_L2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbEquip_L2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbAWI_L2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbFuel_L2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbFuelBurn_L2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbTaxiBurn_L2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbCont_L2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbMTOW_L2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbMLW_L2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbPaxNo_L2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbSeatpacks_L2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbTotalWT_L2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbPax_L3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbBags_L3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbCargo_L3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbEquip_L3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbAWI_L3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbFuel_L3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbFuelBurn_L3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbTaxiBurn_L3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbCont_L3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbMLW_L3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbMTOW_L3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbPaxNo_L3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbSeatpacks_L3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbTotalWT_L3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbPax_L4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbBags_L4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbCargo_L4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbEquip_L4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbAWI_L4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbFuel_L4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbFuelBurn_L4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbTaxiBurn_L4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbCont_L4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbMLW_L4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbMTOW_L4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbPaxNo_L4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbSeatpacks_L4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbTotalWT_L4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbPax_L5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbBags_L5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbCargo_L5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbEquip_L5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbAWI_L5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbFuel_L5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbFuelBurn_L5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbTaxiBurn_L5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbCont_L5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbMLW_L5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbMTOW_L5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbPaxNo_L5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbSeatpacks_L5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbTotalWT_L5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbPax_L6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbBags_L6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbCargo_L6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbEquip_L6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbAWI_L6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbFuel_L6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbFuelBurn_L6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbTaxiBurn_L6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbCont_L6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbMTOW_L6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbMLW_L6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbPaxNo_L6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbSeatpacks_L6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void tbTotalWT_L6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            OnlyIntValues(e);
+        }
+
+        private void openRampBoardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Application.OpenForms.OfType<RampBoard>().FirstOrDefault();
+            if (!FormOpener.CheckFormOpen(form))
+            {
+                RampBoard rampBoard = new RampBoard();
+                var screen3 = Screen.FromPoint(Cursor.Position);
+                rampBoard.StartPosition = FormStartPosition.Manual;
+                rampBoard.Left = screen3.Bounds.Left + screen3.Bounds.Width / 2 - rampBoard.Width / 2;
+                rampBoard.Top = screen3.Bounds.Top + screen3.Bounds.Height / 2 - rampBoard.Height / 2;
+
+                rampBoard.FullName = FullName;
+                rampBoard.UserID = UserID;
+                rampBoard.RoleID = RoleID;
+                Permissions loadPermissions = new Permissions();
+                loadPermissions.ListOfMenus.Add(rampBoard.menuStripDelays, typeof(ToolStripMenuItem));
+                loadPermissions.ListOfMenus.Add(rampBoard.subMenuMasterSchedule, typeof(ToolStripMenuItem));
+                loadPermissions.MenuStripPermission();
+                rampBoard.Show();
+            }
+        }
+
+        private void openCargoBoardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Application.OpenForms.OfType<CargoBoard>().FirstOrDefault();
+            if (!FormOpener.CheckFormOpen(form))
+            {
+                CargoBoard cargoBoard = new CargoBoard();
+                var screen2 = Screen.FromPoint(Cursor.Position);
+                cargoBoard.StartPosition = FormStartPosition.Manual;
+                cargoBoard.Left = screen2.Bounds.Left + screen2.Bounds.Width / 2 - cargoBoard.Width / 2;
+                cargoBoard.Top = screen2.Bounds.Top + screen2.Bounds.Height / 2 - cargoBoard.Height / 2;
+
+                cargoBoard.FullName = FullName;
+                cargoBoard.UserID = UserID;
+                cargoBoard.RoleID = RoleID;
+                cargoBoard.Show();
+            }
+        }
+
+        private void menuChangeLog_Click(object sender, EventArgs e)
+        {
+            var form = Application.OpenForms.OfType<Changelog>().FirstOrDefault();
+            if (!FormOpener.CheckFormOpen(form))
+            {
+                Changelog changeLog = new Changelog();
+
+                var screen = Screen.FromPoint(Cursor.Position);
+                changeLog.StartPosition = FormStartPosition.Manual;
+                changeLog.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - changeLog.Width / 2;
+                changeLog.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - changeLog.Height / 2;
+                changeLog.Show();
+            }
+        }
+
+        private void menuAbout_Click(object sender, EventArgs e)
+        {
+            var form = Application.OpenForms.OfType<About>().FirstOrDefault();
+            if (!FormOpener.CheckFormOpen(form))
+            {
+                About about = new About();
+
+                var screen = Screen.FromPoint(Cursor.Position);
+                about.StartPosition = FormStartPosition.Manual;
+                about.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - about.Width / 2;
+                about.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - about.Height / 2;
+                about.Show();
+            }
         }
     }
 }

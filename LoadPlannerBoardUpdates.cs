@@ -1,19 +1,13 @@
 ﻿using Dapper;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Perimeter_Threshold
 {
     public class LoadPlannerBoardUpdates : AddFlight
     { 
-
-
         /// <summary>
         /// Check if flight exists in database, if it does update ramp board from load planner. 
         /// </summary>
@@ -30,17 +24,18 @@ namespace Perimeter_Threshold
 
                 if (flightExists)
                 {
-                    string sql2 = $"UPDATE Ramp_Board SET Aircraft =@Aircraft, Routing =@Main_Routing, Departure =@Departure, Seatpacks = @Seatpacks, Ramp_Remarks = @Ramp_Remarks " +
+                    string sql2 = $"UPDATE Ramp_Board SET Aircraft =@Aircraft, Routing =@Main_Routing, Departure =@Departure, " +
+                        $"Seatpacks = @Seatpacks, Load_Coordinator_Remarks = @ALCRemark, Aircraft_Location =@Aircraft_Location " +
                         $"WHERE Flight_Number = @Flight_Number AND Date_ID = @Date_ID";
 
-                     conn.Query<LoadPlannerBoardUpdates>(sql2, updaterDetails);
+                    conn.Query<LoadPlannerBoardUpdates>(sql2, updaterDetails);
 
                     UpdateBoardsAutomation.UpdateRampBoardStatus();
                 }
                 else
                 {
-                    string sql2 = $"INSERT INTO Ramp_Board (Date_ID, Flight_Number, Aircraft, Routing, Departure, Seatpacks, Ramp_Remarks) " +
-                        $"VALUES(@Date_ID, @Flight_Number, @Aircraft, @Main_Routing, @Departure, @Seatpacks, @Ramp_Remarks)";
+                    string sql2 = $"INSERT INTO Ramp_Board (Date_ID, Flight_Number, Aircraft, Routing, Departure, Seatpacks, Load_Coordinator_Remarks, Aircraft_Location) " +
+                        $"VALUES(@Date_ID, @Flight_Number, @Aircraft, @Main_Routing, @Departure, @Seatpacks, @ALCRemark, @Aircraft_Location)";
 
                     conn.Query<LoadPlannerBoardUpdates>(sql2, updaterDetails);
 
@@ -65,7 +60,7 @@ namespace Perimeter_Threshold
 
                 if (flightExists)
                 {
-                    string sql2 = $"UPDATE Cargo_Board SET Routing =@Main_Routing, Weight_Given =@Weight_Given, Seatpacks =@Seatpacks, Aircraft =@Aircraft, Cargo_Notes =@Cargo_Notes " +
+                    string sql2 = $"UPDATE Cargo_Board SET Routing =@Main_Routing, Weight_Given =@Weight_Given, Departure =@Departure, Seatpacks =@Seatpacks, Aircraft =@Aircraft, Cargo_Notes =@Cargo_Notes " +
                         $"WHERE Flight_Number = @Flight_Number AND Date_ID = @Date_ID";
 
                     conn.Query<LoadPlannerBoardUpdates>(sql2, updaterDetails);
@@ -74,12 +69,29 @@ namespace Perimeter_Threshold
                 }
                 else
                 {
-                    string sql2 = $"INSERT INTO Cargo_Board (Date_ID, Flight_Number, Routing, Weight_Given, Seatpacks, Aircraft, Cargo_Notes) " +
-                        $"VALUES(@Date_ID, @Flight_Number, @Main_Routing, @Weight_Given, @Seatpacks, @Aircraft, @Cargo_Notes)";
+                    string sql2 = $"INSERT INTO Cargo_Board (Date_ID, Flight_Number, Routing, Weight_Given, Departure, Seatpacks, Aircraft, Cargo_Notes) " +
+                        $"VALUES(@Date_ID, @Flight_Number, @Main_Routing, @Weight_Given, @Departure, @Seatpacks, @Aircraft, @Cargo_Notes)";
+
 
                     conn.Query<LoadPlannerBoardUpdates>(sql2, updaterDetails);
 
                     UpdateBoardsAutomation.UpdateCargoBoardStatus();
+                }
+            }
+        }
+
+        public static void SeatblockFinder(string flightNumber, DateTimePicker date)
+        {
+            using(SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
+            {
+                connection.Open();
+                SqlCommand findSeatblock = new SqlCommand("SELECT 1 FROM Seatblocks WHERE Date_ID =@Date_ID AND Flight_Number =@Flight_Number", connection);
+                findSeatblock.Parameters.AddWithValue("@Date_ID", date.Value.Date);
+                findSeatblock.Parameters.AddWithValue("@Flight_Number", flightNumber);
+                int seatblock = (int)findSeatblock.ExecuteScalar();
+                if (seatblock > 0)
+                {
+
                 }
 
             }

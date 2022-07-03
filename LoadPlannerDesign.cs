@@ -10,6 +10,11 @@ namespace Perimeter_Threshold
 {
     public class LoadPlannerDesign
     {
+        /// <summary>
+        /// Color textbox if aircraft is overweight. 
+        /// </summary>
+        /// <param name="overWeightDifference"></param>
+        /// <param name="backgroundPanel"></param>
         public static void OverweightColor(TextBox overWeightDifference, Panel backgroundPanel)
         {
             if (HelperMethods.GetTextAsInteger(overWeightDifference) < 0)

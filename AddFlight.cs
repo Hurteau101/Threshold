@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
@@ -12,23 +9,18 @@ namespace Perimeter_Threshold
 {
     public class AddFlight : FlightDetail
     {
-       // public string Flight_Number { get; set; }
-        //public DateTime Date_ID { get; set; }
-       // public string Aircraft { get; set; }
         public string Main_Routing { get; set; }
         public string Departure { get; set; }
-      //  public int Seatpacks { get; set; }
         public string FlightLead { get; set; }
         public string ALCRemark { get; set; }
         public string Ramp_Remarks { get; set; }
         public int Weight_Given { get; set; }
         public string Cargo_Notes { get; set; }
+        public int NumberOfLegs { get; set; }
         public List<string> DayOfWeek { get; set; }
-     //   public string Notes { get; set; }
-
 
         /// <summary>
-        /// Constructor with optional parameters.
+        /// Constructor with optional flight details. 
         /// </summary>
         /// <param name="date"></param>
         /// <param name="flightNumber"></param>
@@ -60,9 +52,8 @@ namespace Perimeter_Threshold
 
         }
 
-
         /// <summary>
-        /// Add flight into Ramp Board. If flight already exists, then let user know. 
+        /// Add flight to Ramp Board. If flight exist, advise user. 
         /// </summary>
         /// <param name="FlightNumber"></param>
         /// <param name="Date"></param>
@@ -96,7 +87,7 @@ namespace Perimeter_Threshold
         }
 
         /// <summary>
-        /// Add Flight to Cargo DB. 
+        /// Add flight to Cargo Board. If flight exist, advise user. 
         /// </summary>
         public void CargoFlightAdd()
         {
@@ -113,6 +104,7 @@ namespace Perimeter_Threshold
                 addFlight.Parameters.AddWithValue("@Weight_Given", Weight_Given);
                 addFlight.Parameters.AddWithValue("@Notes", Cargo_Notes);
                 addFlight.Parameters.AddWithValue("@DateID", Date_ID);
+                addFlight.Parameters.AddWithValue("@Flight_Completion", 0);
                 var rowCount = (int?)addFlight.ExecuteNonQuery();
                 if (rowCount > 0)
                 {
@@ -126,11 +118,10 @@ namespace Perimeter_Threshold
         }
 
         /// <summary>
-        /// Add Flights to Master
+        /// Add flight to Master Board. If flight exist, advise user. 
         /// </summary>
         public void MasterScheduleAdd()
         {
-
             foreach (var day in DayOfWeek)
             {
                 using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
@@ -148,6 +139,32 @@ namespace Perimeter_Threshold
             MessageBox.Show("Flight Sucessfully Added | Edited", "Save Sucessful", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
+        /// <summary>
+        ///Add flight to ALC Scheduler Board. If flight exist, advise user. 
+        /// </summary>
+        public void ScheduleAdd_ALC()
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
+            {
+                connection.Open();
+                SqlCommand addFlight = new SqlCommand("Add_Flight_ALC", connection);
+                addFlight.CommandType = CommandType.StoredProcedure;
+                addFlight.Parameters.AddWithValue("@FlightNumber", Flight_Number);
+                addFlight.Parameters.AddWithValue("@Routing", Main_Routing);
+                addFlight.Parameters.AddWithValue("@Departure", Departure);
+                addFlight.Parameters.AddWithValue("@NumberOfLegs", NumberOfLegs);
+                addFlight.Parameters.AddWithValue("@DateID", Date_ID);
+                var rowCount = (int?)addFlight.ExecuteNonQuery();
+                if (rowCount > 0)
+                {
+                    MessageBox.Show("Flight Sucessfully Added.", "Flight Added", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    MessageBox.Show("Flight already exist", "Flight Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
 
         /// <summary>
         /// Checks if user inputs valid flight indicator. All flights must start with "JV".
@@ -165,7 +182,6 @@ namespace Perimeter_Threshold
                     "Reminder all flights need to start with \"JV\"", "Error - Adding Flight", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
             return true;
         }
 
@@ -184,7 +200,6 @@ namespace Perimeter_Threshold
                      "Ex. 08:00 or 22:00", "Error - Adding Flight", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
             return true;
         }
 
@@ -199,10 +214,8 @@ namespace Perimeter_Threshold
             {
                 MessageBox.Show("Invalid seatpacks. Please enter a value between 0-16", "Error - Adding Flight", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
-            }
-            
+            }   
             return true; 
-
         }
     }
 }

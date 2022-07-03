@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Perimeter_Threshold
@@ -59,6 +55,5 @@ namespace Perimeter_Threshold
             showMenu.DisplayStyle = ToolStripItemDisplayStyle.Text;
 
         }
-
     }
 }

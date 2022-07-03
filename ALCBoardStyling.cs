@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Perimeter_Threshold
 {
     internal class ALCBoardStyling : BoardStyling
     {
+        /// <summary>
+        /// Rename ALC Scheduler column headers. 
+        /// </summary>
+        /// <param name="gridViewBorad"></param>
         public override void HeaderRename(DataGridView gridViewBorad)
         {
             gridViewBorad.Columns["Flight_Number"].HeaderText = "Flight Number";
@@ -22,6 +21,10 @@ namespace Perimeter_Threshold
             gridViewBorad.Columns["Leg6_Routing"].HeaderText = "Leg 6 Routing";
         }
 
+        /// <summary>
+        /// Hide ALC Scheduler columns. 
+        /// </summary>
+        /// <param name="hideHeader"></param>
         public override void HideHeader(DataGridView hideHeader)
         {
             hideHeader.Columns["Date_ID"].Visible = false;

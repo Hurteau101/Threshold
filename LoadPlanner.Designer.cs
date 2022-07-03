@@ -49,7 +49,7 @@
             this.panelMain = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.panel29 = new System.Windows.Forms.Panel();
-            this.tbSmartsheet_L1 = new System.Windows.Forms.TextBox();
+            this.cbAC_Location = new System.Windows.Forms.ComboBox();
             this.panel30 = new System.Windows.Forms.Panel();
             this.label21 = new System.Windows.Forms.Label();
             this.panel31 = new System.Windows.Forms.Panel();
@@ -79,7 +79,7 @@
             this.tbLandingDif_L2 = new System.Windows.Forms.TextBox();
             this.panel153 = new System.Windows.Forms.Panel();
             this.label84 = new System.Windows.Forms.Label();
-            this.panel154 = new System.Windows.Forms.Panel();
+            this.panelLandingWTLeg2 = new System.Windows.Forms.Panel();
             this.tbLandingWT_L2 = new System.Windows.Forms.TextBox();
             this.panel155 = new System.Windows.Forms.Panel();
             this.label85 = new System.Windows.Forms.Label();
@@ -161,7 +161,7 @@
             this.tbLandingDif_L1 = new System.Windows.Forms.TextBox();
             this.panel93 = new System.Windows.Forms.Panel();
             this.label54 = new System.Windows.Forms.Label();
-            this.panel94 = new System.Windows.Forms.Panel();
+            this.panelLandingWTLeg1 = new System.Windows.Forms.Panel();
             this.tbLandingWT_L1 = new System.Windows.Forms.TextBox();
             this.panel95 = new System.Windows.Forms.Panel();
             this.label55 = new System.Windows.Forms.Label();
@@ -280,7 +280,7 @@
             this.tbMLW_L6 = new System.Windows.Forms.TextBox();
             this.panel393 = new System.Windows.Forms.Panel();
             this.label204 = new System.Windows.Forms.Label();
-            this.panel394 = new System.Windows.Forms.Panel();
+            this.panelLandingWTLeg6 = new System.Windows.Forms.Panel();
             this.tbLandingWT_L6 = new System.Windows.Forms.TextBox();
             this.label206 = new System.Windows.Forms.Label();
             this.panel399 = new System.Windows.Forms.Panel();
@@ -458,7 +458,7 @@
             this.tbLandingDif_L3 = new System.Windows.Forms.TextBox();
             this.panel213 = new System.Windows.Forms.Panel();
             this.label114 = new System.Windows.Forms.Label();
-            this.panel214 = new System.Windows.Forms.Panel();
+            this.panelLandingWTLeg3 = new System.Windows.Forms.Panel();
             this.tbLandingWT_L3 = new System.Windows.Forms.TextBox();
             this.panel215 = new System.Windows.Forms.Panel();
             this.label115 = new System.Windows.Forms.Label();
@@ -571,7 +571,7 @@
             this.tbLandingDif_L4 = new System.Windows.Forms.TextBox();
             this.panel273 = new System.Windows.Forms.Panel();
             this.label144 = new System.Windows.Forms.Label();
-            this.panel274 = new System.Windows.Forms.Panel();
+            this.panelLandingWTLeg4 = new System.Windows.Forms.Panel();
             this.tbLandingWT_L4 = new System.Windows.Forms.TextBox();
             this.panel275 = new System.Windows.Forms.Panel();
             this.label145 = new System.Windows.Forms.Label();
@@ -687,7 +687,7 @@
             this.tbLandingDif_L5 = new System.Windows.Forms.TextBox();
             this.panel333 = new System.Windows.Forms.Panel();
             this.label174 = new System.Windows.Forms.Label();
-            this.panel334 = new System.Windows.Forms.Panel();
+            this.panelLandingWTLeg5 = new System.Windows.Forms.Panel();
             this.tbLandingWT_L5 = new System.Windows.Forms.TextBox();
             this.panel335 = new System.Windows.Forms.Panel();
             this.label175 = new System.Windows.Forms.Label();
@@ -785,17 +785,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.menuStripFlights = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuAddFlight = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuManageSchedule = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReturnFuel = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSeatpacks = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFlightLegs = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuAddLeg = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuRemoveLeg = new System.Windows.Forms.ToolStripMenuItem();
-            this.cargoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.submenManualCargo = new System.Windows.Forms.ToolStripMenuItem();
             this.rampToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.submenuAddFlight = new System.Windows.Forms.ToolStripMenuItem();
-            this.submenuNightChecklist = new System.Windows.Forms.ToolStripMenuItem();
+            this.openRampBoardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flightPlanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subMenuflightPlan = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -805,8 +799,8 @@
             this.menuAutoamtion = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDeparture = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.cargoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openCargoBoardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel12.SuspendLayout();
             this.panel22.SuspendLayout();
             this.panel26.SuspendLayout();
@@ -827,7 +821,7 @@
             this.panel151.SuspendLayout();
             this.panelLanding_Dif_L2.SuspendLayout();
             this.panel153.SuspendLayout();
-            this.panel154.SuspendLayout();
+            this.panelLandingWTLeg2.SuspendLayout();
             this.panel155.SuspendLayout();
             this.panel156.SuspendLayout();
             this.panel157.SuspendLayout();
@@ -871,7 +865,7 @@
             this.panel91.SuspendLayout();
             this.panelLanding_Dif_L1.SuspendLayout();
             this.panel93.SuspendLayout();
-            this.panel94.SuspendLayout();
+            this.panelLandingWTLeg1.SuspendLayout();
             this.panel95.SuspendLayout();
             this.panel96.SuspendLayout();
             this.panel97.SuspendLayout();
@@ -932,7 +926,7 @@
             this.panel239.SuspendLayout();
             this.tabLeg2.SuspendLayout();
             this.panel393.SuspendLayout();
-            this.panel394.SuspendLayout();
+            this.panelLandingWTLeg6.SuspendLayout();
             this.panel399.SuspendLayout();
             this.panel400.SuspendLayout();
             this.panel391.SuspendLayout();
@@ -1026,7 +1020,7 @@
             this.panel211.SuspendLayout();
             this.panelLanding_Dif_L3.SuspendLayout();
             this.panel213.SuspendLayout();
-            this.panel214.SuspendLayout();
+            this.panelLandingWTLeg3.SuspendLayout();
             this.panel215.SuspendLayout();
             this.panel216.SuspendLayout();
             this.panel217.SuspendLayout();
@@ -1086,7 +1080,7 @@
             this.panel271.SuspendLayout();
             this.panelLanding_Dif_L4.SuspendLayout();
             this.panel273.SuspendLayout();
-            this.panel274.SuspendLayout();
+            this.panelLandingWTLeg4.SuspendLayout();
             this.panel275.SuspendLayout();
             this.panel276.SuspendLayout();
             this.panel277.SuspendLayout();
@@ -1147,7 +1141,7 @@
             this.panel331.SuspendLayout();
             this.panelLanding_Dif_L5.SuspendLayout();
             this.panel333.SuspendLayout();
-            this.panel334.SuspendLayout();
+            this.panelLandingWTLeg5.SuspendLayout();
             this.panel335.SuspendLayout();
             this.panel336.SuspendLayout();
             this.panel337.SuspendLayout();
@@ -1405,18 +1399,18 @@
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(16, 16);
+            this.label18.Location = new System.Drawing.Point(9, 16);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(84, 20);
+            this.label18.Size = new System.Drawing.Size(96, 20);
             this.label18.TabIndex = 28;
-            this.label18.Text = "Smartsheet";
+            this.label18.Text = "A/C Location";
             // 
             // panel29
             // 
             this.panel29.BackColor = System.Drawing.SystemColors.Control;
             this.panel29.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel29.Controls.Add(this.tbSmartsheet_L1);
+            this.panel29.Controls.Add(this.cbAC_Location);
             this.panel29.Location = new System.Drawing.Point(109, 10);
             this.panel29.Margin = new System.Windows.Forms.Padding(2);
             this.panel29.Name = "panel29";
@@ -1424,19 +1418,24 @@
             this.panel29.TabIndex = 18;
             this.panel29.TabStop = true;
             // 
-            // tbSmartsheet_L1
+            // cbAC_Location
             // 
-            this.tbSmartsheet_L1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbSmartsheet_L1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tbSmartsheet_L1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F);
-            this.tbSmartsheet_L1.Location = new System.Drawing.Point(2, 5);
-            this.tbSmartsheet_L1.Margin = new System.Windows.Forms.Padding(2);
-            this.tbSmartsheet_L1.Name = "tbSmartsheet_L1";
-            this.tbSmartsheet_L1.ReadOnly = true;
-            this.tbSmartsheet_L1.Size = new System.Drawing.Size(89, 18);
-            this.tbSmartsheet_L1.TabIndex = 1;
-            this.tbSmartsheet_L1.TabStop = false;
-            this.tbSmartsheet_L1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.cbAC_Location.BackColor = System.Drawing.Color.White;
+            this.cbAC_Location.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAC_Location.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbAC_Location.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F);
+            this.cbAC_Location.FormattingEnabled = true;
+            this.cbAC_Location.Items.AddRange(new object[] {
+            "Hangar 3",
+            "Hangar 4",
+            "Hangar 5",
+            "Spot 2 ",
+            "Cargo "});
+            this.cbAC_Location.Location = new System.Drawing.Point(2, 0);
+            this.cbAC_Location.Margin = new System.Windows.Forms.Padding(2);
+            this.cbAC_Location.Name = "cbAC_Location";
+            this.cbAC_Location.Size = new System.Drawing.Size(92, 28);
+            this.cbAC_Location.TabIndex = 2;
             // 
             // panel30
             // 
@@ -1483,7 +1482,9 @@
             this.tbTotalWT_L1.Name = "tbTotalWT_L1";
             this.tbTotalWT_L1.Size = new System.Drawing.Size(89, 18);
             this.tbTotalWT_L1.TabIndex = 1;
+            this.tbTotalWT_L1.Text = "0";
             this.tbTotalWT_L1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbTotalWT_L1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTotalWT_L1_KeyPress);
             // 
             // panel32
             // 
@@ -1579,6 +1580,7 @@
             this.tbSeatpacks_L1.TabIndex = 1;
             this.tbSeatpacks_L1.Text = "0";
             this.tbSeatpacks_L1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbSeatpacks_L1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSeatpacks_L1_KeyPress);
             // 
             // panel36
             // 
@@ -1685,11 +1687,11 @@
             this.tbPaxNo_L1.Text = "0";
             this.tbPaxNo_L1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPaxNo_L1.TextChanged += new System.EventHandler(this.tbPaxNo_L1_TextChanged);
+            this.tbPaxNo_L1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPaxNo_L1_KeyPress);
             // 
             // panel39
             // 
             this.panel39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(112)))), ((int)(((byte)(34)))));
-            this.panel39.Controls.Add(this.button2);
             this.panel39.Controls.Add(this.label27);
             this.panel39.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel39.Location = new System.Drawing.Point(0, 0);
@@ -1777,7 +1779,7 @@
             // 
             this.panel153.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel153.Controls.Add(this.label84);
-            this.panel153.Controls.Add(this.panel154);
+            this.panel153.Controls.Add(this.panelLandingWTLeg2);
             this.panel153.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel153.Location = new System.Drawing.Point(0, 93);
             this.panel153.Margin = new System.Windows.Forms.Padding(2);
@@ -1797,17 +1799,17 @@
             this.label84.TabIndex = 28;
             this.label84.Text = "Landing Weight";
             // 
-            // panel154
+            // panelLandingWTLeg2
             // 
-            this.panel154.BackColor = System.Drawing.SystemColors.Control;
-            this.panel154.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel154.Controls.Add(this.tbLandingWT_L2);
-            this.panel154.Location = new System.Drawing.Point(103, 11);
-            this.panel154.Margin = new System.Windows.Forms.Padding(2);
-            this.panel154.Name = "panel154";
-            this.panel154.Size = new System.Drawing.Size(98, 32);
-            this.panel154.TabIndex = 18;
-            this.panel154.TabStop = true;
+            this.panelLandingWTLeg2.BackColor = System.Drawing.SystemColors.Control;
+            this.panelLandingWTLeg2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelLandingWTLeg2.Controls.Add(this.tbLandingWT_L2);
+            this.panelLandingWTLeg2.Location = new System.Drawing.Point(103, 11);
+            this.panelLandingWTLeg2.Margin = new System.Windows.Forms.Padding(2);
+            this.panelLandingWTLeg2.Name = "panelLandingWTLeg2";
+            this.panelLandingWTLeg2.Size = new System.Drawing.Size(98, 32);
+            this.panelLandingWTLeg2.TabIndex = 18;
+            this.panelLandingWTLeg2.TabStop = true;
             // 
             // tbLandingWT_L2
             // 
@@ -1872,6 +1874,7 @@
             this.tbMLW_L2.Text = "0";
             this.tbMLW_L2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbMLW_L2.TextChanged += new System.EventHandler(this.tbMLW_L2_TextChanged);
+            this.tbMLW_L2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMLW_L2_KeyPress);
             // 
             // panel157
             // 
@@ -1920,6 +1923,7 @@
             this.tbAWI_L2.Text = "0";
             this.tbAWI_L2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbAWI_L2.TextChanged += new System.EventHandler(this.tbAWI_L2_TextChanged);
+            this.tbAWI_L2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAWI_L2_KeyPress);
             // 
             // panel171
             // 
@@ -1969,6 +1973,7 @@
             this.tbEquip_L2.Text = "0";
             this.tbEquip_L2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbEquip_L2.TextChanged += new System.EventHandler(this.tbEquip_L2_TextChanged);
+            this.tbEquip_L2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEquip_L2_KeyPress);
             // 
             // panel173
             // 
@@ -2018,6 +2023,7 @@
             this.tbCargo_L2.Text = "0";
             this.tbCargo_L2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbCargo_L2.TextChanged += new System.EventHandler(this.tbCargo_L2_TextChanged);
+            this.tbCargo_L2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCargo_L2_KeyPress);
             // 
             // panel175
             // 
@@ -2067,6 +2073,7 @@
             this.tbBags_L2.Text = "0";
             this.tbBags_L2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbBags_L2.TextChanged += new System.EventHandler(this.tbBags_L2_TextChanged);
+            this.tbBags_L2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbBags_L2_KeyPress);
             // 
             // panel177
             // 
@@ -2116,6 +2123,7 @@
             this.tbPax_L2.Text = "0";
             this.tbPax_L2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPax_L2.TextChanged += new System.EventHandler(this.tbPax_L2_TextChanged);
+            this.tbPax_L2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPax_L2_KeyPress);
             // 
             // panel179
             // 
@@ -2201,6 +2209,7 @@
             this.tbCont_L2.Text = "0";
             this.tbCont_L2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbCont_L2.TextChanged += new System.EventHandler(this.tbCont_L2_TextChanged);
+            this.tbCont_L2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCont_L2_KeyPress);
             // 
             // panel161
             // 
@@ -2250,6 +2259,7 @@
             this.tbTaxiBurn_L2.Text = "0";
             this.tbTaxiBurn_L2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbTaxiBurn_L2.TextChanged += new System.EventHandler(this.tbTaxiBurn_L2_TextChanged);
+            this.tbTaxiBurn_L2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTaxiBurn_L2_KeyPress);
             // 
             // panel163
             // 
@@ -2268,12 +2278,12 @@
             this.label89.AutoSize = true;
             this.label89.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label89.ForeColor = System.Drawing.Color.Black;
-            this.label89.Location = new System.Drawing.Point(14, 15);
+            this.label89.Location = new System.Drawing.Point(6, 15);
             this.label89.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label89.Name = "label89";
-            this.label89.Size = new System.Drawing.Size(73, 20);
+            this.label89.Size = new System.Drawing.Size(87, 20);
             this.label89.TabIndex = 28;
-            this.label89.Text = "Fuel Burn";
+            this.label89.Text = "Destination";
             // 
             // panel164
             // 
@@ -2299,6 +2309,7 @@
             this.tbFuelBurn_L2.Text = "0";
             this.tbFuelBurn_L2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbFuelBurn_L2.TextChanged += new System.EventHandler(this.tbFuelBurn_L2_TextChanged);
+            this.tbFuelBurn_L2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFuelBurn_L2_KeyPress);
             // 
             // panel165
             // 
@@ -2348,6 +2359,7 @@
             this.tbFuel_L2.Text = "0";
             this.tbFuel_L2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbFuel_L2.TextChanged += new System.EventHandler(this.tbFuel_L2_TextChanged);
+            this.tbFuel_L2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFuel_L2_KeyPress);
             // 
             // panel167
             // 
@@ -2733,11 +2745,11 @@
             this.tbMTOW_L1.Text = "0";
             this.tbMTOW_L1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbMTOW_L1.TextChanged += new System.EventHandler(this.tbMTOW_L1_TextChanged);
+            this.tbMTOW_L1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMTOW_L1_KeyPress);
             // 
             // panel89
             // 
             this.panel89.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(112)))), ((int)(((byte)(34)))));
-            this.panel89.Controls.Add(this.button1);
             this.panel89.Controls.Add(this.label52);
             this.panel89.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel89.Location = new System.Drawing.Point(0, 0);
@@ -2826,7 +2838,7 @@
             // 
             this.panel93.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel93.Controls.Add(this.label54);
-            this.panel93.Controls.Add(this.panel94);
+            this.panel93.Controls.Add(this.panelLandingWTLeg1);
             this.panel93.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel93.Location = new System.Drawing.Point(0, 93);
             this.panel93.Margin = new System.Windows.Forms.Padding(2);
@@ -2846,17 +2858,17 @@
             this.label54.TabIndex = 28;
             this.label54.Text = "Landing Weight";
             // 
-            // panel94
+            // panelLandingWTLeg1
             // 
-            this.panel94.BackColor = System.Drawing.SystemColors.Control;
-            this.panel94.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel94.Controls.Add(this.tbLandingWT_L1);
-            this.panel94.Location = new System.Drawing.Point(103, 11);
-            this.panel94.Margin = new System.Windows.Forms.Padding(2);
-            this.panel94.Name = "panel94";
-            this.panel94.Size = new System.Drawing.Size(98, 32);
-            this.panel94.TabIndex = 18;
-            this.panel94.TabStop = true;
+            this.panelLandingWTLeg1.BackColor = System.Drawing.SystemColors.Control;
+            this.panelLandingWTLeg1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelLandingWTLeg1.Controls.Add(this.tbLandingWT_L1);
+            this.panelLandingWTLeg1.Location = new System.Drawing.Point(103, 11);
+            this.panelLandingWTLeg1.Margin = new System.Windows.Forms.Padding(2);
+            this.panelLandingWTLeg1.Name = "panelLandingWTLeg1";
+            this.panelLandingWTLeg1.Size = new System.Drawing.Size(98, 32);
+            this.panelLandingWTLeg1.TabIndex = 18;
+            this.panelLandingWTLeg1.TabStop = true;
             // 
             // tbLandingWT_L1
             // 
@@ -2922,6 +2934,7 @@
             this.tbMLW_L1.Text = "0";
             this.tbMLW_L1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbMLW_L1.TextChanged += new System.EventHandler(this.tbMLW_L1_TextChanged);
+            this.tbMLW_L1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMLW_L1_KeyPress);
             // 
             // panel97
             // 
@@ -3007,6 +3020,7 @@
             this.tbCont_L1.Text = "0";
             this.tbCont_L1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbCont_L1.TextChanged += new System.EventHandler(this.tbCont_L1_TextChanged);
+            this.tbCont_L1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCont_L1_KeyPress);
             // 
             // panel101
             // 
@@ -3056,6 +3070,7 @@
             this.tbTaxiBurn_L1.Text = "0";
             this.tbTaxiBurn_L1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbTaxiBurn_L1.TextChanged += new System.EventHandler(this.tbTaxiBurn_L1_TextChanged);
+            this.tbTaxiBurn_L1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTaxiBurn_L1_KeyPress);
             // 
             // panel103
             // 
@@ -3074,12 +3089,12 @@
             this.label59.AutoSize = true;
             this.label59.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label59.ForeColor = System.Drawing.Color.Black;
-            this.label59.Location = new System.Drawing.Point(14, 15);
+            this.label59.Location = new System.Drawing.Point(6, 15);
             this.label59.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(73, 20);
+            this.label59.Size = new System.Drawing.Size(87, 20);
             this.label59.TabIndex = 28;
-            this.label59.Text = "Fuel Burn";
+            this.label59.Text = "Destination";
             // 
             // panel104
             // 
@@ -3105,6 +3120,7 @@
             this.tbFuelBurn_L1.Text = "0";
             this.tbFuelBurn_L1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbFuelBurn_L1.TextChanged += new System.EventHandler(this.tbFuelBurn_L1_TextChanged);
+            this.tbFuelBurn_L1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFuelBurn_L1_KeyPress);
             // 
             // panel105
             // 
@@ -3154,6 +3170,7 @@
             this.tbFuel_L1.Text = "0";
             this.tbFuel_L1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbFuel_L1.TextChanged += new System.EventHandler(this.tbFuel_L1_TextChanged);
+            this.tbFuel_L1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFuel_L1_KeyPress);
             // 
             // panel107
             // 
@@ -3240,6 +3257,7 @@
             this.tbAWI_L1.Text = "0";
             this.tbAWI_L1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbAWI_L1.TextChanged += new System.EventHandler(this.tbAWI_L1_TextChanged);
+            this.tbAWI_L1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAWI_L1_KeyPress);
             // 
             // panel111
             // 
@@ -3289,6 +3307,7 @@
             this.tbEquip_L1.Text = "0";
             this.tbEquip_L1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbEquip_L1.TextChanged += new System.EventHandler(this.tbEquip_L1_TextChanged);
+            this.tbEquip_L1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEquip_L1_KeyPress);
             // 
             // panel113
             // 
@@ -3338,6 +3357,7 @@
             this.tbCargo_L1.Text = "0";
             this.tbCargo_L1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbCargo_L1.TextChanged += new System.EventHandler(this.tbCargo_L1_TextChanged);
+            this.tbCargo_L1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCargo_L1_KeyPress);
             // 
             // panel115
             // 
@@ -3387,6 +3407,7 @@
             this.tbBags_L1.Text = "0";
             this.tbBags_L1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbBags_L1.TextChanged += new System.EventHandler(this.tbBags_L1_TextChanged);
+            this.tbBags_L1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbBags_L1_KeyPress);
             // 
             // panel117
             // 
@@ -3436,6 +3457,7 @@
             this.tbPax_L1.Text = "0";
             this.tbPax_L1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPax_L1.TextChanged += new System.EventHandler(this.tbPax_L1_TextChanged);
+            this.tbPax_L1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPax_L1_KeyPress);
             // 
             // panel119
             // 
@@ -3554,12 +3576,12 @@
             this.label69.AutoSize = true;
             this.label69.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label69.ForeColor = System.Drawing.Color.Black;
-            this.label69.Location = new System.Drawing.Point(16, 16);
+            this.label69.Location = new System.Drawing.Point(9, 16);
             this.label69.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(84, 20);
+            this.label69.Size = new System.Drawing.Size(96, 20);
             this.label69.TabIndex = 28;
-            this.label69.Text = "Smartsheet";
+            this.label69.Text = "A/C Location";
             // 
             // panelSmartsheet_L2
             // 
@@ -3633,6 +3655,7 @@
             this.tbTotalWT_L2.Size = new System.Drawing.Size(89, 18);
             this.tbTotalWT_L2.TabIndex = 1;
             this.tbTotalWT_L2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbTotalWT_L2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTotalWT_L2_KeyPress);
             // 
             // panel128
             // 
@@ -3730,6 +3753,7 @@
             this.tbSeatpacks_L2.TabIndex = 1;
             this.tbSeatpacks_L2.TabStop = false;
             this.tbSeatpacks_L2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbSeatpacks_L2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSeatpacks_L2_KeyPress);
             // 
             // panel132
             // 
@@ -3836,6 +3860,7 @@
             this.tbPaxNo_L2.Text = "0";
             this.tbPaxNo_L2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPaxNo_L2.TextChanged += new System.EventHandler(this.tbPaxNo_L2_TextChanged);
+            this.tbPaxNo_L2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPaxNo_L2_KeyPress);
             // 
             // panel135
             // 
@@ -3872,6 +3897,7 @@
             this.tbPax_L3.Text = "0";
             this.tbPax_L3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPax_L3.TextChanged += new System.EventHandler(this.tbPax_L3_TextChanged);
+            this.tbPax_L3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPax_L3_KeyPress);
             // 
             // panel142
             // 
@@ -4035,6 +4061,7 @@
             this.tbMTOW_L2.Text = "0";
             this.tbMTOW_L2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbMTOW_L2.TextChanged += new System.EventHandler(this.tbMTOW_L2_TextChanged);
+            this.tbMTOW_L2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMTOW_L2_KeyPress);
             // 
             // panel149
             // 
@@ -4296,12 +4323,13 @@
             this.tbMLW_L6.Text = "0";
             this.tbMLW_L6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbMLW_L6.TextChanged += new System.EventHandler(this.tbMLW_L6_TextChanged);
+            this.tbMLW_L6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMLW_L6_KeyPress);
             // 
             // panel393
             // 
             this.panel393.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel393.Controls.Add(this.label204);
-            this.panel393.Controls.Add(this.panel394);
+            this.panel393.Controls.Add(this.panelLandingWTLeg6);
             this.panel393.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel393.Location = new System.Drawing.Point(0, 93);
             this.panel393.Margin = new System.Windows.Forms.Padding(2);
@@ -4321,17 +4349,17 @@
             this.label204.TabIndex = 28;
             this.label204.Text = "Landing Weight";
             // 
-            // panel394
+            // panelLandingWTLeg6
             // 
-            this.panel394.BackColor = System.Drawing.SystemColors.Control;
-            this.panel394.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel394.Controls.Add(this.tbLandingWT_L6);
-            this.panel394.Location = new System.Drawing.Point(103, 11);
-            this.panel394.Margin = new System.Windows.Forms.Padding(2);
-            this.panel394.Name = "panel394";
-            this.panel394.Size = new System.Drawing.Size(98, 32);
-            this.panel394.TabIndex = 18;
-            this.panel394.TabStop = true;
+            this.panelLandingWTLeg6.BackColor = System.Drawing.SystemColors.Control;
+            this.panelLandingWTLeg6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelLandingWTLeg6.Controls.Add(this.tbLandingWT_L6);
+            this.panelLandingWTLeg6.Location = new System.Drawing.Point(103, 11);
+            this.panelLandingWTLeg6.Margin = new System.Windows.Forms.Padding(2);
+            this.panelLandingWTLeg6.Name = "panelLandingWTLeg6";
+            this.panelLandingWTLeg6.Size = new System.Drawing.Size(98, 32);
+            this.panelLandingWTLeg6.TabIndex = 18;
+            this.panelLandingWTLeg6.TabStop = true;
             // 
             // tbLandingWT_L6
             // 
@@ -4408,6 +4436,7 @@
             this.tbCont_L6.Text = "0";
             this.tbCont_L6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbCont_L6.TextChanged += new System.EventHandler(this.tbCont_L6_TextChanged);
+            this.tbCont_L6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCont_L6_KeyPress);
             // 
             // panel391
             // 
@@ -4508,6 +4537,7 @@
             this.tbTaxiBurn_L6.Text = "0";
             this.tbTaxiBurn_L6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbTaxiBurn_L6.TextChanged += new System.EventHandler(this.tbTaxiBurn_L6_TextChanged);
+            this.tbTaxiBurn_L6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTaxiBurn_L6_KeyPress);
             // 
             // panel396
             // 
@@ -4538,12 +4568,12 @@
             this.label209.AutoSize = true;
             this.label209.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label209.ForeColor = System.Drawing.Color.Black;
-            this.label209.Location = new System.Drawing.Point(14, 15);
+            this.label209.Location = new System.Drawing.Point(6, 15);
             this.label209.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label209.Name = "label209";
-            this.label209.Size = new System.Drawing.Size(73, 20);
+            this.label209.Size = new System.Drawing.Size(87, 20);
             this.label209.TabIndex = 28;
-            this.label209.Text = "Fuel Burn";
+            this.label209.Text = "Destination";
             // 
             // panel404
             // 
@@ -4569,6 +4599,7 @@
             this.tbFuelBurn_L6.Text = "0";
             this.tbFuelBurn_L6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbFuelBurn_L6.TextChanged += new System.EventHandler(this.tbFuelBurn_L6_TextChanged);
+            this.tbFuelBurn_L6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFuelBurn_L6_KeyPress);
             // 
             // panel360
             // 
@@ -4664,12 +4695,12 @@
             this.label189.AutoSize = true;
             this.label189.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label189.ForeColor = System.Drawing.Color.Black;
-            this.label189.Location = new System.Drawing.Point(16, 16);
+            this.label189.Location = new System.Drawing.Point(9, 16);
             this.label189.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label189.Name = "label189";
-            this.label189.Size = new System.Drawing.Size(84, 20);
+            this.label189.Size = new System.Drawing.Size(96, 20);
             this.label189.TabIndex = 28;
-            this.label189.Text = "Smartsheet";
+            this.label189.Text = "A/C Location";
             // 
             // panelSmartsheet_L6
             // 
@@ -4741,7 +4772,9 @@
             this.tbTotalWT_L6.Name = "tbTotalWT_L6";
             this.tbTotalWT_L6.Size = new System.Drawing.Size(89, 18);
             this.tbTotalWT_L6.TabIndex = 1;
+            this.tbTotalWT_L6.Text = "0";
             this.tbTotalWT_L6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbTotalWT_L6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTotalWT_L6_KeyPress);
             // 
             // panel368
             // 
@@ -4839,6 +4872,7 @@
             this.tbSeatpacks_L6.TabIndex = 1;
             this.tbSeatpacks_L6.TabStop = false;
             this.tbSeatpacks_L6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbSeatpacks_L6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSeatpacks_L6_KeyPress);
             // 
             // panel372
             // 
@@ -4945,6 +4979,7 @@
             this.tbPaxNo_L6.Text = "0";
             this.tbPaxNo_L6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPaxNo_L6.TextChanged += new System.EventHandler(this.tbPaxNo_L6_TextChanged);
+            this.tbPaxNo_L6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPaxNo_L6_KeyPress);
             // 
             // panel375
             // 
@@ -5017,6 +5052,7 @@
             this.tbFuel_L6.Text = "0";
             this.tbFuel_L6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbFuel_L6.TextChanged += new System.EventHandler(this.tbFuel_L6_TextChanged);
+            this.tbFuel_L6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFuel_L6_KeyPress);
             // 
             // panel383
             // 
@@ -5316,6 +5352,7 @@
             this.tbMTOW_L6.Text = "0";
             this.tbMTOW_L6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbMTOW_L6.TextChanged += new System.EventHandler(this.tbMTOW_L6_TextChanged);
+            this.tbMTOW_L6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMTOW_L6_KeyPress);
             // 
             // panel389
             // 
@@ -5426,6 +5463,7 @@
             this.tbAWI_L6.Text = "0";
             this.tbAWI_L6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbAWI_L6.TextChanged += new System.EventHandler(this.tbAWI_L6_TextChanged);
+            this.tbAWI_L6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAWI_L6_KeyPress);
             // 
             // panel411
             // 
@@ -5475,6 +5513,7 @@
             this.tbEquip_L6.Text = "0";
             this.tbEquip_L6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbEquip_L6.TextChanged += new System.EventHandler(this.tbEquip_L6_TextChanged);
+            this.tbEquip_L6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEquip_L6_KeyPress);
             // 
             // panel413
             // 
@@ -5524,6 +5563,7 @@
             this.tbCargo_L6.Text = "0";
             this.tbCargo_L6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbCargo_L6.TextChanged += new System.EventHandler(this.tbCargo_L6_TextChanged);
+            this.tbCargo_L6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCargo_L6_KeyPress);
             // 
             // panel415
             // 
@@ -5573,6 +5613,7 @@
             this.tbBags_L6.Text = "0";
             this.tbBags_L6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbBags_L6.TextChanged += new System.EventHandler(this.tbBags_L6_TextChanged);
+            this.tbBags_L6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbBags_L6_KeyPress);
             // 
             // panel417
             // 
@@ -5622,6 +5663,7 @@
             this.tbPax_L6.Text = "0";
             this.tbPax_L6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPax_L6.TextChanged += new System.EventHandler(this.tbPax_L6_TextChanged);
+            this.tbPax_L6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPax_L6_KeyPress);
             // 
             // panel419
             // 
@@ -5812,12 +5854,12 @@
             this.label99.AutoSize = true;
             this.label99.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label99.ForeColor = System.Drawing.Color.Black;
-            this.label99.Location = new System.Drawing.Point(16, 16);
+            this.label99.Location = new System.Drawing.Point(9, 16);
             this.label99.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label99.Name = "label99";
-            this.label99.Size = new System.Drawing.Size(84, 20);
+            this.label99.Size = new System.Drawing.Size(96, 20);
             this.label99.TabIndex = 28;
-            this.label99.Text = "Smartsheet";
+            this.label99.Text = "A/C Location";
             // 
             // panelSmartsheet_L3
             // 
@@ -5891,6 +5933,7 @@
             this.tbTotalWT_L3.Size = new System.Drawing.Size(89, 18);
             this.tbTotalWT_L3.TabIndex = 1;
             this.tbTotalWT_L3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbTotalWT_L3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTotalWT_L3_KeyPress);
             // 
             // panel188
             // 
@@ -5988,6 +6031,7 @@
             this.tbSeatpacks_L3.TabIndex = 1;
             this.tbSeatpacks_L3.TabStop = false;
             this.tbSeatpacks_L3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbSeatpacks_L3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSeatpacks_L3_KeyPress);
             // 
             // panel192
             // 
@@ -6094,6 +6138,7 @@
             this.tbPaxNo_L3.Text = "0";
             this.tbPaxNo_L3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPaxNo_L3.TextChanged += new System.EventHandler(this.tbPaxNo_L3_TextChanged_1);
+            this.tbPaxNo_L3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPaxNo_L3_KeyPress);
             // 
             // panel195
             // 
@@ -6416,6 +6461,7 @@
             this.tbMTOW_L3.Text = "0";
             this.tbMTOW_L3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbMTOW_L3.TextChanged += new System.EventHandler(this.tbMTOW_L3_TextChanged_1);
+            this.tbMTOW_L3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMTOW_L3_KeyPress);
             // 
             // panel209
             // 
@@ -6507,7 +6553,7 @@
             // 
             this.panel213.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel213.Controls.Add(this.label114);
-            this.panel213.Controls.Add(this.panel214);
+            this.panel213.Controls.Add(this.panelLandingWTLeg3);
             this.panel213.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel213.Location = new System.Drawing.Point(0, 93);
             this.panel213.Margin = new System.Windows.Forms.Padding(2);
@@ -6527,17 +6573,17 @@
             this.label114.TabIndex = 28;
             this.label114.Text = "Landing Weight";
             // 
-            // panel214
+            // panelLandingWTLeg3
             // 
-            this.panel214.BackColor = System.Drawing.SystemColors.Control;
-            this.panel214.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel214.Controls.Add(this.tbLandingWT_L3);
-            this.panel214.Location = new System.Drawing.Point(103, 11);
-            this.panel214.Margin = new System.Windows.Forms.Padding(2);
-            this.panel214.Name = "panel214";
-            this.panel214.Size = new System.Drawing.Size(98, 32);
-            this.panel214.TabIndex = 18;
-            this.panel214.TabStop = true;
+            this.panelLandingWTLeg3.BackColor = System.Drawing.SystemColors.Control;
+            this.panelLandingWTLeg3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelLandingWTLeg3.Controls.Add(this.tbLandingWT_L3);
+            this.panelLandingWTLeg3.Location = new System.Drawing.Point(103, 11);
+            this.panelLandingWTLeg3.Margin = new System.Windows.Forms.Padding(2);
+            this.panelLandingWTLeg3.Name = "panelLandingWTLeg3";
+            this.panelLandingWTLeg3.Size = new System.Drawing.Size(98, 32);
+            this.panelLandingWTLeg3.TabIndex = 18;
+            this.panelLandingWTLeg3.TabStop = true;
             // 
             // tbLandingWT_L3
             // 
@@ -6602,6 +6648,7 @@
             this.tbMLW_L3.Text = "0";
             this.tbMLW_L3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbMLW_L3.TextChanged += new System.EventHandler(this.tbMLW_L3_TextChanged);
+            this.tbMLW_L3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMLW_L3_KeyPress);
             // 
             // panel217
             // 
@@ -6687,6 +6734,7 @@
             this.tbCont_L3.Text = "0";
             this.tbCont_L3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbCont_L3.TextChanged += new System.EventHandler(this.tbCont_L3_TextChanged);
+            this.tbCont_L3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCont_L3_KeyPress);
             // 
             // panel221
             // 
@@ -6736,6 +6784,7 @@
             this.tbTaxiBurn_L3.Text = "0";
             this.tbTaxiBurn_L3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbTaxiBurn_L3.TextChanged += new System.EventHandler(this.tbTaxiBurn_L3_TextChanged);
+            this.tbTaxiBurn_L3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTaxiBurn_L3_KeyPress);
             // 
             // panel223
             // 
@@ -6754,12 +6803,12 @@
             this.label119.AutoSize = true;
             this.label119.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label119.ForeColor = System.Drawing.Color.Black;
-            this.label119.Location = new System.Drawing.Point(14, 15);
+            this.label119.Location = new System.Drawing.Point(6, 15);
             this.label119.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label119.Name = "label119";
-            this.label119.Size = new System.Drawing.Size(73, 20);
+            this.label119.Size = new System.Drawing.Size(87, 20);
             this.label119.TabIndex = 28;
-            this.label119.Text = "Fuel Burn";
+            this.label119.Text = "Destination";
             // 
             // panel224
             // 
@@ -6785,6 +6834,7 @@
             this.tbFuelBurn_L3.Text = "0";
             this.tbFuelBurn_L3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbFuelBurn_L3.TextChanged += new System.EventHandler(this.tbFuelBurn_L3_TextChanged);
+            this.tbFuelBurn_L3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFuelBurn_L3_KeyPress);
             // 
             // panel225
             // 
@@ -6834,6 +6884,7 @@
             this.tbFuel_L3.Text = "0";
             this.tbFuel_L3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbFuel_L3.TextChanged += new System.EventHandler(this.tbFuel_L3_TextChanged);
+            this.tbFuel_L3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFuel_L3_KeyPress);
             // 
             // panel227
             // 
@@ -6920,6 +6971,7 @@
             this.tbAWI_L3.Text = "0";
             this.tbAWI_L3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbAWI_L3.TextChanged += new System.EventHandler(this.tbAWI_L3_TextChanged);
+            this.tbAWI_L3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAWI_L3_KeyPress);
             // 
             // panel231
             // 
@@ -6969,6 +7021,7 @@
             this.tbEquip_L3.Text = "0";
             this.tbEquip_L3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbEquip_L3.TextChanged += new System.EventHandler(this.tbEquip_L3_TextChanged);
+            this.tbEquip_L3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEquip_L3_KeyPress);
             // 
             // panel233
             // 
@@ -7018,6 +7071,7 @@
             this.tbCargo_L3.Text = "0";
             this.tbCargo_L3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbCargo_L3.TextChanged += new System.EventHandler(this.tbCargo_L3_TextChanged);
+            this.tbCargo_L3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCargo_L3_KeyPress);
             // 
             // panel235
             // 
@@ -7067,6 +7121,7 @@
             this.tbBags_L3.Text = "0";
             this.tbBags_L3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbBags_L3.TextChanged += new System.EventHandler(this.tbBags_L3_TextChanged);
+            this.tbBags_L3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbBags_L3_KeyPress);
             // 
             // panel237
             // 
@@ -7214,12 +7269,12 @@
             this.label129.AutoSize = true;
             this.label129.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label129.ForeColor = System.Drawing.Color.Black;
-            this.label129.Location = new System.Drawing.Point(16, 16);
+            this.label129.Location = new System.Drawing.Point(9, 16);
             this.label129.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label129.Name = "label129";
-            this.label129.Size = new System.Drawing.Size(84, 20);
+            this.label129.Size = new System.Drawing.Size(96, 20);
             this.label129.TabIndex = 28;
-            this.label129.Text = "Smartsheet";
+            this.label129.Text = "A/C Location";
             // 
             // panelSmartsheet_L4
             // 
@@ -7292,7 +7347,9 @@
             this.tbTotalWT_L4.Name = "tbTotalWT_L4";
             this.tbTotalWT_L4.Size = new System.Drawing.Size(89, 18);
             this.tbTotalWT_L4.TabIndex = 1;
+            this.tbTotalWT_L4.Text = "0";
             this.tbTotalWT_L4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbTotalWT_L4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTotalWT_L4_KeyPress);
             // 
             // panel248
             // 
@@ -7390,6 +7447,7 @@
             this.tbSeatpacks_L4.TabIndex = 1;
             this.tbSeatpacks_L4.TabStop = false;
             this.tbSeatpacks_L4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbSeatpacks_L4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSeatpacks_L4_KeyPress);
             // 
             // panel252
             // 
@@ -7496,6 +7554,7 @@
             this.tbPaxNo_L4.Text = "0";
             this.tbPaxNo_L4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPaxNo_L4.TextChanged += new System.EventHandler(this.tbPaxNo_L4_TextChanged);
+            this.tbPaxNo_L4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPaxNo_L4_KeyPress);
             // 
             // panel255
             // 
@@ -7818,6 +7877,7 @@
             this.tbMTOW_L4.Text = "0";
             this.tbMTOW_L4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbMTOW_L4.TextChanged += new System.EventHandler(this.tbMTOW_L4_TextChanged);
+            this.tbMTOW_L4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMTOW_L4_KeyPress);
             // 
             // panel269
             // 
@@ -7909,7 +7969,7 @@
             // 
             this.panel273.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel273.Controls.Add(this.label144);
-            this.panel273.Controls.Add(this.panel274);
+            this.panel273.Controls.Add(this.panelLandingWTLeg4);
             this.panel273.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel273.Location = new System.Drawing.Point(0, 93);
             this.panel273.Margin = new System.Windows.Forms.Padding(2);
@@ -7929,17 +7989,17 @@
             this.label144.TabIndex = 28;
             this.label144.Text = "Landing Weight";
             // 
-            // panel274
+            // panelLandingWTLeg4
             // 
-            this.panel274.BackColor = System.Drawing.SystemColors.Control;
-            this.panel274.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel274.Controls.Add(this.tbLandingWT_L4);
-            this.panel274.Location = new System.Drawing.Point(103, 11);
-            this.panel274.Margin = new System.Windows.Forms.Padding(2);
-            this.panel274.Name = "panel274";
-            this.panel274.Size = new System.Drawing.Size(98, 32);
-            this.panel274.TabIndex = 18;
-            this.panel274.TabStop = true;
+            this.panelLandingWTLeg4.BackColor = System.Drawing.SystemColors.Control;
+            this.panelLandingWTLeg4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelLandingWTLeg4.Controls.Add(this.tbLandingWT_L4);
+            this.panelLandingWTLeg4.Location = new System.Drawing.Point(103, 11);
+            this.panelLandingWTLeg4.Margin = new System.Windows.Forms.Padding(2);
+            this.panelLandingWTLeg4.Name = "panelLandingWTLeg4";
+            this.panelLandingWTLeg4.Size = new System.Drawing.Size(98, 32);
+            this.panelLandingWTLeg4.TabIndex = 18;
+            this.panelLandingWTLeg4.TabStop = true;
             // 
             // tbLandingWT_L4
             // 
@@ -8004,6 +8064,7 @@
             this.tbMLW_L4.Text = "0";
             this.tbMLW_L4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbMLW_L4.TextChanged += new System.EventHandler(this.tbMLW_L4_TextChanged);
+            this.tbMLW_L4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMLW_L4_KeyPress);
             // 
             // panel277
             // 
@@ -8089,6 +8150,7 @@
             this.tbCont_L4.Text = "0";
             this.tbCont_L4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbCont_L4.TextChanged += new System.EventHandler(this.tbCont_L4_TextChanged);
+            this.tbCont_L4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCont_L4_KeyPress);
             // 
             // panel281
             // 
@@ -8138,6 +8200,7 @@
             this.tbTaxiBurn_L4.Text = "0";
             this.tbTaxiBurn_L4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbTaxiBurn_L4.TextChanged += new System.EventHandler(this.tbTaxiBurn_L4_TextChanged);
+            this.tbTaxiBurn_L4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTaxiBurn_L4_KeyPress);
             // 
             // panel283
             // 
@@ -8156,12 +8219,12 @@
             this.label149.AutoSize = true;
             this.label149.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label149.ForeColor = System.Drawing.Color.Black;
-            this.label149.Location = new System.Drawing.Point(14, 15);
+            this.label149.Location = new System.Drawing.Point(6, 15);
             this.label149.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label149.Name = "label149";
-            this.label149.Size = new System.Drawing.Size(73, 20);
+            this.label149.Size = new System.Drawing.Size(87, 20);
             this.label149.TabIndex = 28;
-            this.label149.Text = "Fuel Burn";
+            this.label149.Text = "Destination";
             // 
             // panel284
             // 
@@ -8187,6 +8250,7 @@
             this.tbFuelBurn_L4.Text = "0";
             this.tbFuelBurn_L4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbFuelBurn_L4.TextChanged += new System.EventHandler(this.tbFuelBurn_L4_TextChanged);
+            this.tbFuelBurn_L4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFuelBurn_L4_KeyPress);
             // 
             // panel285
             // 
@@ -8236,6 +8300,7 @@
             this.tbFuel_L4.Text = "0";
             this.tbFuel_L4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbFuel_L4.TextChanged += new System.EventHandler(this.tbFuel_L4_TextChanged);
+            this.tbFuel_L4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFuel_L4_KeyPress);
             // 
             // panel287
             // 
@@ -8321,6 +8386,7 @@
             this.tbAWI_L4.TabIndex = 1;
             this.tbAWI_L4.Text = "0";
             this.tbAWI_L4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbAWI_L4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAWI_L4_KeyPress);
             // 
             // panel291
             // 
@@ -8370,6 +8436,7 @@
             this.tbEquip_L4.Text = "0";
             this.tbEquip_L4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbEquip_L4.TextChanged += new System.EventHandler(this.tbEquip_L4_TextChanged);
+            this.tbEquip_L4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEquip_L4_KeyPress);
             // 
             // panel293
             // 
@@ -8419,6 +8486,7 @@
             this.tbCargo_L4.Text = "0";
             this.tbCargo_L4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbCargo_L4.TextChanged += new System.EventHandler(this.tbCargo_L4_TextChanged);
+            this.tbCargo_L4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCargo_L4_KeyPress);
             // 
             // panel295
             // 
@@ -8468,6 +8536,7 @@
             this.tbBags_L4.Text = "0";
             this.tbBags_L4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbBags_L4.TextChanged += new System.EventHandler(this.tbBags_L4_TextChanged);
+            this.tbBags_L4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbBags_L4_KeyPress);
             // 
             // panel297
             // 
@@ -8517,6 +8586,7 @@
             this.tbPax_L4.Text = "0";
             this.tbPax_L4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPax_L4.TextChanged += new System.EventHandler(this.tbPax_L4_TextChanged);
+            this.tbPax_L4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPax_L4_KeyPress);
             // 
             // panel299
             // 
@@ -8651,12 +8721,12 @@
             this.label159.AutoSize = true;
             this.label159.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label159.ForeColor = System.Drawing.Color.Black;
-            this.label159.Location = new System.Drawing.Point(16, 16);
+            this.label159.Location = new System.Drawing.Point(9, 16);
             this.label159.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label159.Name = "label159";
-            this.label159.Size = new System.Drawing.Size(84, 20);
+            this.label159.Size = new System.Drawing.Size(96, 20);
             this.label159.TabIndex = 28;
-            this.label159.Text = "Smartsheet";
+            this.label159.Text = "A/C Location";
             // 
             // panelSmartsheet_L5
             // 
@@ -8729,7 +8799,9 @@
             this.tbTotalWT_L5.Name = "tbTotalWT_L5";
             this.tbTotalWT_L5.Size = new System.Drawing.Size(89, 18);
             this.tbTotalWT_L5.TabIndex = 1;
+            this.tbTotalWT_L5.Text = "0";
             this.tbTotalWT_L5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbTotalWT_L5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTotalWT_L5_KeyPress);
             // 
             // panel308
             // 
@@ -8827,6 +8899,7 @@
             this.tbSeatpacks_L5.TabIndex = 1;
             this.tbSeatpacks_L5.TabStop = false;
             this.tbSeatpacks_L5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbSeatpacks_L5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSeatpacks_L5_KeyPress);
             // 
             // panel312
             // 
@@ -8933,6 +9006,7 @@
             this.tbPaxNo_L5.Text = "0";
             this.tbPaxNo_L5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPaxNo_L5.TextChanged += new System.EventHandler(this.tbPaxNo_L5_TextChanged);
+            this.tbPaxNo_L5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPaxNo_L5_KeyPress);
             // 
             // panel315
             // 
@@ -9255,6 +9329,7 @@
             this.tbMTOW_L5.Text = "0";
             this.tbMTOW_L5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbMTOW_L5.TextChanged += new System.EventHandler(this.tbMTOW_L5_TextChanged);
+            this.tbMTOW_L5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMTOW_L5_KeyPress);
             // 
             // panel329
             // 
@@ -9346,7 +9421,7 @@
             // 
             this.panel333.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel333.Controls.Add(this.label174);
-            this.panel333.Controls.Add(this.panel334);
+            this.panel333.Controls.Add(this.panelLandingWTLeg5);
             this.panel333.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel333.Location = new System.Drawing.Point(0, 93);
             this.panel333.Margin = new System.Windows.Forms.Padding(2);
@@ -9366,17 +9441,17 @@
             this.label174.TabIndex = 28;
             this.label174.Text = "Landing Weight";
             // 
-            // panel334
+            // panelLandingWTLeg5
             // 
-            this.panel334.BackColor = System.Drawing.SystemColors.Control;
-            this.panel334.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel334.Controls.Add(this.tbLandingWT_L5);
-            this.panel334.Location = new System.Drawing.Point(103, 11);
-            this.panel334.Margin = new System.Windows.Forms.Padding(2);
-            this.panel334.Name = "panel334";
-            this.panel334.Size = new System.Drawing.Size(98, 32);
-            this.panel334.TabIndex = 18;
-            this.panel334.TabStop = true;
+            this.panelLandingWTLeg5.BackColor = System.Drawing.SystemColors.Control;
+            this.panelLandingWTLeg5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelLandingWTLeg5.Controls.Add(this.tbLandingWT_L5);
+            this.panelLandingWTLeg5.Location = new System.Drawing.Point(103, 11);
+            this.panelLandingWTLeg5.Margin = new System.Windows.Forms.Padding(2);
+            this.panelLandingWTLeg5.Name = "panelLandingWTLeg5";
+            this.panelLandingWTLeg5.Size = new System.Drawing.Size(98, 32);
+            this.panelLandingWTLeg5.TabIndex = 18;
+            this.panelLandingWTLeg5.TabStop = true;
             // 
             // tbLandingWT_L5
             // 
@@ -9441,6 +9516,7 @@
             this.tbMLW_L5.Text = "0";
             this.tbMLW_L5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbMLW_L5.TextChanged += new System.EventHandler(this.tbMLW_L5_TextChanged);
+            this.tbMLW_L5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMLW_L5_KeyPress);
             // 
             // panel337
             // 
@@ -9526,6 +9602,7 @@
             this.tbCont_L5.Text = "0";
             this.tbCont_L5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbCont_L5.TextChanged += new System.EventHandler(this.tbCont_L5_TextChanged);
+            this.tbCont_L5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCont_L5_KeyPress);
             // 
             // panel341
             // 
@@ -9575,6 +9652,7 @@
             this.tbTaxiBurn_L5.Text = "0";
             this.tbTaxiBurn_L5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbTaxiBurn_L5.TextChanged += new System.EventHandler(this.tbTaxiBurn_L5_TextChanged);
+            this.tbTaxiBurn_L5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTaxiBurn_L5_KeyPress);
             // 
             // panel343
             // 
@@ -9593,12 +9671,12 @@
             this.label179.AutoSize = true;
             this.label179.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label179.ForeColor = System.Drawing.Color.Black;
-            this.label179.Location = new System.Drawing.Point(14, 15);
+            this.label179.Location = new System.Drawing.Point(6, 15);
             this.label179.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label179.Name = "label179";
-            this.label179.Size = new System.Drawing.Size(73, 20);
+            this.label179.Size = new System.Drawing.Size(87, 20);
             this.label179.TabIndex = 28;
-            this.label179.Text = "Fuel Burn";
+            this.label179.Text = "Destination";
             // 
             // panel344
             // 
@@ -9624,6 +9702,7 @@
             this.tbFuelBurn_L5.Text = "0";
             this.tbFuelBurn_L5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbFuelBurn_L5.TextChanged += new System.EventHandler(this.tbFuelBurn_L5_TextChanged);
+            this.tbFuelBurn_L5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFuelBurn_L5_KeyPress);
             // 
             // panel345
             // 
@@ -9673,6 +9752,7 @@
             this.tbFuel_L5.Text = "0";
             this.tbFuel_L5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbFuel_L5.TextChanged += new System.EventHandler(this.tbFuel_L5_TextChanged);
+            this.tbFuel_L5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFuel_L5_KeyPress);
             // 
             // panel347
             // 
@@ -9759,6 +9839,7 @@
             this.tbAWI_L5.Text = "0";
             this.tbAWI_L5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbAWI_L5.TextChanged += new System.EventHandler(this.tbAWI_L5_TextChanged);
+            this.tbAWI_L5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAWI_L5_KeyPress);
             // 
             // panel351
             // 
@@ -9808,6 +9889,7 @@
             this.tbEquip_L5.Text = "0";
             this.tbEquip_L5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbEquip_L5.TextChanged += new System.EventHandler(this.tbEquip_L5_TextChanged);
+            this.tbEquip_L5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEquip_L5_KeyPress);
             // 
             // panel353
             // 
@@ -9857,6 +9939,7 @@
             this.tbCargo_L5.Text = "0";
             this.tbCargo_L5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbCargo_L5.TextChanged += new System.EventHandler(this.tbCargo_L5_TextChanged);
+            this.tbCargo_L5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCargo_L5_KeyPress);
             // 
             // panel355
             // 
@@ -9906,6 +9989,7 @@
             this.tbBags_L5.Text = "0";
             this.tbBags_L5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbBags_L5.TextChanged += new System.EventHandler(this.tbBags_L5_TextChanged);
+            this.tbBags_L5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbBags_L5_KeyPress);
             // 
             // panel357
             // 
@@ -9955,6 +10039,7 @@
             this.tbPax_L5.Text = "0";
             this.tbPax_L5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPax_L5.TextChanged += new System.EventHandler(this.tbPax_L5_TextChanged);
+            this.tbPax_L5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPax_L5_KeyPress);
             // 
             // panel359
             // 
@@ -10179,6 +10264,7 @@
             this.tbAircraftWeight.Size = new System.Drawing.Size(141, 18);
             this.tbAircraftWeight.TabIndex = 1;
             this.tbAircraftWeight.TextChanged += new System.EventHandler(this.tbAircraftWeight_TextChanged);
+            this.tbAircraftWeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAircraftWeight_KeyPress);
             // 
             // panel23
             // 
@@ -10541,19 +10627,19 @@
             // menuStripFlights
             // 
             this.menuStripFlights.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuAddFlight,
+            this.menuManageSchedule,
             this.menuReturnFuel});
             this.menuStripFlights.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.menuStripFlights.Name = "menuStripFlights";
             this.menuStripFlights.Size = new System.Drawing.Size(55, 20);
             this.menuStripFlights.Text = "Flights";
             // 
-            // menuAddFlight
+            // menuManageSchedule
             // 
-            this.menuAddFlight.Name = "menuAddFlight";
-            this.menuAddFlight.Size = new System.Drawing.Size(211, 22);
-            this.menuAddFlight.Text = "Manage Flight Schedule";
-            this.menuAddFlight.Click += new System.EventHandler(this.menuAddFlight_Click);
+            this.menuManageSchedule.Name = "menuManageSchedule";
+            this.menuManageSchedule.Size = new System.Drawing.Size(211, 22);
+            this.menuManageSchedule.Text = "Manage Flight Schedule";
+            this.menuManageSchedule.Click += new System.EventHandler(this.menuManageSchedule_Click);
             // 
             // menuReturnFuel
             // 
@@ -10568,65 +10654,23 @@
             this.menuSeatpacks.Name = "menuSeatpacks";
             this.menuSeatpacks.Size = new System.Drawing.Size(76, 20);
             this.menuSeatpacks.Text = "Seatpacks";
-            // 
-            // menuFlightLegs
-            // 
-            this.menuFlightLegs.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuAddLeg,
-            this.menuRemoveLeg});
-            this.menuFlightLegs.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
-            this.menuFlightLegs.Name = "menuFlightLegs";
-            this.menuFlightLegs.Size = new System.Drawing.Size(79, 20);
-            this.menuFlightLegs.Text = "Flight Legs";
-            // 
-            // menuAddLeg
-            // 
-            this.menuAddLeg.Name = "menuAddLeg";
-            this.menuAddLeg.Size = new System.Drawing.Size(122, 22);
-            this.menuAddLeg.Text = "Add Leg";
-            // 
-            // menuRemoveLeg
-            // 
-            this.menuRemoveLeg.Name = "menuRemoveLeg";
-            this.menuRemoveLeg.Size = new System.Drawing.Size(122, 22);
-            this.menuRemoveLeg.Text = "Remove";
-            // 
-            // cargoToolStripMenuItem
-            // 
-            this.cargoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.submenManualCargo});
-            this.cargoToolStripMenuItem.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
-            this.cargoToolStripMenuItem.Name = "cargoToolStripMenuItem";
-            this.cargoToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.cargoToolStripMenuItem.Text = "Cargo";
-            // 
-            // submenManualCargo
-            // 
-            this.submenManualCargo.Name = "submenManualCargo";
-            this.submenManualCargo.Size = new System.Drawing.Size(284, 22);
-            this.submenManualCargo.Text = "Manual Cargo Update (Cargo Board)";
+            this.menuSeatpacks.Visible = false;
             // 
             // rampToolStripMenuItem
             // 
             this.rampToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.submenuAddFlight,
-            this.submenuNightChecklist});
+            this.openRampBoardToolStripMenuItem});
             this.rampToolStripMenuItem.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.rampToolStripMenuItem.Name = "rampToolStripMenuItem";
             this.rampToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.rampToolStripMenuItem.Text = "Ramp";
             // 
-            // submenuAddFlight
+            // openRampBoardToolStripMenuItem
             // 
-            this.submenuAddFlight.Name = "submenuAddFlight";
-            this.submenuAddFlight.Size = new System.Drawing.Size(214, 22);
-            this.submenuAddFlight.Text = "Add Flight (Ramp Board)";
-            // 
-            // submenuNightChecklist
-            // 
-            this.submenuNightChecklist.Name = "submenuNightChecklist";
-            this.submenuNightChecklist.Size = new System.Drawing.Size(214, 22);
-            this.submenuNightChecklist.Text = "Night Checklist";
+            this.openRampBoardToolStripMenuItem.Name = "openRampBoardToolStripMenuItem";
+            this.openRampBoardToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openRampBoardToolStripMenuItem.Text = "Open Ramp Board";
+            this.openRampBoardToolStripMenuItem.Click += new System.EventHandler(this.openRampBoardToolStripMenuItem_Click);
             // 
             // flightPlanToolStripMenuItem
             // 
@@ -10641,6 +10685,7 @@
             this.subMenuflightPlan.Name = "subMenuflightPlan";
             this.subMenuflightPlan.Size = new System.Drawing.Size(188, 22);
             this.subMenuflightPlan.Text = "Load 705 Flight Plan";
+            this.subMenuflightPlan.Click += new System.EventHandler(this.subMenuflightPlan_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -10650,6 +10695,7 @@
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Visible = false;
             // 
             // subMenuShortcut
             // 
@@ -10660,14 +10706,16 @@
             // menuChangeLog
             // 
             this.menuChangeLog.Name = "menuChangeLog";
-            this.menuChangeLog.Size = new System.Drawing.Size(88, 20);
-            this.menuChangeLog.Text = "Change Log";
+            this.menuChangeLog.Size = new System.Drawing.Size(82, 20);
+            this.menuChangeLog.Text = "Changelog";
+            this.menuChangeLog.Click += new System.EventHandler(this.menuChangeLog_Click);
             // 
             // menuAbout
             // 
             this.menuAbout.Name = "menuAbout";
             this.menuAbout.Size = new System.Drawing.Size(54, 20);
             this.menuAbout.Text = "About";
+            this.menuAbout.Click += new System.EventHandler(this.menuAbout_Click);
             // 
             // menuAutoamtion
             // 
@@ -10676,6 +10724,7 @@
             this.menuAutoamtion.Name = "menuAutoamtion";
             this.menuAutoamtion.Size = new System.Drawing.Size(86, 20);
             this.menuAutoamtion.Text = "Automation";
+            this.menuAutoamtion.Visible = false;
             // 
             // menuDeparture
             // 
@@ -10691,9 +10740,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuStripFlights,
             this.menuSeatpacks,
-            this.menuFlightLegs,
-            this.cargoToolStripMenuItem,
             this.rampToolStripMenuItem,
+            this.cargoToolStripMenuItem,
             this.flightPlanToolStripMenuItem,
             this.helpToolStripMenuItem,
             this.menuChangeLog,
@@ -10706,25 +10754,20 @@
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // button1
+            // cargoToolStripMenuItem
             // 
-            this.button1.Location = new System.Drawing.Point(151, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Ramp";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.cargoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openCargoBoardToolStripMenuItem});
+            this.cargoToolStripMenuItem.Name = "cargoToolStripMenuItem";
+            this.cargoToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.cargoToolStripMenuItem.Text = "Cargo";
             // 
-            // button2
+            // openCargoBoardToolStripMenuItem
             // 
-            this.button2.Location = new System.Drawing.Point(150, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 19;
-            this.button2.Text = "Cargo";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.openCargoBoardToolStripMenuItem.Name = "openCargoBoardToolStripMenuItem";
+            this.openCargoBoardToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.openCargoBoardToolStripMenuItem.Text = "Open Cargo Board";
+            this.openCargoBoardToolStripMenuItem.Click += new System.EventHandler(this.openCargoBoardToolStripMenuItem_Click);
             // 
             // LoadPlanner
             // 
@@ -10734,9 +10777,14 @@
             this.Controls.Add(this.tabControlLoadPlanner);
             this.Controls.Add(this.panelMainInfo);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
+            this.MaximumSize = new System.Drawing.Size(927, 704);
             this.Name = "LoadPlanner";
-            this.Text = "LoadPlanner";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoadPlanner_FormClosed);
             this.Load += new System.EventHandler(this.LoadPlanner_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LoadPlanner_KeyDown);
             this.panel12.ResumeLayout(false);
             this.panel22.ResumeLayout(false);
             this.panel22.PerformLayout();
@@ -10747,7 +10795,6 @@
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();
             this.panel29.ResumeLayout(false);
-            this.panel29.PerformLayout();
             this.panel30.ResumeLayout(false);
             this.panel30.PerformLayout();
             this.panel31.ResumeLayout(false);
@@ -10774,8 +10821,8 @@
             this.panelLanding_Dif_L2.PerformLayout();
             this.panel153.ResumeLayout(false);
             this.panel153.PerformLayout();
-            this.panel154.ResumeLayout(false);
-            this.panel154.PerformLayout();
+            this.panelLandingWTLeg2.ResumeLayout(false);
+            this.panelLandingWTLeg2.PerformLayout();
             this.panel155.ResumeLayout(false);
             this.panel155.PerformLayout();
             this.panel156.ResumeLayout(false);
@@ -10856,8 +10903,8 @@
             this.panelLanding_Dif_L1.PerformLayout();
             this.panel93.ResumeLayout(false);
             this.panel93.PerformLayout();
-            this.panel94.ResumeLayout(false);
-            this.panel94.PerformLayout();
+            this.panelLandingWTLeg1.ResumeLayout(false);
+            this.panelLandingWTLeg1.PerformLayout();
             this.panel95.ResumeLayout(false);
             this.panel95.PerformLayout();
             this.panel96.ResumeLayout(false);
@@ -10969,8 +11016,8 @@
             this.tabLeg2.ResumeLayout(false);
             this.panel393.ResumeLayout(false);
             this.panel393.PerformLayout();
-            this.panel394.ResumeLayout(false);
-            this.panel394.PerformLayout();
+            this.panelLandingWTLeg6.ResumeLayout(false);
+            this.panelLandingWTLeg6.PerformLayout();
             this.panel399.ResumeLayout(false);
             this.panel399.PerformLayout();
             this.panel400.ResumeLayout(false);
@@ -11142,8 +11189,8 @@
             this.panelLanding_Dif_L3.PerformLayout();
             this.panel213.ResumeLayout(false);
             this.panel213.PerformLayout();
-            this.panel214.ResumeLayout(false);
-            this.panel214.PerformLayout();
+            this.panelLandingWTLeg3.ResumeLayout(false);
+            this.panelLandingWTLeg3.PerformLayout();
             this.panel215.ResumeLayout(false);
             this.panel215.PerformLayout();
             this.panel216.ResumeLayout(false);
@@ -11253,8 +11300,8 @@
             this.panelLanding_Dif_L4.PerformLayout();
             this.panel273.ResumeLayout(false);
             this.panel273.PerformLayout();
-            this.panel274.ResumeLayout(false);
-            this.panel274.PerformLayout();
+            this.panelLandingWTLeg4.ResumeLayout(false);
+            this.panelLandingWTLeg4.PerformLayout();
             this.panel275.ResumeLayout(false);
             this.panel275.PerformLayout();
             this.panel276.ResumeLayout(false);
@@ -11366,8 +11413,8 @@
             this.panelLanding_Dif_L5.PerformLayout();
             this.panel333.ResumeLayout(false);
             this.panel333.PerformLayout();
-            this.panel334.ResumeLayout(false);
-            this.panel334.PerformLayout();
+            this.panelLandingWTLeg5.ResumeLayout(false);
+            this.panelLandingWTLeg5.PerformLayout();
             this.panel335.ResumeLayout(false);
             this.panel335.PerformLayout();
             this.panel336.ResumeLayout(false);
@@ -11482,7 +11529,6 @@
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Panel panel29;
-        private System.Windows.Forms.TextBox tbSmartsheet_L1;
         private System.Windows.Forms.Panel panel30;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Panel panel31;
@@ -11512,7 +11558,7 @@
         private System.Windows.Forms.TextBox tbLandingDif_L2;
         private System.Windows.Forms.Panel panel153;
         private System.Windows.Forms.Label label84;
-        private System.Windows.Forms.Panel panel154;
+        private System.Windows.Forms.Panel panelLandingWTLeg2;
         private System.Windows.Forms.TextBox tbLandingWT_L2;
         private System.Windows.Forms.Panel panel155;
         private System.Windows.Forms.Label label85;
@@ -11594,7 +11640,7 @@
         private System.Windows.Forms.TextBox tbLandingDif_L1;
         private System.Windows.Forms.Panel panel93;
         private System.Windows.Forms.Label label54;
-        private System.Windows.Forms.Panel panel94;
+        private System.Windows.Forms.Panel panelLandingWTLeg1;
         private System.Windows.Forms.TextBox tbLandingWT_L1;
         private System.Windows.Forms.Panel panel95;
         private System.Windows.Forms.Label label55;
@@ -11713,7 +11759,7 @@
         private System.Windows.Forms.TextBox tbMLW_L6;
         private System.Windows.Forms.Panel panel393;
         private System.Windows.Forms.Label label204;
-        private System.Windows.Forms.Panel panel394;
+        private System.Windows.Forms.Panel panelLandingWTLeg6;
         private System.Windows.Forms.TextBox tbLandingWT_L6;
         private System.Windows.Forms.Label label206;
         private System.Windows.Forms.Panel panel399;
@@ -11824,7 +11870,6 @@
         private System.Windows.Forms.Panel panel382;
         private System.Windows.Forms.Panel panel408;
         private System.Windows.Forms.Panel panel390;
-        private System.Windows.Forms.TabControl tabControlLoadPlanner;
         private System.Windows.Forms.TabPage tabLeg3;
         private System.Windows.Forms.Panel panel180;
         private System.Windows.Forms.Panel panel181;
@@ -11891,7 +11936,7 @@
         private System.Windows.Forms.TextBox tbLandingDif_L3;
         private System.Windows.Forms.Panel panel213;
         private System.Windows.Forms.Label label114;
-        private System.Windows.Forms.Panel panel214;
+        private System.Windows.Forms.Panel panelLandingWTLeg3;
         private System.Windows.Forms.TextBox tbLandingWT_L3;
         private System.Windows.Forms.Panel panel215;
         private System.Windows.Forms.Label label115;
@@ -12119,7 +12164,7 @@
         private System.Windows.Forms.TextBox tbLandingDif_L5;
         private System.Windows.Forms.Panel panel333;
         private System.Windows.Forms.Label label174;
-        private System.Windows.Forms.Panel panel334;
+        private System.Windows.Forms.Panel panelLandingWTLeg5;
         private System.Windows.Forms.TextBox tbLandingWT_L5;
         private System.Windows.Forms.Panel panel335;
         private System.Windows.Forms.Label label175;
@@ -12199,7 +12244,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelFlightNo;
         private System.Windows.Forms.Panel subPanelFlightNo;
-        private System.Windows.Forms.ComboBox cbFlightNumber;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panelHeaderFlightNo;
         private System.Windows.Forms.Label label3;
@@ -12217,17 +12261,10 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ToolStripMenuItem menuStripFlights;
-        private System.Windows.Forms.ToolStripMenuItem menuAddFlight;
+        private System.Windows.Forms.ToolStripMenuItem menuManageSchedule;
         private System.Windows.Forms.ToolStripMenuItem menuReturnFuel;
         private System.Windows.Forms.ToolStripMenuItem menuSeatpacks;
-        private System.Windows.Forms.ToolStripMenuItem menuFlightLegs;
-        private System.Windows.Forms.ToolStripMenuItem menuAddLeg;
-        private System.Windows.Forms.ToolStripMenuItem menuRemoveLeg;
-        private System.Windows.Forms.ToolStripMenuItem cargoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem submenManualCargo;
         private System.Windows.Forms.ToolStripMenuItem rampToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem submenuAddFlight;
-        private System.Windows.Forms.ToolStripMenuItem submenuNightChecklist;
         private System.Windows.Forms.ToolStripMenuItem flightPlanToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem subMenuflightPlan;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
@@ -12237,8 +12274,12 @@
         private System.Windows.Forms.ToolStripMenuItem menuAutoamtion;
         private System.Windows.Forms.ToolStripMenuItem menuDeparture;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.Panel panel274;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panelLandingWTLeg4;
+        public System.Windows.Forms.ComboBox cbFlightNumber;
+        private System.Windows.Forms.TabControl tabControlLoadPlanner;
+        private System.Windows.Forms.ToolStripMenuItem openRampBoardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cargoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openCargoBoardToolStripMenuItem;
+        public System.Windows.Forms.ComboBox cbAC_Location;
     }
 }

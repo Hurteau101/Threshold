@@ -40,6 +40,8 @@ namespace Perimeter_Threshold
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuStripFlights = new System.Windows.Forms.ToolStripMenuItem();
             this.subMenuAddFlight = new System.Windows.Forms.ToolStripMenuItem();
+            this.showALCLegsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideALCLegsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvMasterSchedule = new System.Windows.Forms.DataGridView();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -116,7 +118,9 @@ namespace Perimeter_Threshold
             // menuStripFlights
             // 
             this.menuStripFlights.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.subMenuAddFlight});
+            this.subMenuAddFlight,
+            this.showALCLegsToolStripMenuItem,
+            this.hideALCLegsToolStripMenuItem});
             this.menuStripFlights.Name = "menuStripFlights";
             this.menuStripFlights.Size = new System.Drawing.Size(54, 20);
             this.menuStripFlights.Text = "Flights";
@@ -124,9 +128,27 @@ namespace Perimeter_Threshold
             // subMenuAddFlight
             // 
             this.subMenuAddFlight.Name = "subMenuAddFlight";
-            this.subMenuAddFlight.Size = new System.Drawing.Size(129, 22);
+            this.subMenuAddFlight.Size = new System.Drawing.Size(155, 22);
             this.subMenuAddFlight.Text = "Add Flight";
             this.subMenuAddFlight.Click += new System.EventHandler(this.subMenuAddFlight_Click);
+            // 
+            // showALCLegsToolStripMenuItem
+            // 
+            this.showALCLegsToolStripMenuItem.Image = global::Perimeter_Threshold.Properties.Resources.LOGO;
+            this.showALCLegsToolStripMenuItem.Name = "showALCLegsToolStripMenuItem";
+            this.showALCLegsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.showALCLegsToolStripMenuItem.Text = "Show ALC Legs";
+            this.showALCLegsToolStripMenuItem.Click += new System.EventHandler(this.showALCLegsToolStripMenuItem_Click);
+            // 
+            // hideALCLegsToolStripMenuItem
+            // 
+            this.hideALCLegsToolStripMenuItem.Checked = true;
+            this.hideALCLegsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.hideALCLegsToolStripMenuItem.Image = global::Perimeter_Threshold.Properties.Resources.LOGO;
+            this.hideALCLegsToolStripMenuItem.Name = "hideALCLegsToolStripMenuItem";
+            this.hideALCLegsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.hideALCLegsToolStripMenuItem.Text = "Hide ALC Legs";
+            this.hideALCLegsToolStripMenuItem.Click += new System.EventHandler(this.hideALCLegsToolStripMenuItem_Click);
             // 
             // dgvMasterSchedule
             // 
@@ -168,9 +190,9 @@ namespace Perimeter_Threshold
             this.ClientSize = new System.Drawing.Size(1163, 482);
             this.Controls.Add(this.dgvMasterSchedule);
             this.Controls.Add(this.panelHeader);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MasterScheduler";
-            this.Text = "MasterScheduler";
             this.Load += new System.EventHandler(this.MasterScheduler_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
@@ -192,5 +214,7 @@ namespace Perimeter_Threshold
         private System.Windows.Forms.Label lblDayOfWeek;
         public System.Windows.Forms.DataGridView dgvMasterSchedule;
         private System.Windows.Forms.ToolStripMenuItem subMenuAddFlight;
+        private System.Windows.Forms.ToolStripMenuItem showALCLegsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hideALCLegsToolStripMenuItem;
     }
 }

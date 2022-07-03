@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NightChecklist));
             this.rchTbSeatpacks = new System.Windows.Forms.RichTextBox();
             this.dateCheckList = new System.Windows.Forms.DateTimePicker();
             this.panelHeader = new System.Windows.Forms.Panel();
@@ -47,7 +48,7 @@
             this.rchTbSeatpacks.Margin = new System.Windows.Forms.Padding(2);
             this.rchTbSeatpacks.Name = "rchTbSeatpacks";
             this.rchTbSeatpacks.Size = new System.Drawing.Size(309, 123);
-            this.rchTbSeatpacks.TabIndex = 22;
+            this.rchTbSeatpacks.TabIndex = 1;
             this.rchTbSeatpacks.Text = "";
             // 
             // dateCheckList
@@ -107,7 +108,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(309, 46);
-            this.btnSave.TabIndex = 25;
+            this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -130,7 +131,7 @@
             this.rchTbTasks.Margin = new System.Windows.Forms.Padding(2);
             this.rchTbTasks.Name = "rchTbTasks";
             this.rchTbTasks.Size = new System.Drawing.Size(309, 123);
-            this.rchTbTasks.TabIndex = 23;
+            this.rchTbTasks.TabIndex = 2;
             this.rchTbTasks.Text = "";
             // 
             // label1
@@ -156,8 +157,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.rchTbTasks);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(376, 559);
             this.Name = "NightChecklist";
-            this.Text = "NightChecklist";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.NightChecklist_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();

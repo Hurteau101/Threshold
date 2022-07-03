@@ -11,6 +11,6 @@ namespace Perimeter_Threshold
          DateTime Date { get; set; }
          string FlightNumber { get; set; }
 
-        void DeletingFight(string flightNumber, DateTime date);
+         bool DeletingFight(string flightNumber, DateTime date);
     }
 }

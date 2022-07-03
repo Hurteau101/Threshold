@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Perimeter_Threshold
 {
@@ -24,6 +20,9 @@ namespace Perimeter_Threshold
             Date = date;
         }
 
+        /// <summary>
+        /// Push Master Schedule of Flights to Ramp Board. 
+        /// </summary>
         public void LoadMasterScheduleRamp()
         {
             using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
@@ -38,11 +37,13 @@ namespace Perimeter_Threshold
             }
         }
 
+        /// <summary>
+        /// Push Master Schedule of Flights to ALC Scheduler Board. 
+        /// </summary>
         public void LoadMasterScheduleALC()
         {
             using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
-
                 conn.Open();
                 SqlCommand loadSchedule = new SqlCommand("Master_Scheduler_Loader_ALC", conn);
                 loadSchedule.CommandType = CommandType.StoredProcedure;
@@ -51,6 +52,5 @@ namespace Perimeter_Threshold
                 loadSchedule.ExecuteNonQuery();
             }
         }
-
     }
 }

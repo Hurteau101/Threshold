@@ -38,31 +38,44 @@ namespace Perimeter_Threshold
             dataAdapter = new SqlDataAdapter(selectMaster);
             dset = new DataSet();
             dataAdapter.Fill(dset, "Master_Schedule");
-            dgvMasterSchedule.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            BoardStyling.GridviewColumnSize(dgvMasterSchedule); // Insertion done here, as you need to do it before binding. 
+            BoardStyling.RowSizeMode(dgvMasterSchedule);
+            BoardStyling.GridviewMinimumRowSize(dgvMasterSchedule); // Insertion done here, as you need to do it before binding. 
             dgvMasterSchedule.DataSource = dset.Tables[0];
             connection.Close();
 
             MasterBoardStyling style = new MasterBoardStyling();
             style.HideHeader(dgvMasterSchedule);
             BoardStyling.UnsortableColumns(dgvMasterSchedule);
-            BoardStyling.GridViewColumnSizeWidth(dgvMasterSchedule);         
+            BoardStyling.GridViewColumnMode(dgvMasterSchedule);         
             BoardStyling.ColumnSortDirection(dgvMasterSchedule);
-            BoardStyling.RowSize(dgvMasterSchedule);
             BoardStyling.GridviewStyling(dgvMasterSchedule);
+            style.HeaderRename(dgvMasterSchedule);
 
         }
 
         private void subMenuAddFlight_Click(object sender, EventArgs e)
         {
-            AddFlightScheduler openScheduler = new AddFlightScheduler();
-            openScheduler.ShowDialog();
+            var form = Application.OpenForms.OfType<AddFlightScheduler>().FirstOrDefault();
+            if (!FormOpener.CheckFormOpen(form))
+            {
+                new AddFlightScheduler().Show();
+            }
         }
 
         private void MasterScheduler_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             cbDayOfWeek.SelectedItem = "Monday";
             MasterScheduleLoader();
+
+            if(hideALCLegsToolStripMenuItem.Checked)
+            {
+                MasterBoardStyling.HideALC_Routing(dgvMasterSchedule, showALCLegsToolStripMenuItem, hideALCLegsToolStripMenuItem);
+            }
+            else
+            {
+                MasterBoardStyling.HideALC_Routing(dgvMasterSchedule, showALCLegsToolStripMenuItem, hideALCLegsToolStripMenuItem);
+            }
         }
 
         private void cbDayOfWeek_SelectedIndexChanged(object sender, EventArgs e)
@@ -79,6 +92,16 @@ namespace Perimeter_Threshold
                 dgvMasterSchedule.EndEdit();
                 this.dataAdapter.Update(dset, "Master_Schedule");
             }
+        }
+
+        private void showALCLegsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MasterBoardStyling.ShowALC_Routing(dgvMasterSchedule, showALCLegsToolStripMenuItem, hideALCLegsToolStripMenuItem);
+        }
+
+        private void hideALCLegsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MasterBoardStyling.HideALC_Routing(dgvMasterSchedule, showALCLegsToolStripMenuItem, hideALCLegsToolStripMenuItem);
         }
     }
 }

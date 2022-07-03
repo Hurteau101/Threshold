@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Perimeter_Threshold
@@ -18,7 +12,7 @@ namespace Perimeter_Threshold
             InitializeComponent();
         }
 
-        public string FlightNumber { get; set; }
+        public static string FlightNumber { get; set; }
 
         /// <summary>
         /// Load seatblock info from database. 
@@ -33,7 +27,7 @@ namespace Perimeter_Threshold
                 loadSeatblock.Parameters.AddWithValue("@DateID", dateSeatblock.Value.Date);
                 loadSeatblock.Parameters.AddWithValue("@FlightNumber", tbFlightNumber.Text);
                 SqlDataReader readSeatblock = loadSeatblock.ExecuteReader();
-                if(readSeatblock.Read())
+                if (readSeatblock.Read())
                 {
                     rchSeatblock.Text = (readSeatblock["Seatblock"].ToString());
                 }
@@ -64,7 +58,11 @@ namespace Perimeter_Threshold
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            SaveSeatblock();
+            if (AddFlight.ValidFlight(tbFlightNumber.Text))
+            {
+                SaveSeatblock();
+                UpdateBoardsAutomation.UpdateCargoBoardStatus();
+            }
         }
 
         private void tbFlightNumber_TextChanged(object sender, EventArgs e)
@@ -90,7 +88,6 @@ namespace Perimeter_Threshold
             }
 
             LoadSeatblockInformation();
-
         }
     }
 }

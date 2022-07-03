@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
@@ -19,7 +17,6 @@ namespace Perimeter_Threshold
         {
             Date = date;
         }
-
 
         public LoadDataALC()
         {
@@ -40,7 +37,7 @@ namespace Perimeter_Threshold
                 loadFlightNumbers.Parameters.AddWithValue("@DateID", Date);
                 SqlDataAdapter adapter = new SqlDataAdapter(loadFlightNumbers);
                 DataSet ds = new DataSet();
-                adapter.Fill(ds);
+                 adapter.Fill(ds);
                 loadFlightNumbers.ExecuteNonQuery();
 
                 flightNumbers.DataSource = ds.Tables[0];
@@ -125,7 +122,7 @@ namespace Perimeter_Threshold
         /// <param name="crew"></param>
         /// <param name="aircraftType"></param>
         /// <param name="aircraftWeight"></param>
-        public void LoadAircraftWeight(ComboBox crew, ComboBox aircraftType, TextBox aircraftWeight)
+        public void LoadAircraftWeight(ComboBox crew, ComboBox aircraftType, TextBox aircraftWeight, ComboBox aircraft)
         {
             using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
@@ -134,6 +131,7 @@ namespace Perimeter_Threshold
                 loadWeight.CommandType = CommandType.StoredProcedure;
                 loadWeight.Parameters.AddWithValue("@Aircraft_Type", aircraftType.Text);
                 loadWeight.Parameters.AddWithValue("@Crew", crew.Text);
+                loadWeight.Parameters.AddWithValue("@Aircraft", aircraft.Text);
                 SqlDataReader readWeight = loadWeight.ExecuteReader();
                 if (readWeight.Read())
                 {
@@ -486,6 +484,37 @@ namespace Perimeter_Threshold
         }
 
         /// <summary>
+        /// Load previous aircraft location from database. 
+        /// </summary>
+        /// <param name="flightNumber"></param>
+        /// <param name="location"></param>
+        public void LoadPreviousAircraftLocation(ComboBox flightNumber, ComboBox location)
+        {
+            // Clear Combox field, so it doesn't display previous value. 
+            location.SelectedIndex = -1;
+
+            using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
+            {
+                conn.Open();
+                SqlCommand loadPreviousAircraftLocation = new SqlCommand("Load_Previous_Location", conn);
+                loadPreviousAircraftLocation.CommandType = CommandType.StoredProcedure;
+                loadPreviousAircraftLocation.Parameters.AddWithValue("@FlightNumber", flightNumber.Text);
+                loadPreviousAircraftLocation.Parameters.AddWithValue("@DateID", Date);
+                SqlDataReader readPreviousLocation = loadPreviousAircraftLocation.ExecuteReader();
+                if (readPreviousLocation.Read())
+                {
+                    location.Text = (readPreviousLocation["Aircraft_Location"].ToString());
+
+                }
+                else
+                {
+                    location.SelectedIndex = -1;
+                }
+            }
+        }
+
+
+        /// <summary>
         /// Load Leg information, if it doesn't find the flight in the database, auto set everything to 0.
         /// </summary>
         /// <param name="flightNumber"></param>
@@ -566,27 +595,23 @@ namespace Perimeter_Threshold
         /// <param name="date"></param>
         /// <param name="note"></param>
         /// <returns></returns>
-        public static string LoadRampNotes(ComboBox flightNumber, DateTime date, TextBox note, RadioButton departmentCheck)
+        public static void LoadRampNotes(ComboBox flightNumber, DateTime date, TextBox note, RadioButton departmentCheck)
         {
-            using (IDbConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
-                string sql = "SELECT Ramp_Remarks FROM Ramp_Board WHERE Date_ID =@Date_ID AND Flight_Number =@Flight_Number";
-                var loadNotes = conn.Query<LoadPlannerBoardUpdates>(sql, new LoadPlannerBoardUpdates { Flight_Number = flightNumber.Text, Date_ID = date });
-
-                if (departmentCheck.Checked)
+                connection.Open();
+                SqlCommand loadRampNotes = new SqlCommand("SELECT Load_Coordinator_Remarks FROM Ramp_Board WHERE Date_ID =@Date_ID AND Flight_Number =@Flight_Number", connection);
+                loadRampNotes.Parameters.AddWithValue("@Date_ID", date);
+                loadRampNotes.Parameters.AddWithValue("@Flight_Number", flightNumber.Text);
+                SqlDataReader readNotes = loadRampNotes.ExecuteReader();
+                if (readNotes.Read())
                 {
-                    foreach (var notes in loadNotes)
-                    {
-                        note.Text = notes.Ramp_Remarks;
-                    }
-
-                    if (loadNotes.Count() <= 0)
-                    {
-                        note.Clear();
-                    }
+                    note.Text = (readNotes["Load_Coordinator_Remarks"].ToString());
                 }
-
-                return note.Text;
+                else
+                {
+                    note.Clear();
+                }
             }
         }
 
@@ -597,27 +622,23 @@ namespace Perimeter_Threshold
         /// <param name="date"></param>
         /// <param name="note"></param>
         /// <returns></returns>
-        public static string LoadCargoNotes(ComboBox flightNumber, DateTime date, TextBox note, RadioButton departmentCheck)
+        public static void LoadCargoNotes(ComboBox flightNumber, DateTime date, TextBox note, RadioButton departmentCheck)
         {
-            using (IDbConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
-                string sql = "SELECT Cargo_Notes FROM Cargo_Board WHERE Date_ID =@Date_ID AND Flight_Number =@Flight_Number";
-                var loadNotes = conn.Query<LoadPlannerBoardUpdates>(sql, new LoadPlannerBoardUpdates { Flight_Number = flightNumber.Text, Date_ID = date });
-
-                if (departmentCheck.Checked)
+                connection.Open();
+                SqlCommand loadRampNotes = new SqlCommand("SELECT Cargo_Notes FROM Cargo_Board WHERE Date_ID =@Date_ID AND Flight_Number =@Flight_Number", connection);
+                loadRampNotes.Parameters.AddWithValue("@Date_ID", date);
+                loadRampNotes.Parameters.AddWithValue("@Flight_Number", flightNumber.Text);
+                SqlDataReader readNotes = loadRampNotes.ExecuteReader();
+                if (readNotes.Read())
                 {
-                    foreach (var notes in loadNotes)
-                    {
-                        note.Text = notes.Cargo_Notes;
-                    }
-
-                    if (loadNotes.Count() <= 0)
-                    {
-                        note.Clear();
-                    }
+                    note.Text = (readNotes["Cargo_Notes"].ToString());
                 }
-
-                return note.Text; 
+                else
+                {
+                    note.Clear();
+                }
             }
         }
 
@@ -629,62 +650,24 @@ namespace Perimeter_Threshold
         /// <param name="note"></param>
         /// <param name="legNumber"></param>
         /// <returns></returns>
-        public static string LoadALCNotes(ComboBox flightNumber, DateTime date, TextBox note, int legNumber, RadioButton checkDepartment)
+        public static void LoadALCNotes(ComboBox flightNumber, DateTime date, TextBox note, int legNumber)
         {
-            using (IDbConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
+            using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
-                string sql = "SELECT Notes FROM Load_Planner WHERE Date_ID =@Date_ID AND Flight_Number =@Flight_Number AND Leg_Number =@Leg_Number";
-                var loadNotes = conn.Query<LoadPlannerBoardUpdates>(sql, new LoadPlannerBoardUpdates { Flight_Number = flightNumber.Text, Date_ID = date, Leg_Number = legNumber });
-
-                if (checkDepartment.Checked)
+                connection.Open();
+                SqlCommand loadRampNotes = new SqlCommand("SELECT Notes FROM Load_Planner WHERE Date_ID =@Date_ID AND Flight_Number =@Flight_Number AND Leg_Number =@Leg_Number", connection);
+                loadRampNotes.Parameters.AddWithValue("@Date_ID", date);
+                loadRampNotes.Parameters.AddWithValue("@Flight_Number", flightNumber.Text);
+                loadRampNotes.Parameters.AddWithValue("@Leg_Number", legNumber);
+                SqlDataReader readNotes = loadRampNotes.ExecuteReader();
+                if (readNotes.Read())
                 {
-                    foreach (var notes in loadNotes)
-                    {
-                        if (!(string.IsNullOrEmpty(notes.Notes) || string.IsNullOrWhiteSpace(notes.Notes)))
-                        {
-                            note.Text = notes.Notes;
-                        }
-                    }
-
-                    if (loadNotes.Count() <= 0)
-                    {
-                        note.Clear();
-                    }
+                    note.Text = (readNotes["Notes"].ToString());
                 }
-
-                return note.Text;
-            }
-        }
-
-        /// <summary>
-        /// Overloaded method, for ALC notes other then leg one, as there are no radio buttons on those legs. 
-        /// </summary>
-        /// <param name="flightNumber"></param>
-        /// <param name="date"></param>
-        /// <param name="note"></param>
-        /// <param name="legNumber"></param>
-        /// <returns></returns>
-        public static string LoadALCNotes(ComboBox flightNumber, DateTime date, TextBox note, int legNumber)
-        {
-            using (IDbConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
-            {
-                string sql = "SELECT Notes FROM Load_Planner WHERE Date_ID =@Date_ID AND Flight_Number =@Flight_Number AND Leg_Number =@Leg_Number";
-                var loadNotes = conn.Query<LoadPlannerBoardUpdates>(sql, new LoadPlannerBoardUpdates { Flight_Number = flightNumber.Text, Date_ID = date, Leg_Number = legNumber });
-
-                foreach (var notes in loadNotes)
-                {
-                    if (!(string.IsNullOrEmpty(notes.Notes) || string.IsNullOrWhiteSpace(notes.Notes)))
-                    {
-                        note.Text = notes.Notes;
-                    }
-                }
-
-                if (loadNotes.Count() <= 0)
+                else
                 {
                     note.Clear();
                 }
-
-                return note.Text;
             }
         }
     }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 
 namespace Perimeter_Threshold
@@ -14,6 +10,7 @@ namespace Perimeter_Threshold
         public int LateColor { get; set; }
         public int ArrivalColor { get; set; }
         public int UnserviceableColor { get; set; }
+        public int CompletionColor { get; set; }
         public int UserID { get; set; }
         public int RGBColor { get; set; }
         public string UserSaveSelection { get; set; }
@@ -32,7 +29,7 @@ namespace Perimeter_Threshold
         /// <summary>
         /// Save Color to database. This will save to user preference and be loaded all the time, for their color preference. 
         /// </summary>
-        public void SaveRampColors()
+        public void SaveColors()
         {
             using(SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
@@ -71,23 +68,22 @@ namespace Perimeter_Threshold
         /// </summary>
         public void LoadPreferenecs()
         {
-            using(SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
+            using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
                 conn.Open();
                 SqlCommand loadColors = new SqlCommand("SELECT * FROM User_Preferences WHERE User_IDs =@User_Ids", conn);
                 loadColors.Parameters.AddWithValue("@User_Ids", UserID);
                 SqlDataReader readColors = loadColors.ExecuteReader();
-                if(readColors.Read())
-                {
-                    BoardStyling stylingColor = new BoardStyling();
-                    EarlyColor = Convert.ToInt32(readColors["Ramp_Early_Color"].ToString());
-                    OnTimeColor = Convert.ToInt32(readColors["Ramp_OnTime_Color"].ToString());
-                    LateColor = Convert.ToInt32(readColors["Ramp_Late_Color"].ToString());
-                    ArrivalColor = Convert.ToInt32(readColors["Ramp_Arrival_Color"].ToString());
-                    UnserviceableColor = Convert.ToInt32(readColors["Ramp_AC_Unserviceable_Color"].ToString());
+                if (readColors.Read())
+                {                   
+                    EarlyColor = Int32.Parse((readColors["Ramp_Early_Color"].ToString()));
+                    OnTimeColor = Int32.Parse((readColors["Ramp_OnTime_Color"].ToString()));
+                    LateColor = Int32.Parse((readColors["Ramp_Late_Color"].ToString()));
+                    ArrivalColor = Int32.Parse((readColors["Ramp_Arrival_Color"].ToString()));
+                    UnserviceableColor = Int32.Parse((readColors["Ramp_AC_Unserviceable_Color"].ToString()));
+                    CompletionColor = Int32.Parse((readColors["Cargo_Completion_Color"].ToString()));
                 }
             }
         }
-
     }
 }

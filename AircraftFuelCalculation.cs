@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Perimeter_Threshold
 {
@@ -39,7 +34,7 @@ namespace Perimeter_Threshold
         ///***** THROW ERROR MESSAGE IF ANY LEGS CONTAIN 0 IN FUEL --- I NEED TO DO THIS ****
 
         /// <summary>
-        /// Calculate Return Fuel for Aircrafts 
+        /// Calculate return fuel for aircraft. 
         /// </summary>
         /// <param name="numberOfLegs"></param>
         public void ReturnFuel(int numberOfLegs)

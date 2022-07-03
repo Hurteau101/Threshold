@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
@@ -36,6 +32,8 @@ namespace Perimeter_Threshold
         public int UserID { get; set; }
         public int Grid { get; set; }
 
+        public bool FormLoadded = false;
+        public int RoleID { get; set; }
 
         /// <summary>
         /// Load Ramp Board data into gridview
@@ -44,15 +42,17 @@ namespace Perimeter_Threshold
         {
             SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold"));
             connection.Open();
-            SqlCommand selectRampBoard = new SqlCommand("Select_Ramp_Data", connection);
+            SqlCommand selectRampBoard = new SqlCommand("Test_Ramp_Board", connection);
+            // UNCOMMENT ONCE LIVE
+            //SqlCommand selectRampBoard = new SqlCommand("Select_Ramp_Data", connection);
             selectRampBoard.CommandType = CommandType.StoredProcedure;
             selectRampBoard.Parameters.AddWithValue("@DateID", dateTimeRamp.Value.Date);
             dt = new DataTable();
             dataAdapter = new SqlDataAdapter(selectRampBoard);
             dset = new DataSet();
             dataAdapter.Fill(dset, "Ramp_Board");
-            dgvRampBoard.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            BoardStyling.GridviewColumnSize(dgvRampBoard); // Insertion done here, as you need to do it before binding. 
+            BoardStyling.RowSizeMode(dgvRampBoard);
+            BoardStyling.GridviewMinimumRowSize(dgvRampBoard); // Insertion done here, as you need to do it before binding.
             dgvRampBoard.DataSource = dset.Tables[0];
             connection.Close();
 
@@ -60,14 +60,15 @@ namespace Perimeter_Threshold
             style.HeaderRename(dgvRampBoard);
             style.HideHeader(dgvRampBoard);
             BoardStyling.UnsortableColumns(dgvRampBoard);
-            BoardStyling.GridViewColumnSizeWidth(dgvRampBoard);
             BoardStyling.ColumnSortDirection(dgvRampBoard);
-            BoardStyling.RowSize(dgvRampBoard);
             BoardStyling.GridviewStyling(dgvRampBoard);
 
             LoadUserPreferenceColors();
+            RampBoardStyling.LoadAircraftStatus(dgvRampBoard);
 
+            RampBoardStyling.ArrivalTimeColor(dgvRampBoard, dateTimeRamp.Value.Date);         
         }
+
         /// <summary>
         ///  Load User Preference and set Colors they have set on the Board. 
         /// </summary>
@@ -92,7 +93,7 @@ namespace Perimeter_Threshold
             smallPanelLate.BackColor = Color.FromArgb(LateColor);
             smallPanelOnTime.BackColor = Color.FromArgb(OnTimeColor);
             smallPanelArrived.BackColor = Color.FromArgb(ArrivalColor);
-            smallPanelUnserviceable.BackColor = Color.FromArgb(UnserviceableColor);           
+            smallPanelUnserviceable.BackColor = Color.FromArgb(UnserviceableColor);
         }
 
         /// <summary>
@@ -108,34 +109,78 @@ namespace Perimeter_Threshold
                 int saveColor = saveDialogColor.Color.ToArgb();
                 UserPreferences save = new UserPreferences(UserID, saveColor);
                 save.UserSaveSelection = $"{userSelection}";
-                save.SaveRampColors();
+                save.SaveColors();
 
                 MessageBox.Show($"{userPanelSelectionName} Color has been saved to User Preferences", "Save Sucessful", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        /// <summary>
+        /// Set aircraft unserviceablility. 
+        /// </summary>
+        private void AircraftUnserviceable()
+        {
+            using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
+            {
+                conn.Open();
+                SqlCommand CheckboxTrue = new SqlCommand("UPDATE Ramp_Board SET Aircraft_Status =@Aircraft_Status " +
+                    "WHERE Date_ID =@Date_ID AND Flight_Number =@Flight_Number", conn);
+                CheckboxTrue.Parameters.AddWithValue("@Date_ID", dateTimeRamp.Value.Date);
+                CheckboxTrue.Parameters.AddWithValue("@Flight_Number", FlightNumber);
+                CheckboxTrue.Parameters.AddWithValue("@Aircraft_Status", 1);
+                CheckboxTrue.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Set aircraft serviceability. 
+        /// </summary>
+        private void AircraftServiceable()
+        {
+            using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
+            {
+                conn.Open();
+                SqlCommand CheckboxTrue = new SqlCommand("UPDATE Ramp_Board SET Aircraft_Status =@Aircraft_Status " +
+                    "WHERE Date_ID =@Date_ID AND Flight_Number =@Flight_Number", conn);
+                CheckboxTrue.Parameters.AddWithValue("@Date_ID", dateTimeRamp.Value.Date);
+                CheckboxTrue.Parameters.AddWithValue("@Flight_Number", FlightNumber);
+                CheckboxTrue.Parameters.AddWithValue("@Aircraft_Status", 0);
+                CheckboxTrue.ExecuteNonQuery();
             }
         }
 
         private void RampBoard_Load(object sender, EventArgs e)
         {
             // Load Name of User.
-            lblUser.Text = Name;
+            lblUser.Text = FullName;
 
             // Format Date Display.
             DateTimeFormater.DateTimeDisplay(dateTimeRamp);
 
-            // Load Master Schedule
-            ScheduleLoader loadSchedule = new ScheduleLoader(dateTimeRamp.Value.DayOfWeek, dateTimeRamp.Value.Date);
-            loadSchedule.LoadMasterScheduleRamp();
+            SchedulerLoaderChecks.SchedulerLoaderCheckRamp(dateTimeRamp);
 
             // Load Ramp Board.
-            RampBoardLoader();
+             RampBoardLoader();
 
+            // Set this to true only when form loads. This is to ensure re-size form event doesn't crash. 
+            FormLoadded = true;
         }
 
         private void subMenuAddFlight_Click(object sender, EventArgs e)
         {
-            AddFlight_Ramp addFlight = new AddFlight_Ramp();
-            DateTimeFormater.DateDisplay = dateTimeRamp.Value.Date;
-            addFlight.Show();          
+            var form = Application.OpenForms.OfType<AddFlight_Ramp>().FirstOrDefault();
+            if (!FormOpener.CheckFormOpen(form))
+            {
+                AddFlight_Ramp openFlightAdder = new AddFlight_Ramp();
+                var screen = Screen.FromPoint(Cursor.Position);
+                openFlightAdder.StartPosition = FormStartPosition.Manual;
+                openFlightAdder.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - openFlightAdder.Width / 2;
+                openFlightAdder.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - openFlightAdder.Height / 2;
+
+                DateTimeFormater.DateDisplay = dateTimeRamp.Value.Date;
+
+                openFlightAdder.Show();
+            }
         }
 
         private void dgvRampBoard_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
@@ -149,7 +194,7 @@ namespace Perimeter_Threshold
                 {
                     this.dgvRampBoard.Rows[e.RowIndex].Selected = true;
                     this.rowIndex = e.RowIndex;
-                    this.dgvRampBoard.CurrentCell = this.dgvRampBoard.Rows[e.RowIndex].Cells[1];
+                    this.dgvRampBoard.CurrentCell = this.dgvRampBoard.Rows[e.RowIndex].Cells[2];
                     this.dgvMenuStripFlights.Show(this.dgvRampBoard, e.Location);
                     dgvMenuStripFlights.Show(Cursor.Position);
 
@@ -168,8 +213,12 @@ namespace Perimeter_Threshold
         {
             RampDeleteFlight deleteFlight = new RampDeleteFlight();
             deleteFlight.FlightNumber = FlightNumber; 
-            deleteFlight.Date = dateTimeRamp.Value.Date;
-            deleteFlight.DeletingFight(deleteFlight.FlightNumber, deleteFlight.Date);
+            deleteFlight.Date = dateTimeRamp.Value.Date;         
+            if(deleteFlight.DeletingFight(deleteFlight.FlightNumber, deleteFlight.Date))
+            {
+                UpdateBoardsAutomation.UpdateRampBoardStatus();
+                RampBoardLoader();
+            }            
         }
 
         private void showDateCalanderToolStripMenuItem_Click(object sender, EventArgs e)
@@ -184,15 +233,23 @@ namespace Perimeter_Threshold
 
         private void subMenuNightChecklist_Click(object sender, EventArgs e)
         {
-            NightChecklist nightList = new NightChecklist();
-            DateTimeFormater.DateDisplay = dateTimeRamp.Value.Date;
-            nightList.Show();
+            var form = Application.OpenForms.OfType<NightChecklist>().FirstOrDefault();
+            if (!FormOpener.CheckFormOpen(form))
+            {
+                NightChecklist checklist = new NightChecklist();
+                var screen = Screen.FromPoint(Cursor.Position);
+                checklist.StartPosition = FormStartPosition.Manual;
+                checklist.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - checklist.Width / 2;
+                checklist.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - checklist.Height / 2;
+
+                DateTimeFormater.DateDisplay = dateTimeRamp.Value.Date;
+                checklist.Show();
+            }
         }
 
         private void dateTimeRamp_ValueChanged(object sender, EventArgs e)
         {
-            ScheduleLoader loadSchedule = new ScheduleLoader(dateTimeRamp.Value.DayOfWeek, dateTimeRamp.Value.Date);
-            loadSchedule.LoadMasterScheduleRamp();
+            SchedulerLoaderChecks.SchedulerLoaderCheckRamp(dateTimeRamp);
             RampBoardLoader();
         }
 
@@ -203,9 +260,6 @@ namespace Perimeter_Threshold
         /// <param name="e"></param>
         private void dgvRampBoard_KeyUp(object sender, KeyEventArgs e)
         {
-            // If 2 people update the board at once, it may throw an error. 
-            //try
-            //{
                 if (e.KeyCode == Keys.Enter)
                 {
                     e.Handled = true;
@@ -216,16 +270,6 @@ namespace Perimeter_Threshold
 
                     UpdateBoardsAutomation.UpdateRampBoardStatus();
                 }
-            //}
-            //catch(System.Data.DBConcurrencyException)
-            //{
-            //    /// Will log error. 
-            //}
-            //finally
-            //{
-            //    MessageBox.Show("Please try updating again. More than 1 person tried to update the board.", "Update Fail");
-            //}
-
         }
 
         /// <summary>
@@ -244,7 +288,6 @@ namespace Perimeter_Threshold
 
         private void dgvRampBoard_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            
             RampBoardStyling styleColors = new RampBoardStyling();
             styleColors.GridviewDelayColors(dgvRampBoard);
         }
@@ -262,6 +305,7 @@ namespace Perimeter_Threshold
             UserColorSelection(userPanelSelection, userPanelSelectionName);
 
             LoadUserPreferenceColors();
+            RampBoardLoader();
         }
 
         /// <summary>
@@ -277,6 +321,7 @@ namespace Perimeter_Threshold
             UserColorSelection(userPanelSelection, userPanelSelectionName);
 
             LoadUserPreferenceColors();
+            RampBoardLoader();
         }
 
         /// <summary>
@@ -292,6 +337,7 @@ namespace Perimeter_Threshold
             UserColorSelection(userPanelSelection, userPanelSelectionName);
 
             LoadUserPreferenceColors();
+            RampBoardLoader();
         }
 
         /// <summary>
@@ -323,6 +369,139 @@ namespace Perimeter_Threshold
             UserColorSelection(userPanelSelection, userPanelSelectionName);
 
             LoadUserPreferenceColors();
+            RampBoardLoader();
+        }
+
+        private void subMenuMasterSchedule_Click(object sender, EventArgs e)
+        {
+            var form = Application.OpenForms.OfType<MasterScheduler>().FirstOrDefault();
+            if (!FormOpener.CheckFormOpen(form))
+            {
+                MasterScheduler masterSchedule = new MasterScheduler();
+
+                var screen = Screen.FromPoint(Cursor.Position);
+                masterSchedule.StartPosition = FormStartPosition.Manual;
+                masterSchedule.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - masterSchedule.Width / 2;
+                masterSchedule.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - masterSchedule.Height / 2;
+
+                masterSchedule.Show();
+            }
+        }
+
+        private void RampBoard_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized && FormLoadded)
+            {
+                RampBoardStyling.ColumnWidthFull(dgvRampBoard);
+            }
+            else if (this.WindowState != FormWindowState.Maximized && FormLoadded)
+            {
+                RampBoardStyling.ColumnWidthNotFull(dgvRampBoard);
+            }
+
+            //this.ResizeBegin += (s, g) => { this.SuspendLayout(); };
+            //this.ResizeEnd += (s, g) => { this.ResumeLayout(true); };
+        }
+
+        private void menuRefresh_Click(object sender, EventArgs e)
+        {
+            RampBoardLoader();
+        }
+
+        private void RampBoard_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (KeyboardShortcuts.Refresh(e))
+            {
+                RampBoardLoader();
+            }
+
+            KeyboardShortcuts.NextDay(e, dateTimeRamp);
+            KeyboardShortcuts.PreviousDay(e, dateTimeRamp);
+            KeyboardShortcuts.GoToCurrentDate(e, dateTimeRamp);
+        }
+
+        private void serviceableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AircraftServiceable();
+            RampBoardLoader();
+        }
+
+        private void unserviceableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AircraftUnserviceable();
+            RampBoardLoader();
+        }
+
+
+        private void flightInformationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Application.OpenForms.OfType<MasterScheduler>().FirstOrDefault();
+            if (!FormOpener.CheckFormOpen(form))
+            {
+                FlightInformation flightInfo = new FlightInformation();
+
+                var screen = Screen.FromPoint(Cursor.Position);
+                flightInfo.StartPosition = FormStartPosition.Manual;
+                flightInfo.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - flightInfo.Width / 2;
+                flightInfo.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - flightInfo.Height / 2;
+
+                flightInfo.NameOfBoard = "Ramp";
+                flightInfo.Date = dateTimeRamp.Value.Date;
+                flightInfo.FlightNumber = FlightNumber;
+                if (flightInfo.CheckFlightExistence())
+                {
+                    flightInfo.Show();
+                }
+            }
+        }
+
+        private void RefreshBoard_Tick(object sender, EventArgs e)
+        {
+            RampBoardLoader();
+        }
+
+        private void RampBoard_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (RoleID != 3)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void RampBoard_ResizeEnd(object sender, EventArgs e)
+        {
+            // TESTING THIS FOR LAG!
+            RampBoardLoader();
+        }
+
+        private void changeLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Application.OpenForms.OfType<Changelog>().FirstOrDefault();
+            if (!FormOpener.CheckFormOpen(form))
+            {
+                Changelog changeLog = new Changelog();
+
+                var screen = Screen.FromPoint(Cursor.Position);
+                changeLog.StartPosition = FormStartPosition.Manual;
+                changeLog.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - changeLog.Width / 2;
+                changeLog.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - changeLog.Height / 2;
+                changeLog.Show();
+            }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Application.OpenForms.OfType<About>().FirstOrDefault();
+            if (!FormOpener.CheckFormOpen(form))
+            {
+                About about = new About();
+
+                var screen = Screen.FromPoint(Cursor.Position);
+                about.StartPosition = FormStartPosition.Manual;
+                about.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - about.Width / 2;
+                about.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - about.Height / 2;
+                about.Show();
+            }
         }
     }
 }

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Perimeter_Threshold
@@ -18,7 +14,7 @@ namespace Perimeter_Threshold
         /// </summary>
         /// <param name="flightNumber"></param>
         /// <param name="date"></param>
-        public void DeletingFight(string flightNumber, DateTime date)
+        public bool DeletingFight(string flightNumber, DateTime date)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
@@ -32,13 +28,16 @@ namespace Perimeter_Threshold
                         deleteFlight.Parameters.AddWithValue("@Date_ID", date);
                         deleteFlight.ExecuteNonQuery();
                         MessageBox.Show("Flight suecessfully deleted", "Flight Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                        return true;
                     }
                 }
                 else
                 {
                     MessageBox.Show("No Flight Found. Please first click on the flight you want to delete, then right click \"Delete Flight\"");
+                    return false;
                 }
+
+                return false; 
             }
         }
     }

@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Perimeter_Threshold
@@ -22,7 +16,7 @@ namespace Perimeter_Threshold
             // Create List. Store any checked boxes in the list. Then pass that list over to Add Flight Class.
             // This will allow it to loop through all the different days checked, to add them all to the database for each day of the week. 
             List<string> dayOfWeek = new List<string>();
-            foreach(string day in chkListBoxDayOfWeek.CheckedItems)
+            foreach (string day in chkListBoxDayOfWeek.CheckedItems)
             {
                 dayOfWeek.Add(day);
 

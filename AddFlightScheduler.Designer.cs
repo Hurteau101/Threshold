@@ -29,6 +29,7 @@ namespace Perimeter_Threshold
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddFlightScheduler));
             this.label10 = new System.Windows.Forms.Label();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
@@ -87,7 +88,7 @@ namespace Perimeter_Threshold
             this.btnAddFlight.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddFlight.Name = "btnAddFlight";
             this.btnAddFlight.Size = new System.Drawing.Size(122, 25);
-            this.btnAddFlight.TabIndex = 56;
+            this.btnAddFlight.TabIndex = 5;
             this.btnAddFlight.Text = "Add Flight";
             this.btnAddFlight.UseVisualStyleBackColor = false;
             this.btnAddFlight.Click += new System.EventHandler(this.btnAddFlight_Click);
@@ -100,7 +101,7 @@ namespace Perimeter_Threshold
             this.tbRouting.Margin = new System.Windows.Forms.Padding(2);
             this.tbRouting.Name = "tbRouting";
             this.tbRouting.Size = new System.Drawing.Size(122, 25);
-            this.tbRouting.TabIndex = 55;
+            this.tbRouting.TabIndex = 4;
             // 
             // label3
             // 
@@ -120,7 +121,7 @@ namespace Perimeter_Threshold
             this.tbDeparture.Margin = new System.Windows.Forms.Padding(2);
             this.tbDeparture.Name = "tbDeparture";
             this.tbDeparture.Size = new System.Drawing.Size(122, 25);
-            this.tbDeparture.TabIndex = 54;
+            this.tbDeparture.TabIndex = 3;
             // 
             // label2
             // 
@@ -141,7 +142,7 @@ namespace Perimeter_Threshold
             this.tbFlightNumber.Margin = new System.Windows.Forms.Padding(2);
             this.tbFlightNumber.Name = "tbFlightNumber";
             this.tbFlightNumber.Size = new System.Drawing.Size(122, 25);
-            this.tbFlightNumber.TabIndex = 46;
+            this.tbFlightNumber.TabIndex = 1;
             // 
             // label1
             // 
@@ -172,7 +173,7 @@ namespace Perimeter_Threshold
             this.chkListBoxDayOfWeek.Location = new System.Drawing.Point(135, 110);
             this.chkListBoxDayOfWeek.Name = "chkListBoxDayOfWeek";
             this.chkListBoxDayOfWeek.Size = new System.Drawing.Size(120, 140);
-            this.chkListBoxDayOfWeek.TabIndex = 62;
+            this.chkListBoxDayOfWeek.TabIndex = 2;
             // 
             // AddFlightScheduler
             // 
@@ -189,8 +190,10 @@ namespace Perimeter_Threshold
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbFlightNumber);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(330, 433);
             this.Name = "AddFlightScheduler";
-            this.Text = "AddFlightScheduler";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             this.ResumeLayout(false);

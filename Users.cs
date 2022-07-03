@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Data;
@@ -19,11 +15,6 @@ namespace Perimeter_Threshold
         public string FullName { get { return $"Welcome, {FirstName} {LastName}"; } }
         public string Password { get; set; }
         public int UserID { get; set; }
-
-
-
-        /// *** WHEN CREATING A PAGE FOR CREATE A USER. MAKE SURE YOU SET USER PREFERENCE DEFAULTS OR ELSE PREFERENCES WILL THROW ERRORS SINCE IT WILL 
-        /// BE NULL IN THE DATABASE. 
 
         /// <summary>
         /// Check if user is valid or not. If user is valid, return true and their username. Also check if its password or username that doesn't exist. 
@@ -74,6 +65,5 @@ namespace Perimeter_Threshold
                 }
             }
         }
-
     }
 }

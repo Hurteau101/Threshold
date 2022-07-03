@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
-using System.Data;
-using System.Windows.Forms;
+﻿using System.Data.SqlClient;
 
 namespace Perimeter_Threshold
 {
@@ -18,10 +11,19 @@ namespace Perimeter_Threshold
         {
             using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
+
+                // CHECK TO SEE IF RAMP BOARD UPDATES ARE WORKING PROPERLY , IF IT IS MAY NEED TO SEPERATE TABLES FOR RAMP AND CARGO
+
+                //conn.Open();
+                //SqlCommand updateStatus = new SqlCommand("UPDATE Check_Boards SET Update_Ramp_Board =@Update_Ramp_Board", conn);
+                //updateStatus.Parameters.AddWithValue("@Update_Ramp_Board", 1);
+                //updateStatus.ExecuteNonQuery();
+
                 conn.Open();
-                SqlCommand updateStatus = new SqlCommand("UPDATE Check_Boards SET Update_Ramp_Board =@Update_Ramp_Board", conn);
-                updateStatus.Parameters.AddWithValue("@Update_Ramp_Board", 1);
+                SqlCommand updateStatus = new SqlCommand("UPDATE CheckBoard SET RampBoard =@RampBoard", conn);
+                updateStatus.Parameters.AddWithValue("@RampBoard", 1);
                 updateStatus.ExecuteNonQuery();
+
             }
         }
 
@@ -47,16 +49,35 @@ namespace Perimeter_Threshold
         {
             using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
+                // CHECK TO SEE IF RAMP BOARD UPDATES ARE WORKING PROPERLY , IF IT IS MAY NEED TO SEPERATE TABLES FOR RAMP AND CARGO
+
+                //string holdValue;
+
+                //conn.Open();
+                //SqlCommand checkStatus = new SqlCommand("SELECT Update_Ramp_Board FROM Check_Boards", conn);
+                //SqlDataReader readStatus = checkStatus.ExecuteReader();
+                //if(readStatus.Read())
+                //{
+                //    holdValue = (readStatus["Update_Ramp_Board"].ToString());
+
+                //    if(holdValue == "1")
+                //    {
+                //        return true;
+                //    }
+                //}
+
+                //return false;
+
                 string holdValue;
 
                 conn.Open();
-                SqlCommand checkStatus = new SqlCommand("SELECT Update_Ramp_Board FROM Check_Boards", conn);
+                SqlCommand checkStatus = new SqlCommand("SELECT RampBoard FROM CheckBoard", conn);
                 SqlDataReader readStatus = checkStatus.ExecuteReader();
-                if(readStatus.Read())
+                if (readStatus.Read())
                 {
-                    holdValue = (readStatus["Update_Ramp_Board"].ToString());
+                    holdValue = (readStatus["RampBoard"].ToString());
 
-                    if(holdValue == "1")
+                    if (holdValue == "1")
                     {
                         return true;
                     }
@@ -100,9 +121,16 @@ namespace Perimeter_Threshold
         {
             using (SqlConnection conn = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
+                // CHECK TO SEE IF RAMP BOARD UPDATES ARE WORKING PROPERLY , IF IT IS MAY NEED TO SEPERATE TABLES FOR RAMP AND CARGO
+
+                //conn.Open();
+                //SqlCommand updateStatus = new SqlCommand("UPDATE Check_Boards SET Update_Ramp_Board =@Update_Ramp_Board", conn);
+                //updateStatus.Parameters.AddWithValue("@Update_Ramp_Board", 0);
+                //updateStatus.ExecuteNonQuery();
+
                 conn.Open();
-                SqlCommand updateStatus = new SqlCommand("UPDATE Check_Boards SET Update_Ramp_Board =@Update_Ramp_Board", conn);
-                updateStatus.Parameters.AddWithValue("@Update_Ramp_Board", 0);
+                SqlCommand updateStatus = new SqlCommand("UPDATE CheckBoard SET RampBoard =@RampBoard", conn);
+                updateStatus.Parameters.AddWithValue("@RampBoard", 0);
                 updateStatus.ExecuteNonQuery();
 
             }
@@ -119,7 +147,6 @@ namespace Perimeter_Threshold
                 SqlCommand updateStatus = new SqlCommand("UPDATE Check_Boards SET Update_Cargo_Board =@Update_Cargo_Board", conn);
                 updateStatus.Parameters.AddWithValue("@Update_Cargo_Board", 0);
                 updateStatus.ExecuteNonQuery();
-
             }
         }
     }

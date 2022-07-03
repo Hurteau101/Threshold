@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Perimeter_Threshold
@@ -17,15 +13,14 @@ namespace Perimeter_Threshold
         /// <exception cref="Exception"></exception>
         public static int GetTextAsInteger(TextBox tb)
         {
-            if(Int32.TryParse(tb.Text, out int result))
+            if (Int32.TryParse(tb.Text, out int result))
             {
                 return result;
-            }      
-            /// ***** UNCOMMENT ONCE PROGRAM IS LIVE *****
-            //else if(string.IsNullOrEmpty(tb.Text))
-            //{
-            //    return Convert.ToInt32(tb.Text = "0");
-            //}
+            }
+            else if (string.IsNullOrEmpty(tb.Text))
+            {
+                return Convert.ToInt32(tb.Text = "0");
+            }
             else
             {
                 throw new Exception("Cannot convert string to int");
@@ -38,7 +33,6 @@ namespace Perimeter_Threshold
             {
                 return result;
             }
-            /// ***** UNCOMMENT ONCE PROGRAM IS LIVE *****
             else if (string.IsNullOrEmpty(cb.Text))
             {
                 return Convert.ToInt32(cb.Text = "0");
@@ -48,7 +42,5 @@ namespace Perimeter_Threshold
                 throw new Exception("Cannot convert string to int");
             }
         }
-     
-
     }
 }

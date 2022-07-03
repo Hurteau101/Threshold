@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Perimeter_Threshold
@@ -26,7 +20,7 @@ namespace Perimeter_Threshold
             FlightNumber = flightNumber;
             Aircraft = aircraft;
             Routing = routing;
-            Departure = departure; 
+            Departure = departure;
             FlightLead = flightLead;
             ALCRemark = alcRemark;
             RampRemark = rampRemark;
@@ -204,25 +198,25 @@ namespace Perimeter_Threshold
         }
 
         /// <summary>
-        /// Pull Cargo note information from database, and autofill Cargo Note textbox.
+        /// Pull Cargo note information from database, and autofill Cargo Notes textbox.
         /// </summary>
-        /// <param name="rampRemarks"></param>
+        /// <param name="cargoRemarks"></param>
         /// <returns></returns>
-        public AutoCompleteStringCollection AutoCompleteCargoNotes(TextBox rampRemarks)
+        public AutoCompleteStringCollection AutoCompleteCargoNotes(TextBox cargoRemarks)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionLoader.ConnectionString("Threshold")))
             {
                 AutoCompleteStringCollection noteCollection = new AutoCompleteStringCollection();
 
                 connection.Open();
-                SqlCommand cargoNotes = new SqlCommand("SELECT DISTINCT Notes FROM Cargo_Board", connection);
+                SqlCommand cargoNotes = new SqlCommand("SELECT DISTINCT Cargo_Notes FROM Cargo_Board", connection);
                 SqlDataReader readNotes = cargoNotes.ExecuteReader();
                 while (readNotes.Read())
                 {
-                    noteCollection.Add(readNotes["Notes"].ToString());
+                    noteCollection.Add(readNotes["Cargo_Notes"].ToString());
                 }
 
-                return rampRemarks.AutoCompleteCustomSource = noteCollection;
+                return cargoRemarks.AutoCompleteCustomSource = noteCollection;
             }
         }
 

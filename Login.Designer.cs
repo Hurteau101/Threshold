@@ -51,8 +51,9 @@ namespace Perimeter_Threshold
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Image = ((System.Drawing.Image)(resources.GetObject("panelTop.Image")));
             this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(384, 123);
+            this.panelTop.Size = new System.Drawing.Size(512, 151);
             this.panelTop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.panelTop.TabIndex = 29;
             this.panelTop.TabStop = false;
@@ -66,20 +67,20 @@ namespace Perimeter_Threshold
             this.panelBottom.Controls.Add(this.btnLogin);
             this.panelBottom.Controls.Add(this.lblPassword);
             this.panelBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBottom.Location = new System.Drawing.Point(0, 123);
-            this.panelBottom.Margin = new System.Windows.Forms.Padding(2);
+            this.panelBottom.Location = new System.Drawing.Point(0, 151);
+            this.panelBottom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(384, 197);
+            this.panelBottom.Size = new System.Drawing.Size(512, 243);
             this.panelBottom.TabIndex = 31;
             // 
             // passwordBackground
             // 
             this.passwordBackground.BackColor = System.Drawing.Color.White;
             this.passwordBackground.Controls.Add(this.tbPassword);
-            this.passwordBackground.Location = new System.Drawing.Point(176, 77);
-            this.passwordBackground.Margin = new System.Windows.Forms.Padding(2);
+            this.passwordBackground.Location = new System.Drawing.Point(235, 95);
+            this.passwordBackground.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.passwordBackground.Name = "passwordBackground";
-            this.passwordBackground.Size = new System.Drawing.Size(125, 18);
+            this.passwordBackground.Size = new System.Drawing.Size(167, 22);
             this.passwordBackground.TabIndex = 2;
             // 
             // tbPassword
@@ -87,20 +88,22 @@ namespace Perimeter_Threshold
             this.tbPassword.BackColor = System.Drawing.Color.White;
             this.tbPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbPassword.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPassword.Location = new System.Drawing.Point(5, 0);
+            this.tbPassword.Location = new System.Drawing.Point(7, 0);
+            this.tbPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '*';
-            this.tbPassword.Size = new System.Drawing.Size(114, 18);
+            this.tbPassword.Size = new System.Drawing.Size(152, 22);
             this.tbPassword.TabIndex = 23;
+            this.tbPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbPassword_KeyDown);
             // 
             // usernameBackground
             // 
             this.usernameBackground.BackColor = System.Drawing.Color.White;
             this.usernameBackground.Controls.Add(this.tbUsername);
-            this.usernameBackground.Location = new System.Drawing.Point(176, 41);
-            this.usernameBackground.Margin = new System.Windows.Forms.Padding(2);
+            this.usernameBackground.Location = new System.Drawing.Point(235, 50);
+            this.usernameBackground.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.usernameBackground.Name = "usernameBackground";
-            this.usernameBackground.Size = new System.Drawing.Size(125, 18);
+            this.usernameBackground.Size = new System.Drawing.Size(167, 22);
             this.usernameBackground.TabIndex = 1;
             // 
             // tbUsername
@@ -108,19 +111,22 @@ namespace Perimeter_Threshold
             this.tbUsername.BackColor = System.Drawing.Color.White;
             this.tbUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbUsername.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbUsername.Location = new System.Drawing.Point(5, 0);
+            this.tbUsername.Location = new System.Drawing.Point(7, 0);
+            this.tbUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbUsername.Name = "tbUsername";
-            this.tbUsername.Size = new System.Drawing.Size(114, 18);
+            this.tbUsername.Size = new System.Drawing.Size(152, 22);
             this.tbUsername.TabIndex = 1;
+            this.tbUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbUsername_KeyDown);
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
             this.lblUsername.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.ForeColor = System.Drawing.Color.White;
-            this.lblUsername.Location = new System.Drawing.Point(84, 41);
+            this.lblUsername.Location = new System.Drawing.Point(112, 50);
+            this.lblUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(78, 18);
+            this.lblUsername.Size = new System.Drawing.Size(95, 22);
             this.lblUsername.TabIndex = 20;
             this.lblUsername.Text = "Username";
             // 
@@ -132,9 +138,10 @@ namespace Perimeter_Threshold
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(87, 122);
+            this.btnLogin.Location = new System.Drawing.Point(116, 150);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(214, 28);
+            this.btnLogin.Size = new System.Drawing.Size(285, 34);
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -145,9 +152,10 @@ namespace Perimeter_Threshold
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPassword.ForeColor = System.Drawing.Color.White;
-            this.lblPassword.Location = new System.Drawing.Point(84, 77);
+            this.lblPassword.Location = new System.Drawing.Point(112, 95);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(74, 18);
+            this.lblPassword.Size = new System.Drawing.Size(90, 22);
             this.lblPassword.TabIndex = 22;
             this.lblPassword.Text = "Password";
             // 
@@ -158,22 +166,25 @@ namespace Perimeter_Threshold
             this.lblClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblClose.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Bold);
             this.lblClose.ForeColor = System.Drawing.Color.Black;
-            this.lblClose.Location = new System.Drawing.Point(369, 0);
+            this.lblClose.Location = new System.Drawing.Point(492, 0);
+            this.lblClose.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblClose.Name = "lblClose";
-            this.lblClose.Size = new System.Drawing.Size(15, 15);
+            this.lblClose.Size = new System.Drawing.Size(19, 19);
             this.lblClose.TabIndex = 32;
             this.lblClose.Text = "X";
             this.lblClose.Click += new System.EventHandler(this.lblClose_Click);
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 320);
+            this.ClientSize = new System.Drawing.Size(512, 394);
             this.Controls.Add(this.lblClose);
             this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.panelTop)).EndInit();

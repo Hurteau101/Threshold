@@ -29,6 +29,7 @@ namespace Perimeter_Threshold
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddFlight_Ramp));
             this.panelHeader = new System.Windows.Forms.Panel();
             this.lblHeader = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
@@ -107,7 +108,7 @@ namespace Perimeter_Threshold
             this.tbRamp_Remarks.Margin = new System.Windows.Forms.Padding(2);
             this.tbRamp_Remarks.Name = "tbRamp_Remarks";
             this.tbRamp_Remarks.Size = new System.Drawing.Size(170, 25);
-            this.tbRamp_Remarks.TabIndex = 32;
+            this.tbRamp_Remarks.TabIndex = 8;
             // 
             // lblRamp_Remarks
             // 
@@ -129,7 +130,7 @@ namespace Perimeter_Threshold
             this.tbALC_Remarks.Margin = new System.Windows.Forms.Padding(2);
             this.tbALC_Remarks.Name = "tbALC_Remarks";
             this.tbALC_Remarks.Size = new System.Drawing.Size(170, 25);
-            this.tbALC_Remarks.TabIndex = 31;
+            this.tbALC_Remarks.TabIndex = 7;
             // 
             // lblALC_Remarks
             // 
@@ -151,7 +152,7 @@ namespace Perimeter_Threshold
             this.tbLead.Margin = new System.Windows.Forms.Padding(2);
             this.tbLead.Name = "tbLead";
             this.tbLead.Size = new System.Drawing.Size(170, 25);
-            this.tbLead.TabIndex = 30;
+            this.tbLead.TabIndex = 6;
             // 
             // lblLead
             // 
@@ -171,7 +172,7 @@ namespace Perimeter_Threshold
             this.tbSeatpacks.Margin = new System.Windows.Forms.Padding(2);
             this.tbSeatpacks.Name = "tbSeatpacks";
             this.tbSeatpacks.Size = new System.Drawing.Size(170, 25);
-            this.tbSeatpacks.TabIndex = 28;
+            this.tbSeatpacks.TabIndex = 5;
             // 
             // lblSeatpacks
             // 
@@ -194,7 +195,7 @@ namespace Perimeter_Threshold
             this.btnAddFlight.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddFlight.Name = "btnAddFlight";
             this.btnAddFlight.Size = new System.Drawing.Size(170, 25);
-            this.btnAddFlight.TabIndex = 34;
+            this.btnAddFlight.TabIndex = 9;
             this.btnAddFlight.Text = "Add Flight";
             this.btnAddFlight.UseVisualStyleBackColor = false;
             this.btnAddFlight.Click += new System.EventHandler(this.btnAddFlight_Click);
@@ -208,7 +209,7 @@ namespace Perimeter_Threshold
             this.tbDeparture.Margin = new System.Windows.Forms.Padding(2);
             this.tbDeparture.Name = "tbDeparture";
             this.tbDeparture.Size = new System.Drawing.Size(170, 25);
-            this.tbDeparture.TabIndex = 27;
+            this.tbDeparture.TabIndex = 4;
             // 
             // lblDeparture
             // 
@@ -231,7 +232,7 @@ namespace Perimeter_Threshold
             this.tbRouting.Margin = new System.Windows.Forms.Padding(2);
             this.tbRouting.Name = "tbRouting";
             this.tbRouting.Size = new System.Drawing.Size(170, 25);
-            this.tbRouting.TabIndex = 25;
+            this.tbRouting.TabIndex = 3;
             // 
             // lblRouting
             // 
@@ -254,7 +255,7 @@ namespace Perimeter_Threshold
             this.tbAircraft.Margin = new System.Windows.Forms.Padding(2);
             this.tbAircraft.Name = "tbAircraft";
             this.tbAircraft.Size = new System.Drawing.Size(170, 25);
-            this.tbAircraft.TabIndex = 24;
+            this.tbAircraft.TabIndex = 2;
             // 
             // lblAircraft
             // 
@@ -277,7 +278,7 @@ namespace Perimeter_Threshold
             this.tbFlightNumber.Margin = new System.Windows.Forms.Padding(2);
             this.tbFlightNumber.Name = "tbFlightNumber";
             this.tbFlightNumber.Size = new System.Drawing.Size(170, 25);
-            this.tbFlightNumber.TabIndex = 22;
+            this.tbFlightNumber.TabIndex = 1;
             // 
             // lblFlightNumber
             // 
@@ -315,8 +316,10 @@ namespace Perimeter_Threshold
             this.Controls.Add(this.lblAircraft);
             this.Controls.Add(this.tbFlightNumber);
             this.Controls.Add(this.lblFlightNumber);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(372, 470);
             this.Name = "AddFlight_Ramp";
-            this.Text = "AddFlight_Ramp";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.AddFlight_Ramp_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();

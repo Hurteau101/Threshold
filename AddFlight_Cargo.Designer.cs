@@ -29,6 +29,7 @@ namespace Perimeter_Threshold
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddFlight_Cargo));
             this.label10 = new System.Windows.Forms.Label();
             this.dateTimeAddFlight = new System.Windows.Forms.DateTimePicker();
             this.panelHeader = new System.Windows.Forms.Panel();
@@ -94,7 +95,7 @@ namespace Perimeter_Threshold
             this.btnClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(64, 28);
-            this.btnClear.TabIndex = 55;
+            this.btnClear.TabIndex = 8;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = false;
             // 
@@ -119,7 +120,7 @@ namespace Perimeter_Threshold
             this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(64, 28);
-            this.btnSave.TabIndex = 56;
+            this.btnSave.TabIndex = 9;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -132,7 +133,7 @@ namespace Perimeter_Threshold
             this.tbAircraft.Margin = new System.Windows.Forms.Padding(2);
             this.tbAircraft.Name = "tbAircraft";
             this.tbAircraft.Size = new System.Drawing.Size(159, 25);
-            this.tbAircraft.TabIndex = 53;
+            this.tbAircraft.TabIndex = 6;
             this.tbAircraft.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7
@@ -153,7 +154,7 @@ namespace Perimeter_Threshold
             this.tbSeatpacks.Margin = new System.Windows.Forms.Padding(2);
             this.tbSeatpacks.Name = "tbSeatpacks";
             this.tbSeatpacks.Size = new System.Drawing.Size(159, 25);
-            this.tbSeatpacks.TabIndex = 52;
+            this.tbSeatpacks.TabIndex = 5;
             this.tbSeatpacks.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label8
@@ -174,7 +175,7 @@ namespace Perimeter_Threshold
             this.tbProjectWT.Margin = new System.Windows.Forms.Padding(2);
             this.tbProjectWT.Name = "tbProjectWT";
             this.tbProjectWT.Size = new System.Drawing.Size(159, 25);
-            this.tbProjectWT.TabIndex = 51;
+            this.tbProjectWT.TabIndex = 4;
             this.tbProjectWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label6
@@ -196,7 +197,7 @@ namespace Perimeter_Threshold
             this.tbRouting.Margin = new System.Windows.Forms.Padding(2);
             this.tbRouting.Name = "tbRouting";
             this.tbRouting.Size = new System.Drawing.Size(159, 25);
-            this.tbRouting.TabIndex = 50;
+            this.tbRouting.TabIndex = 3;
             this.tbRouting.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
@@ -217,7 +218,7 @@ namespace Perimeter_Threshold
             this.tbDeparture.Margin = new System.Windows.Forms.Padding(2);
             this.tbDeparture.Name = "tbDeparture";
             this.tbDeparture.Size = new System.Drawing.Size(159, 25);
-            this.tbDeparture.TabIndex = 49;
+            this.tbDeparture.TabIndex = 2;
             this.tbDeparture.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
@@ -244,13 +245,15 @@ namespace Perimeter_Threshold
             // 
             // tbFlightNumber
             // 
+            this.tbFlightNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.tbFlightNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.tbFlightNumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbFlightNumber.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10.2F);
             this.tbFlightNumber.Location = new System.Drawing.Point(109, 74);
             this.tbFlightNumber.Margin = new System.Windows.Forms.Padding(2);
             this.tbFlightNumber.Name = "tbFlightNumber";
             this.tbFlightNumber.Size = new System.Drawing.Size(159, 25);
-            this.tbFlightNumber.TabIndex = 48;
+            this.tbFlightNumber.TabIndex = 1;
             this.tbFlightNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
@@ -273,7 +276,7 @@ namespace Perimeter_Threshold
             this.tbNotes.Multiline = true;
             this.tbNotes.Name = "tbNotes";
             this.tbNotes.Size = new System.Drawing.Size(159, 79);
-            this.tbNotes.TabIndex = 67;
+            this.tbNotes.TabIndex = 7;
             this.tbNotes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // AddFlight_Cargo
@@ -300,8 +303,10 @@ namespace Perimeter_Threshold
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbFlightNumber);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(352, 527);
             this.Name = "AddFlight_Cargo";
-            this.Text = "AddFlight_Cargo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.AddFlight_Cargo_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();

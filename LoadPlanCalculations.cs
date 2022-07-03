@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Perimeter_Threshold
@@ -33,19 +29,22 @@ namespace Perimeter_Threshold
             seatpack_leg6.Text = seatpack_leg1.Text;
         }
 
-        public static void BagWeightValidator(List<TextBox> bagWeights, List<ComboBox> bagWeightSelector)
+        /// <summary>
+        /// Check to make sure bag weight isn't 0, if it is, make allowable bags weight combobox empty. 
+        /// </summary>
+        /// <param name="numberOfPax"></param>
+        /// <param name="allowableBags"></param>
+        public static void BagWeightValidator(List<TextBox> numberOfPax, List<ComboBox> allowableBags)
         {
-            // Set Combo Box to blank, if bag weight contains a value greater than 0. 
-            // HAVE TO IMPLEMENT THIS ONCE LOADING FUNCTION WORKS. 
-            foreach (var bagWeight in bagWeights)
+            foreach (var paxNum in numberOfPax)
             {
-                foreach (var selection in bagWeightSelector)
+                if(HelperMethods.GetTextAsInteger(paxNum) != 0)
                 {
-                    if (bagWeight.Text != "0")
+                    foreach (var bag in allowableBags)
                     {
-                        selection.SelectedIndex = -1;
+                        bag.SelectedIndex = -1;   
                     }
-                }              
+                }
             }
         }
 
@@ -94,7 +93,10 @@ namespace Perimeter_Threshold
         {
             if(checkStatus.Checked)
             {
-               return bagTotal.Text = (HelperMethods.GetTextAsInteger(numberOfPassengers) * HelperMethods.GetTextAsInteger(allowableBags)).ToString();
+                if (allowableBags.SelectedIndex != -1)
+                {
+                    return bagTotal.Text = (HelperMethods.GetTextAsInteger(numberOfPassengers) * HelperMethods.GetTextAsInteger(allowableBags)).ToString();
+                }
             }
 
             return bagTotal.Text;          

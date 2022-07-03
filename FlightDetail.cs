@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Perimeter_Threshold
 {
@@ -33,5 +29,6 @@ namespace Perimeter_Threshold
         public int Aircraft_Weight { get; set; }
         public int Fuel_Burn { get; set; }
         public string Aircraft_Configuration { get; set; }
+        public string Aircraft_Location { get; set; }
     }
 }

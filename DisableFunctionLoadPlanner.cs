@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
 
@@ -23,7 +19,7 @@ namespace Perimeter_Threshold
         /// <param name="seatpackPanel_Leg1"></param>
         public static void DisableSeatpacks(ComboBox aircraftType, List<TextBox> seatpacks, List<Panel> seatpackPanel)
         {
-            if(!aircraftType.Text.Contains("Dash"))
+            if (!aircraftType.Text.Contains("Dash"))
             {
                 foreach (var seatpack in seatpacks)
                 {
@@ -36,14 +32,13 @@ namespace Perimeter_Threshold
                 {
                     seatpack.BackColor = SystemColors.Control;
                 }
-                
+
             }
             else
             {
                 foreach (var seatpack in seatpacks)
                 {
                     seatpack.ReadOnly = false;
-                    seatpack.Text = "0";
                     seatpack.BackColor = Color.White;
                     seatpack.TabStop = true;
                 }
@@ -54,6 +49,12 @@ namespace Perimeter_Threshold
             }
         }
 
+        /// <summary>
+        /// Disable AWI textbox if aircraft is a Dash. 
+        /// </summary>
+        /// <param name="aircraftType"></param>
+        /// <param name="AWI"></param>
+        /// <param name="panelAWI"></param>
         public static void DisableAWI(ComboBox aircraftType, List<TextBox> AWI, List<Panel> panelAWI)
         {
             if (aircraftType.Text.Contains("Dash"))
@@ -84,8 +85,6 @@ namespace Perimeter_Threshold
                     awi.BackColor = SystemColors.Window;
                 }
             }
-           
         }
-
     }
 }

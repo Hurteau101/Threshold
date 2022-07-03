@@ -33,6 +33,7 @@ namespace Perimeter_Threshold
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RampBoard));
             this.smallPanelEarly = new System.Windows.Forms.Panel();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panelColors = new System.Windows.Forms.Panel();
@@ -50,11 +51,16 @@ namespace Perimeter_Threshold
             this.pictureHeader = new System.Windows.Forms.PictureBox();
             this.dgvMenuStripFlights = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.subMenuDeleteFlight = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAircraftStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serviceableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unserviceableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flightInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvRampBoard = new System.Windows.Forms.DataGridView();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.arrivalTimer = new System.Windows.Forms.Timer(this.components);
             this.menuStripFlights = new System.Windows.Forms.ToolStripMenuItem();
             this.subMenuAddFlight = new System.Windows.Forms.ToolStripMenuItem();
+            this.subMenuMasterSchedule = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripDate = new System.Windows.Forms.ToolStripMenuItem();
             this.subMenuStripShowDate = new System.Windows.Forms.ToolStripMenuItem();
             this.subMenuStripHideDate = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,9 +68,11 @@ namespace Perimeter_Threshold
             this.subMenuStripDelayCodes = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripNightCheckList = new System.Windows.Forms.ToolStripMenuItem();
             this.subMenuNightChecklist = new System.Windows.Forms.ToolStripMenuItem();
-            this.subMenuSupCheckList = new System.Windows.Forms.ToolStripMenuItem();
-            this.refresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.changeLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RefreshBoard = new System.Windows.Forms.Timer(this.components);
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelHeader.SuspendLayout();
             this.panelColors.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureHeader)).BeginInit();
@@ -93,7 +101,7 @@ namespace Perimeter_Threshold
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 24);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1014, 119);
+            this.panelHeader.Size = new System.Drawing.Size(608, 119);
             this.panelHeader.TabIndex = 3;
             // 
             // panelColors
@@ -109,7 +117,7 @@ namespace Perimeter_Threshold
             this.panelColors.Controls.Add(this.smallPanelLate);
             this.panelColors.Controls.Add(this.smallPanelEarly);
             this.panelColors.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelColors.Location = new System.Drawing.Point(864, 0);
+            this.panelColors.Location = new System.Drawing.Point(458, 0);
             this.panelColors.Name = "panelColors";
             this.panelColors.Size = new System.Drawing.Size(150, 119);
             this.panelColors.TabIndex = 4;
@@ -188,7 +196,7 @@ namespace Perimeter_Threshold
             // 
             this.smallPanelUnserviceable.BackColor = System.Drawing.Color.Yellow;
             this.smallPanelUnserviceable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.smallPanelUnserviceable.Location = new System.Drawing.Point(11, 80);
+            this.smallPanelUnserviceable.Location = new System.Drawing.Point(11, 83);
             this.smallPanelUnserviceable.Name = "smallPanelUnserviceable";
             this.smallPanelUnserviceable.Size = new System.Drawing.Size(17, 20);
             this.smallPanelUnserviceable.TabIndex = 4;
@@ -231,24 +239,57 @@ namespace Perimeter_Threshold
             this.pictureHeader.Image = global::Perimeter_Threshold.Properties.Resources.RampBoardHeader;
             this.pictureHeader.Location = new System.Drawing.Point(0, 0);
             this.pictureHeader.Name = "pictureHeader";
-            this.pictureHeader.Size = new System.Drawing.Size(1014, 119);
+            this.pictureHeader.Size = new System.Drawing.Size(608, 119);
             this.pictureHeader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureHeader.TabIndex = 4;
             this.pictureHeader.TabStop = false;
             // 
             // dgvMenuStripFlights
             // 
+            this.dgvMenuStripFlights.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.dgvMenuStripFlights.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.subMenuDeleteFlight});
+            this.subMenuDeleteFlight,
+            this.setAircraftStatusToolStripMenuItem,
+            this.flightInformationToolStripMenuItem});
             this.dgvMenuStripFlights.Name = "contextMenuStrip1";
-            this.dgvMenuStripFlights.Size = new System.Drawing.Size(141, 26);
+            this.dgvMenuStripFlights.Size = new System.Drawing.Size(171, 70);
             // 
             // subMenuDeleteFlight
             // 
             this.subMenuDeleteFlight.Name = "subMenuDeleteFlight";
-            this.subMenuDeleteFlight.Size = new System.Drawing.Size(140, 22);
+            this.subMenuDeleteFlight.Size = new System.Drawing.Size(170, 22);
             this.subMenuDeleteFlight.Text = "Delete Flight";
             this.subMenuDeleteFlight.Click += new System.EventHandler(this.subMenuDeleteFlight_Click);
+            // 
+            // setAircraftStatusToolStripMenuItem
+            // 
+            this.setAircraftStatusToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.serviceableToolStripMenuItem,
+            this.unserviceableToolStripMenuItem});
+            this.setAircraftStatusToolStripMenuItem.Name = "setAircraftStatusToolStripMenuItem";
+            this.setAircraftStatusToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.setAircraftStatusToolStripMenuItem.Text = "Set Aircraft Status";
+            // 
+            // serviceableToolStripMenuItem
+            // 
+            this.serviceableToolStripMenuItem.Name = "serviceableToolStripMenuItem";
+            this.serviceableToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.serviceableToolStripMenuItem.Text = "Serviceable";
+            this.serviceableToolStripMenuItem.Click += new System.EventHandler(this.serviceableToolStripMenuItem_Click);
+            // 
+            // unserviceableToolStripMenuItem
+            // 
+            this.unserviceableToolStripMenuItem.Name = "unserviceableToolStripMenuItem";
+            this.unserviceableToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.unserviceableToolStripMenuItem.Text = "Unserviceable";
+            this.unserviceableToolStripMenuItem.Click += new System.EventHandler(this.unserviceableToolStripMenuItem_Click);
+            // 
+            // flightInformationToolStripMenuItem
+            // 
+            this.flightInformationToolStripMenuItem.Name = "flightInformationToolStripMenuItem";
+            this.flightInformationToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.flightInformationToolStripMenuItem.Text = "Flight Information";
+            this.flightInformationToolStripMenuItem.Click += new System.EventHandler(this.flightInformationToolStripMenuItem_Click);
             // 
             // dgvRampBoard
             // 
@@ -277,9 +318,10 @@ namespace Perimeter_Threshold
             this.dgvRampBoard.Location = new System.Drawing.Point(0, 143);
             this.dgvRampBoard.Margin = new System.Windows.Forms.Padding(2);
             this.dgvRampBoard.Name = "dgvRampBoard";
+            this.dgvRampBoard.RowHeadersWidth = 51;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvRampBoard.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvRampBoard.Size = new System.Drawing.Size(1014, 353);
+            this.dgvRampBoard.Size = new System.Drawing.Size(608, 227);
             this.dgvRampBoard.TabIndex = 4;
             this.dgvRampBoard.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvRampBoard_CellFormatting);
             this.dgvRampBoard.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRampBoard_CellMouseUp);
@@ -293,13 +335,14 @@ namespace Perimeter_Threshold
             // arrivalTimer
             // 
             this.arrivalTimer.Enabled = true;
-            this.arrivalTimer.Interval = 500;
+            this.arrivalTimer.Interval = 30000;
             this.arrivalTimer.Tick += new System.EventHandler(this.arrivalTimer_Tick);
             // 
             // menuStripFlights
             // 
             this.menuStripFlights.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.subMenuAddFlight});
+            this.subMenuAddFlight,
+            this.subMenuMasterSchedule});
             this.menuStripFlights.Name = "menuStripFlights";
             this.menuStripFlights.Size = new System.Drawing.Size(54, 20);
             this.menuStripFlights.Text = "Flights";
@@ -307,9 +350,16 @@ namespace Perimeter_Threshold
             // subMenuAddFlight
             // 
             this.subMenuAddFlight.Name = "subMenuAddFlight";
-            this.subMenuAddFlight.Size = new System.Drawing.Size(129, 22);
+            this.subMenuAddFlight.Size = new System.Drawing.Size(165, 22);
             this.subMenuAddFlight.Text = "Add Flight";
             this.subMenuAddFlight.Click += new System.EventHandler(this.subMenuAddFlight_Click);
+            // 
+            // subMenuMasterSchedule
+            // 
+            this.subMenuMasterSchedule.Name = "subMenuMasterSchedule";
+            this.subMenuMasterSchedule.Size = new System.Drawing.Size(165, 22);
+            this.subMenuMasterSchedule.Text = "Master Scheduler";
+            this.subMenuMasterSchedule.Click += new System.EventHandler(this.subMenuMasterSchedule_Click);
             // 
             // menuStripDate
             // 
@@ -356,8 +406,7 @@ namespace Perimeter_Threshold
             // menuStripNightCheckList
             // 
             this.menuStripNightCheckList.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.subMenuNightChecklist,
-            this.subMenuSupCheckList});
+            this.subMenuNightChecklist});
             this.menuStripNightCheckList.Name = "menuStripNightCheckList";
             this.menuStripNightCheckList.Size = new System.Drawing.Size(87, 20);
             this.menuStripNightCheckList.Text = "Night Report";
@@ -365,47 +414,71 @@ namespace Perimeter_Threshold
             // subMenuNightChecklist
             // 
             this.subMenuNightChecklist.Name = "subMenuNightChecklist";
-            this.subMenuNightChecklist.Size = new System.Drawing.Size(180, 22);
+            this.subMenuNightChecklist.Size = new System.Drawing.Size(155, 22);
             this.subMenuNightChecklist.Text = "Night Checklist";
             this.subMenuNightChecklist.Click += new System.EventHandler(this.subMenuNightChecklist_Click);
             // 
-            // subMenuSupCheckList
+            // menuRefresh
             // 
-            this.subMenuSupCheckList.Name = "subMenuSupCheckList";
-            this.subMenuSupCheckList.Size = new System.Drawing.Size(180, 22);
-            this.subMenuSupCheckList.Text = "Supervisor Checklist";
-            // 
-            // refresToolStripMenuItem
-            // 
-            this.refresToolStripMenuItem.Name = "refresToolStripMenuItem";
-            this.refresToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
+            this.menuRefresh.Name = "menuRefresh";
+            this.menuRefresh.Size = new System.Drawing.Size(117, 20);
+            this.menuRefresh.Text = "Refresh (CTRL + R)";
+            this.menuRefresh.Click += new System.EventHandler(this.menuRefresh_Click);
             // 
             // menuStrip
             // 
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuStripFlights,
             this.menuStripDate,
             this.menuStripDelays,
             this.menuStripNightCheckList,
-            this.refresToolStripMenuItem});
+            this.menuRefresh,
+            this.changeLogToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1014, 24);
+            this.menuStrip.Size = new System.Drawing.Size(608, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip1";
+            // 
+            // changeLogToolStripMenuItem
+            // 
+            this.changeLogToolStripMenuItem.Name = "changeLogToolStripMenuItem";
+            this.changeLogToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.changeLogToolStripMenuItem.Text = "Change Log";
+            this.changeLogToolStripMenuItem.Click += new System.EventHandler(this.changeLogToolStripMenuItem_Click);
+            // 
+            // RefreshBoard
+            // 
+            this.RefreshBoard.Enabled = true;
+            this.RefreshBoard.Interval = 300000;
+            this.RefreshBoard.Tick += new System.EventHandler(this.RefreshBoard_Tick);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // RampBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1014, 496);
+            this.ClientSize = new System.Drawing.Size(608, 370);
             this.Controls.Add(this.dgvRampBoard);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.menuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "RampBoard";
-            this.Text = "RampBoard";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RampBoard_FormClosed);
             this.Load += new System.EventHandler(this.RampBoard_Load);
+            this.ResizeEnd += new System.EventHandler(this.RampBoard_ResizeEnd);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RampBoard_KeyDown);
+            this.Resize += new System.EventHandler(this.RampBoard_Resize);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             this.panelColors.ResumeLayout(false);
@@ -436,22 +509,29 @@ namespace Perimeter_Threshold
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.DateTimePicker dateTimeRamp;
         private System.Windows.Forms.ContextMenuStrip dgvMenuStripFlights;
-        private System.Windows.Forms.ToolStripMenuItem subMenuDeleteFlight;
         public System.Windows.Forms.DataGridView dgvRampBoard;
         private System.Windows.Forms.PictureBox pictureHeader;
         private System.Windows.Forms.Timer updateTimer;
         private System.Windows.Forms.Timer arrivalTimer;
-        private System.Windows.Forms.ToolStripMenuItem menuStripFlights;
-        private System.Windows.Forms.ToolStripMenuItem subMenuAddFlight;
+        private System.Windows.Forms.ToolStripMenuItem serviceableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unserviceableToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem subMenuAddFlight;
+        public System.Windows.Forms.ToolStripMenuItem subMenuMasterSchedule;
         private System.Windows.Forms.ToolStripMenuItem menuStripDate;
         private System.Windows.Forms.ToolStripMenuItem subMenuStripShowDate;
         private System.Windows.Forms.ToolStripMenuItem subMenuStripHideDate;
-        private System.Windows.Forms.ToolStripMenuItem menuStripDelays;
+        public System.Windows.Forms.ToolStripMenuItem menuStripDelays;
         private System.Windows.Forms.ToolStripMenuItem subMenuStripDelayCodes;
-        private System.Windows.Forms.ToolStripMenuItem menuStripNightCheckList;
-        private System.Windows.Forms.ToolStripMenuItem subMenuNightChecklist;
-        private System.Windows.Forms.ToolStripMenuItem subMenuSupCheckList;
-        private System.Windows.Forms.ToolStripMenuItem refresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuRefresh;
         private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.Timer RefreshBoard;
+        public System.Windows.Forms.ToolStripMenuItem menuStripFlights;
+        internal System.Windows.Forms.ToolStripMenuItem subMenuDeleteFlight;
+        internal System.Windows.Forms.ToolStripMenuItem setAircraftStatusToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem subMenuNightChecklist;
+        internal System.Windows.Forms.ToolStripMenuItem menuStripNightCheckList;
+        internal System.Windows.Forms.ToolStripMenuItem flightInformationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeLogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
